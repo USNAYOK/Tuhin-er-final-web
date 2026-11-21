@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>E BD TOUR</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Lato:wght@400;700;900&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <!-- SweetAlert2 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-material-ui/material-ui.min.css" rel="stylesheet">
 
@@ -1465,6 +1465,70 @@
     .fab-telegram img { width: 100%; height: 100%; }
     
     .empty-msg { text-align: center; padding: 30px; color: #999; font-weight: 600; }
+/* ===== BLUE & WHITE THEME ===== */
+:root{--primary:#1F4FE0;--primary-light:#EAF1FF;--bg-color:#F3F7FF;--text-dark:#0B1F5C;--ink:#0B1F5C;--line:#D6E2FF;--wallet-gradient:linear-gradient(135deg,#0B1F5C,#1F4FE0 60%,#5B8CFF);--auth-bg-dark:#1F4FE0}
+body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.category-title,.wg-balance,.mc-stat-value,.rd-main-title,.md-title,.join-match-title,.splash-app-name,.auth-title-large,.back-nav,.tab-item span,.slot,.team-tag{font-family:'Rajdhani','Hind Siliguri',sans-serif}
+#app-splash{background:linear-gradient(160deg,#1F4FE0,#0B1F5C);transition:opacity .3s}
+.spinner{border-color:rgba(255,255,255,.3)!important;border-top-color:#fff!important}
+#auth-view{background:#1F4FE0}
+.auth-bottom-card{background:#fff}
+.auth-black-btn,.ep-btn,.wd-submit-btn,.startup-btn,.warning-popup-btn,.btn-copy,.refer-btn-fixed,.join-btn-full,.btn-join-main,.m-tab.active,.wa-btn.add{background:var(--primary)!important;color:#fff!important;border-color:var(--primary)!important}
+.wa-btn.withdraw{background:#fff!important;color:var(--primary)!important;border:1.5px solid var(--primary)!important}
+.auth-input-field:focus,.ep-input:focus,.join-input:focus{border-color:var(--primary)!important;outline:none}
+.auth-footer-link span,.auth-forget-link{color:var(--primary)}
+.tab-bar{background:#fff;border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(31,79,224,.08)}
+.tab-item.active span{color:var(--primary)!important;font-weight:700}
+.tab-item.active .tab-icon-box{background:var(--primary-light)!important}
+.back-nav{background:#fff;color:var(--ink);border-bottom:1px solid var(--line)}
+.back-nav.dark-mode{background:var(--primary);color:#fff;border:0}
+.hero-banner{background:#fff}
+.marquee-container{background:var(--primary-light);color:var(--primary);border-radius:12px}
+#dynamic-notice{color:var(--primary);font-weight:600}
+.category-title{color:var(--ink);font-weight:700;letter-spacing:1px}
+.cat-card-new{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 6px 18px rgba(31,79,224,.08);overflow:hidden}
+.cat-card-title{color:var(--ink)}.cat-card-count{color:var(--primary)}
+.dot.active{background:var(--primary)}
+.profile-header-bg{background:linear-gradient(160deg,#1F4FE0,#0B1F5C)!important;color:#fff}
+.menu-list,.ep-card,.withdraw-section-box,.wallet-stats-white-card,.quick-action-card,.learn-item,.history-card,.join-card,.md-info-card,.md-table-container,.rd-card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 4px 14px rgba(31,79,224,.06)}
+.match-card{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 6px 18px rgba(31,79,224,.08);overflow:hidden}
+.mc-stat-box{background:var(--primary-light);border-radius:10px}
+.mc-stat-label{color:#5A72B5}.mc-stat-value{color:var(--ink);font-weight:700}
+.mc-prog-bar{background:var(--primary-light)}
+.mc-prog-fill{background:linear-gradient(90deg,#5B8CFF,var(--primary))!important}
+.btn-join-main{border-radius:12px;font-weight:700}
+.btn-join-main.disabled{background:#B8C7EE!important;border-color:#B8C7EE!important}
+.btn-details{color:var(--primary);background:#fff;border:1px solid var(--line);border-radius:10px}
+.mc-footer-timer{background:var(--primary)!important;color:#fff!important}
+.match-tabs-container{background:#fff;border-bottom:1px solid var(--line)}
+.m-tab{color:var(--primary);border-radius:20px}
+.wallet-gradient-card,.withdraw-balance-card,.refer-header{background:var(--wallet-gradient)!important;color:#fff}
+.rd-header-blue{background:var(--primary)!important;color:#fff}
+.popup-header-yellow{background:var(--primary)!important}.popup-title,.popup-subtitle{color:#fff!important}
+.modal-box,.startup-modal-box{border-radius:20px}
+.join-badge{background:var(--primary-light)!important;color:var(--primary)!important;border:1px solid var(--line)}
+.join-warning{color:#C62828}
+.join-input{border:1.5px solid var(--line);border-radius:12px}
+.am-verify-btn{border-radius:14px}
+.swal2-confirm{background:var(--primary)!important}
+.fab-telegram{background:#fff;border:1px solid var(--line)}
+/* ===== SLOT BOARD (Solo / Duo / Squad) ===== */
+.slot-board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:18px}
+.slot{position:relative;height:88px;border:1.5px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);font-size:24px;font-weight:700;display:flex;align-items:flex-end;justify-content:center;padding-bottom:10px;cursor:pointer;transition:transform .08s}
+.slot:active{transform:scale(.95)}
+.slot .sn{position:absolute;top:6px;left:4px;right:4px;font:600 10px/1.15 'Hind Siliguri',sans-serif;text-align:center;word-break:break-all;display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.slot.taken{background:var(--ink);border-color:var(--ink);color:#8FA9F5;cursor:not-allowed}
+.slot.taken .sn{color:#fff}
+.slot.sel{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:0 6px 14px rgba(31,79,224,.35)}
+.team{grid-column:span 2;position:relative;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:22px 8px 8px;margin-top:8px;border-radius:18px}
+.team-tag{position:absolute;top:-10px;left:50%;transform:translateX(-50%);padding:1px 12px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:1px;white-space:nowrap}
+.team.duo{background:var(--primary-light);border:2px solid var(--primary)}
+.team.duo .team-tag{background:var(--primary);color:#fff}
+.team.squad{background:#DCE7FF;border:2px dashed var(--ink)}
+.team.squad .team-tag{background:var(--ink);color:#fff}
+.team .slot{height:74px;border-radius:12px}
+.team.squad .slot.taken{background:#13317F;border-color:#13317F}
+
 </style>
 </head>
 
@@ -1843,7 +1907,7 @@
             
             <div style="margin:18px 0 8px;font-weight:800;color:#111">Select Slot(s)</div>
             <div id="join-slot-help" style="font-size:13px;color:#94a3b8;margin-bottom:10px">Choose your available slot(s)</div>
-            <div id="join-slots-container" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:18px"></div>
+            <div id="join-slots-container" class="slot-board"></div>
             <div class="join-inputs" id="join-inputs-container"><!-- Player names generated from selected slots --></div>
         </div>
         
@@ -1860,7 +1924,7 @@
             <div class="wallet-gradient-card">
                 <div class="wg-header">
                     <i class="fas fa-credit-card"></i> 
-                    KheloBangladesh <span class="wg-wallet-text">WALLET</span>
+                    <span id="wallet-app-name">E BD TOUR</span> <span class="wg-wallet-text">WALLET</span>
                 </div>
                 
                 <div class="wg-label">Available Balance</div>
@@ -2307,7 +2371,7 @@
         onValue(ref(db, 'app_settings'), s => {
             const d = s.val();
             if(d) {
-                if(d.app_name) document.getElementById('splash-app-name').innerText = d.app_name;
+                if(d.app_name){ document.getElementById('splash-app-name').innerText = d.app_name; document.getElementById('wallet-app-name').innerText = d.app_name; document.title = d.app_name; }
                 if(d.app_logo) document.getElementById('splash-logo').src = d.app_logo;
                 if(d.notice) document.getElementById('dynamic-notice').innerText = d.notice;
                 if(d.bkash_number) document.getElementById('bkash-num-display').innerText = d.bkash_number;
@@ -2340,16 +2404,15 @@
                     }
                 }
             }
-            setTimeout(() => {
-                const splash = document.getElementById('app-splash');
-                if(splash) {
-                    splash.style.opacity = '0';
-                    setTimeout(() => splash.style.display = 'none', 500);
-                }
-            }, 3000);
+            setTimeout(hideSplash, 600);
         });
 
+        setTimeout(hideSplash, 2000);
         startTimers();
+    }
+    function hideSplash() {
+        const s = document.getElementById('app-splash');
+        if(s && s.style.display !== 'none') { s.style.opacity = '0'; setTimeout(() => s.style.display = 'none', 300); }
     }
 
     function calculateJoinedMatches() {
@@ -2403,7 +2466,7 @@
     }
 
     function showTab(t) {
-        toggleLoader(true);
+        
         document.querySelectorAll('.tab-item').forEach(e => e.classList.remove('active'));
         document.getElementById(`nav-${t}`).classList.add('active');
         setTimeout(() => {
@@ -2415,12 +2478,12 @@
             }
             if(t === 'mymatches') loadMyMatches();
             if(t === 'result') loadResults();
-            toggleLoader(false);
-        }, 500);
+            
+        }, 0);
     }
 
     function navigateSub(t) {
-        toggleLoader(true);
+        
         setTimeout(() => {
             document.querySelectorAll('.app-section').forEach(e => e.classList.remove('active'));
             document.body.classList.add('sub-page');
@@ -2445,8 +2508,8 @@
                  document.getElementById('ep-username').value = currentUser.displayName || '';
                  document.getElementById('ep-email').value = currentUser.email || '';
             }
-            toggleLoader(false);
-        }, 500);
+            
+        }, 0);
     }
 
     function selectWithdrawMethod(el, method) {
@@ -2596,7 +2659,7 @@
         const m = rawMatches.find(x => x.dbKey === key);
         if(!m) return;
         
-        toggleLoader(true);
+        
         setTimeout(() => {
             document.querySelectorAll('.app-section').forEach(e => e.classList.remove('active'));
             document.body.classList.add('sub-page');
@@ -2634,15 +2697,15 @@
                 });
             }
             
-            toggleLoader(false);
-        }, 500);
+            
+        }, 0);
     }
     
     function openResultDetails(key) {
         const m = rawMatches.find(x => x.dbKey === key);
         if(!m) return;
         
-        toggleLoader(true);
+        
         setTimeout(() => {
             document.querySelectorAll('.app-section').forEach(e => e.classList.remove('active'));
             document.body.classList.add('sub-page');
@@ -2716,8 +2779,8 @@
                  ${fullHTML}
             </div>`;
             
-            toggleLoader(false);
-        }, 500);
+            
+        }, 0);
     }
 
     function openPrizePool(key) {
@@ -2725,15 +2788,13 @@
          if(!m) return;
          document.getElementById('prize-modal-subtitle').innerText = m.title;
          const c = document.getElementById('prize-list-content');
-         if(m.prize_desc) {
-             c.innerHTML = `<div style="text-align:left; font-size:14px; color:#333; line-height:1.6;">${m.prize_desc.replace(/\n/g, '<br>')}</div>`;
-         } else {
-             const total = m.total_prize;
-             const w = Math.floor(total * 0.4);
-             const s = Math.floor(total * 0.2);
-             const t = Math.floor(total * 0.1);
-             c.innerHTML = `<div class="prize-row"><span class="prize-icon">👑</span> Winner - ${w} Taka</div><div class="prize-row"><span class="prize-icon">🥈</span> 2nd Position - ${s} Taka</div><div class="prize-row"><span class="prize-icon">🥉</span> 3rd Position - ${t} Taka</div><div class="prize-row"><span class="prize-icon">🏅</span> 4th Position - 20 Taka</div><div class="prize-row"><span class="prize-icon">🏅</span> 5th Position - 10 Taka</div><div class="prize-row"><span class="prize-icon">🔥</span> Per Kill : Based on Match</div><div class="prize-row"><span class="prize-icon">🏆</span> Total Prize Pool: ${total} Taka</div>`;
-         }
+         const list = Object.values(m.prize_list || {});
+         const icons = ['👑','🥈','🥉'];
+         let h = list.map((p, i) => `<div class="prize-row"><span class="prize-icon">${icons[i] || '🏅'}</span> ${esc(p.pos)} - ${p.amt} Taka</div>`).join('');
+         if(m.prize_desc) h += `<div style="text-align:left;font-size:14px;line-height:1.6;margin-top:8px">${esc(m.prize_desc).replace(/\n/g,'<br>')}</div>`;
+         if(!h) h = "<div class='empty-msg'>Prize list not set yet</div>";
+         else h += `<div class="prize-row"><span class="prize-icon">🔥</span> Per Kill : ${m.per_kill || 0} Taka</div><div class="prize-row"><span class="prize-icon">🏆</span> Total Prize Pool: ${m.total_prize} Taka</div>`;
+         c.innerHTML = h;
          document.getElementById('prize-modal').classList.add('active');
     }
 
@@ -2795,42 +2856,37 @@
          document.getElementById('join-match-view').classList.add('active');
     }
 
+    const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     function renderJoinSlots() {
         const container = document.getElementById('join-slots-container');
         const help = document.getElementById('join-slot-help');
         if(!container) return;
         const participants = Object.values(allParticipants[currentJoinId] || {});
         const reservations = allReservedSlots[currentJoinId] || {};
-        const occupied = new Set([
-            ...participants.map(p => Number(p.slotNo)).filter(n => Number.isFinite(n) && n > 0),
-            ...Object.keys(reservations).map(Number).filter(n => Number.isFinite(n) && n > 0)
-        ]);
-        // Legacy participant records may not have slotNo; count those as occupied seats to avoid overbooking.
-        const legacyCount = participants.filter(p => !p.slotNo).length;
-        for(let n=1; n<=legacyCount; n++) occupied.add(n);
-        container.innerHTML = '';
-        for(let n=1; n<=currentTotalSlots; n++) {
-            const taken = occupied.has(n);
-            const selected = selectedJoinSlots.includes(n);
-            const b = document.createElement('button');
-            b.type = 'button';
-            b.textContent = String(n);
-            b.disabled = taken;
-            b.setAttribute('aria-label', `Slot ${n}${taken ? ', booked' : selected ? ', selected' : ', available'}`);
-            b.style.cssText = `min-height:48px;border-radius:10px;border:1px solid ${taken ? '#ef4444' : selected ? '#5E35B1' : '#d1d5db'};background:${taken ? '#fee2e2' : selected ? '#5E35B1' : '#fff'};color:${taken ? '#991b1b' : selected ? '#fff' : '#111827'};font-weight:800;opacity:${taken ? '.65' : '1'};cursor:${taken ? 'not-allowed' : 'pointer'};`;
-            if(taken) b.innerHTML = `${n}<div style="font-size:9px;font-weight:600">BOOKED</div>`;
-            b.onclick = () => {
-                if(taken) return;
-                if(selectedJoinSlots.includes(n)) selectedJoinSlots = selectedJoinSlots.filter(x => x !== n);
-                else if(selectedJoinSlots.length < currentSlotCount) selectedJoinSlots.push(n);
-                else return Swal.fire({icon:'info',title:'Slot limit',text:`For ${document.getElementById('join-page-type').innerText}, select ${currentSlotCount} slot(s).`});
-                selectedJoinSlots.sort((a,b)=>a-b);
-                renderJoinSlots();
-                renderJoinPlayerInputs();
-            };
-            container.appendChild(b);
+        const occupied = new Set(), names = {};
+        participants.filter(p => Number(p.slotNo) > 0).forEach(p => { occupied.add(Number(p.slotNo)); names[Number(p.slotNo)] = p.ign; });
+        Object.entries(reservations).forEach(([k, r]) => { occupied.add(Number(k)); if(!names[k]) names[k] = r && r.ign; });
+        participants.filter(p => !p.slotNo).forEach((p, i) => { occupied.add(i + 1); if(!names[i + 1]) names[i + 1] = p.ign; });
+        const size = currentSlotCount, total = currentTotalSlots;
+        const slot = n => { const tk = occupied.has(n), sl = selectedJoinSlots.includes(n);
+            return `<button type="button" class="slot${tk ? ' taken' : ''}${sl ? ' sel' : ''}" data-n="${n}" ${tk ? 'disabled' : ''}>${tk ? `<span class="sn">${esc(names[n] || 'Booked')}</span>` : ''}${n}</button>`; };
+        let h = '';
+        if(size === 1) { for(let n = 1; n <= total; n++) h += slot(n); }
+        else for(let t = 0; t * size < total; t++) {
+            let inner = '';
+            for(let i = 1; i <= size; i++) if(t * size + i <= total) inner += slot(t * size + i);
+            h += `<div class="team ${size === 4 ? 'squad' : 'duo'}"><span class="team-tag">TEAM ${t + 1}</span>${inner}</div>`;
         }
-        help.textContent = `Choose ${currentSlotCount} available slot(s). ${selectedJoinSlots.length}/${currentSlotCount} selected. Red slots are booked.`;
+        container.innerHTML = h;
+        container.onclick = e => {
+            const b = e.target.closest('.slot'); if(!b || b.disabled) return;
+            const n = Number(b.dataset.n);
+            if(selectedJoinSlots.includes(n)) selectedJoinSlots = selectedJoinSlots.filter(x => x !== n);
+            else if(selectedJoinSlots.length < currentSlotCount) selectedJoinSlots.push(n);
+            else return Swal.fire({icon:'info',title:'Slot limit',text:`For ${document.getElementById('join-page-type').innerText}, select ${currentSlotCount} slot(s).`});
+            selectedJoinSlots.sort((a,b)=>a-b); renderJoinSlots(); renderJoinPlayerInputs();
+        };
+        help.textContent = `Choose ${size} available slot(s). ${selectedJoinSlots.length}/${size} selected. Booked slots show the player name.`;
     }
 
     function renderJoinPlayerInputs() {
@@ -2840,7 +2896,7 @@
             ic.innerHTML = '<div style="color:#94a3b8;font-size:13px;padding:8px 0">Select slot(s) above to enter player name(s).</div>';
             return;
         }
-        ic.innerHTML = selectedJoinSlots.map((slot,i) => `<label style="display:block;font-size:12px;font-weight:700;color:#555;margin:8px 0 4px">Slot ${slot} — Player ${i+1}</label><input type="text" class="join-input p-name" data-slot="${slot}" placeholder="Player ${i+1} Name (Game ID)" autocomplete="off">`).join('');
+        ic.innerHTML = selectedJoinSlots.map((slot,i) => `<label style="display:block;font-size:12px;font-weight:700;color:#555;margin:8px 0 4px">Slot ${slot} — Player ${i+1}</label><input type="text" class="join-input p-name" data-slot="${slot}" placeholder="Player ${i+1} Name (max 15)" maxlength="15" autocomplete="off">`).join('');
     }
 
     function closeJoinPage() {
@@ -2861,6 +2917,7 @@
          if(selectedJoinSlots.length !== currentSlotCount) return Swal.fire('Select slots', `Please select ${currentSlotCount} available slot(s).`, 'warning');
          const inputs = Array.from(document.querySelectorAll('.p-name'));
          if(inputs.length !== currentSlotCount || inputs.some(i => !i.value.trim())) return Swal.fire('Error','Fill all selected player names.','error');
+         if(inputs.some(i => i.value.trim().length > 15)) return Swal.fire('Name too long','Player name must be 15 characters or less.','warning');
          const names = inputs.map(i => ({ign:i.value.trim(),slotNo:Number(i.dataset.slot)}));
          const total = currentEntryFee * names.length;
          if((depositBal + winningBal) < total) return Swal.fire('Error','Insufficient Balance','error');
@@ -2880,11 +2937,9 @@
                  reserved.push(item.slotNo);
              }
              await update(ref(db, 'users/'+currentUser.uid), {deposit:d, winning:w});
-             for(const item of names) {
-                 await push(ref(db, 'match_participants/'+currentJoinId), {
+             await Promise.all(names.map(item => push(ref(db, 'match_participants/'+currentJoinId), {
                      ign:item.ign, joinedBy:currentUser.uid, email:currentUser.email || '', slotNo:item.slotNo, kills:0, win:0
-                 });
-             }
+                 })));
              const mRef = ref(db, 'matches/'+key);
              const snap = await get(mRef);
              const cur = (snap.val() && snap.val().joined) ? Number(snap.val().joined) : 0;
@@ -3044,6 +3099,14 @@
                 type: 'Deposit (Auto)', amount, method, status: 'Success',
                 txID: trxId, date: new Date().toLocaleString()
             });
+            try {
+                const me = (await get(ref(db, 'users/' + currentUser.uid))).val() || {};
+                if(me.referred_by && !me.refer_rewarded && amount >= 100 && me.referred_by !== currentUser.uid) {
+                    await update(ref(db, 'users/' + currentUser.uid), { refer_rewarded: true });
+                    await runTransaction(ref(db, 'users/' + me.referred_by + '/winning'), c => (c || 0) + 10);
+                    await push(ref(db, 'transactions/' + me.referred_by), { type: 'Referral Bonus', amount: 10, method: 'Refer', status: 'Success', date: new Date().toLocaleString() });
+                }
+            } catch(_) {}
             toggleLoader(false);
             Swal.fire({ icon: 'success', title: 'Successful!', text: `Successfully added ${amount} TK!` })
               .then(() => { document.getElementById(`trx-${method}`).value = ""; window.navigateSub('wallet'); });
@@ -3051,6 +3114,17 @@
             toggleLoader(false);
             Swal.fire({ icon: 'error', title: 'Invalid', text: 'Invalid TrxID or SMS not received yet. Please wait 10 seconds and try again.' });
         }
+    }
+
+    let ensuringRefer = false;
+    async function claimReferCode(uid) {
+        const A = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+        for(let i = 0; i < 10; i++) {
+            let c = ''; for(let k = 0; k < 6; k++) c += A[Math.floor(Math.random() * A.length)];
+            const r = await runTransaction(ref(db, 'refer_codes/' + c), cur => cur === null ? uid : undefined);
+            if(r.committed) return c;
+        }
+        return null;
     }
 
     function startTimers() {
@@ -3083,7 +3157,7 @@
 
             if(u.photoURL) document.getElementById('profile-avatar').src = u.photoURL;
             document.getElementById('profile-logout-btn').classList.remove('hidden');
-            document.getElementById('refer-code-display').innerText = "DEVELOPER SKETVIA"; 
+            document.getElementById('refer-code-display').innerText = "..."; 
             
             // Hide Auth View, Show Home
             document.getElementById('auth-view').classList.remove('active');
@@ -3104,6 +3178,8 @@
                     document.getElementById('wallet-balance-display').innerText = (depositBal+winningBal);
                     document.getElementById('withdraw-available').innerText = winningBal;
                     if(d.phone) document.getElementById('ep-phone').value = d.phone;
+                    if(d.refer_code) document.getElementById('refer-code-display').innerText = d.refer_code;
+                    else if(!ensuringRefer) { ensuringRefer = true; claimReferCode(u.uid).then(c => { if(c) update(ref(db, 'users/'+u.uid), {refer_code:c}); }).finally(() => ensuringRefer = false); }
                 }
             });
         } else {
@@ -3146,9 +3222,16 @@
          if(!n || !e || !ph || !p) return Swal.fire('Error', "Please fill all fields", 'error');
 
          toggleLoader(true);
-         createUserWithEmailAndPassword(auth, e, p).then((c)=> {
-             updateProfile(c.user, {displayName:n});
-             set(ref(db, 'users/'+c.user.uid), {username:n, email:e, phone:ph, deposit:0, winning:0});
+         createUserWithEmailAndPassword(auth, e, p).then(async (c) => {
+             try {
+                 updateProfile(c.user, {displayName:n});
+                 const promo = (document.getElementById('reg-promo').value || '').trim().toUpperCase();
+                 let by = null;
+                 if(promo) { const s = await get(ref(db, 'refer_codes/' + promo)); if(s.exists() && s.val() !== c.user.uid) by = s.val(); }
+                 const data = {username:n, email:e, phone:ph, deposit:0, winning:0, refer_code: await claimReferCode(c.user.uid)};
+                 if(by) data.referred_by = by;
+                 await set(ref(db, 'users/'+c.user.uid), data);
+             } catch(err) { console.error(err); }
              toggleLoader(false);
          }).catch(e=> { toggleLoader(false); Swal.fire('Error', e.message, 'error'); });
     }
@@ -3197,7 +3280,7 @@
                      const displayId = t.txID ? `#${t.txID.substring(0,4)}` : '#TRX';
                      
                      l.insertAdjacentHTML('beforeend', `
-                     <div class="history-card" style="border-left: 5px solid ${t.type.includes('Deposit')?'green':'red'};">
+                     <div class="history-card" style="border-left: 5px solid ${/Deposit|Refund|Referral|Win/.test(t.type || '')?'green':'red'};">
                          <div class="hc-left">
                              <div class="hc-title">${displayTitle}</div>
                              <div class="hc-date">${t.date}</div>
