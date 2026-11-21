@@ -459,7 +459,10 @@
         }
 
         // --- INITIALIZATION ---
+        let _adminInited = false;
         function initAdmin() {
+            if (_adminInited) return;
+            _adminInited = true;
             onValue(ref(db, 'users'), s => {
                 const d = s.val();
                 if(d) {
@@ -500,23 +503,24 @@
                 return;
             }
             const payments = window._smsPayments || {};
-            list.forEach(s => {
+            const esc = t => String(t == null ? '' : t).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+            list.slice(0, 100).forEach(s => {
                 const used = s.trxId && payments[s.trxId];
                 const statusTag = used
                     ? `<div class="fc-tag tag-green">USED</div>`
                     : `<div class="fc-tag tag-yellow">UNUSED</div>`;
-                el.innerHTML += `
+                el.insertAdjacentHTML('beforeend', `
                 <div class="flat-card">
                     <div class="fc-header">
-                        <div class="fc-title">${s.sender || 'Unknown'}</div>
+                        <div class="fc-title">${esc(s.sender) || 'Unknown'}</div>
                         ${statusTag}
                     </div>
-                    <div class="fc-detail"><span>TrxID:</span> <span class="fc-value">${s.trxId || '—'}</span></div>
+                    <div class="fc-detail"><span>TrxID:</span> <span class="fc-value">${esc(s.trxId) || '—'}</span></div>
                     <div class="fc-detail"><span>Amount:</span> <span class="fc-value" style="color:var(--success)">৳${s.amount || '—'}</span></div>
                     <div class="fc-detail"><span>Received:</span> <span class="fc-value">${s.receivedAt ? new Date(s.receivedAt).toLocaleString() : '—'}</span></div>
                     <div class="fc-detail" style="margin-top:8px;"><span style="font-size:11px">Body:</span></div>
                     <div style="background:#0f0f13; padding:10px; border-radius:8px; font-size:12px; color:#bbb; word-break:break-all;">${(s.body || '').replace(/</g,'&lt;')}</div>
-                </div>`;
+                </div>`);
             });
         }
 
@@ -540,7 +544,7 @@
                 
                 Object.entries(d).forEach(([key, c]) => {
                     allCategories.push({id: key, name: c.name}); // Store for match dropdown
-                    list.innerHTML += `
+                    list.insertAdjacentHTML('beforeend', `
                     <div class="flat-card">
                         <div class="cat-card-row">
                             <img src="${c.img}" class="cat-img">
@@ -553,7 +557,7 @@
                                 <button class="btn btn-danger" style="padding:10px" onclick="deleteCategory('${key}')"><i class="fas fa-trash"></i></button>
                             </div>
                         </div>
-                    </div>`;
+                    </div>`);
                 });
             });
         }
@@ -630,7 +634,7 @@
                 
                 Object.entries(d).reverse().forEach(([key, m]) => {
                     let tagClass = m.status === 'Upcoming' ? 'tag-yellow' : (m.status === 'Ongoing' ? 'tag-blue' : 'tag-green');
-                    list.innerHTML += `
+                    list.insertAdjacentHTML('beforeend', `
                     <div class="flat-card">
                         <div class="fc-header">
                             <div class="fc-title">${m.title}</div>
@@ -646,7 +650,7 @@
                             <button class="btn btn-primary" onclick="viewMatchHistory('${key}', '${String(m.title || '').replace(/'/g, "\\'")}')"><i class="fas fa-history"></i> History</button>
                             <button class="btn btn-danger" onclick="deleteMatch('${key}')"><i class="fas fa-trash"></i></button>
                         </div>
-                    </div>`;
+                    </div>`);
                 });
             });
         }
@@ -832,7 +836,7 @@
             const list = document.getElementById('user-list');
             list.innerHTML = "";
             users.forEach(u => {
-                list.innerHTML += `
+                list.insertAdjacentHTML('beforeend', `
                 <div class="flat-card">
                     <div class="fc-header"><div class="fc-title">${u.username || 'No Name'}</div></div>
                     <div class="fc-detail"><span>Email:</span> ${u.email}</div>
@@ -842,7 +846,7 @@
                         <div style="text-align:center"><div style="font-size:10px; color:#aaa;">Winning</div><div style="color:var(--warning); font-weight:bold;">৳${u.winning || 0}</div></div>
                     </div>
                     <button class="btn btn-primary" style="width:100%; margin-top:10px;" onclick="editUserBalance('${u.uid}', ${u.deposit || 0}, ${u.winning || 0})">Edit Balance</button>
-                </div>`;
+                </div>`);
             });
         }
 
@@ -901,7 +905,7 @@
                 if(pendings.length === 0) return list.innerHTML = "<div style='text-align:center; padding:20px; color:#666'>No Pending Withdrawals</div>";
 
                 pendings.forEach(p => {
-                    list.innerHTML += `
+                    list.insertAdjacentHTML('beforeend', `
                     <div class="flat-card" style="border-left: 3px solid var(--warning)">
                         <div class="fc-header">
                             <div class="fc-title" style="color:var(--warning)">৳${p.amount}</div>
@@ -915,7 +919,7 @@
                             <button class="btn btn-success" onclick="handleWithdraw('${p.uid}', '${p.tid}', 'approve', ${p.amount})">Approve</button>
                             <button class="btn btn-danger" onclick="handleWithdraw('${p.uid}', '${p.tid}', 'reject', ${p.amount})">Refund</button>
                         </div>
-                    </div>`;
+                    </div>`);
                 });
             });
         }
@@ -1010,11 +1014,11 @@
                 list.innerHTML = "";
                 if(d) {
                     Object.entries(d).forEach(([k, v]) => {
-                        list.innerHTML += `
+                        list.insertAdjacentHTML('beforeend', `
                         <div class="flat-card" style="display:flex; justify-content:space-between; align-items:center; padding:10px;">
                             <img src="${v.img}" style="width:80px; height:40px; object-fit:cover; border-radius:6px;">
                             <button class="btn btn-danger" style="padding:8px" onclick="deleteSlider('${k}')"><i class="fas fa-trash"></i></button>
-                        </div>`;
+                        </div>`);
                     });
                 }
             });
@@ -1051,4 +1055,4 @@
 
     </script>
 </body>
-</html>
+    </html>
