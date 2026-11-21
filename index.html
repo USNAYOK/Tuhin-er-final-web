@@ -2261,14 +2261,14 @@
                 const c = document.getElementById('dynamic-category-list');
                 c.innerHTML = "";
                 Object.entries(d).forEach(([k,v]) => {
-                    c.innerHTML += `
+                    c.insertAdjacentHTML('beforeend', `
                     <div class="cat-card-new" onclick="window.openCategory('${k}')">
                          <img src="${v.img}" class="cat-card-img">
                          <div class="cat-card-info">
                              <div class="cat-card-title">${v.name}</div>
                              <div class="cat-card-count" id="count-${k}">0 matches found</div>
                          </div>
-                     </div>`;
+                     </div>`);
                 });
                 updateCounts();
             }
@@ -2333,8 +2333,8 @@
                     if(banners.length > 0) {
                         banners.forEach((b, i) => {
                             let clickAttr = b.link ? `onclick="window.open('${b.link}', '_blank')"` : "";
-                            w.innerHTML += `<div class="slide" ${clickAttr}><img src="${b.img}"></div>`;
-                            dots.innerHTML += `<div class="dot ${i===0?'active':''}"></div>`;
+                            w.insertAdjacentHTML('beforeend', `<div class="slide" ${clickAttr}><img src="${b.img}"></div>`);
+                            dots.insertAdjacentHTML('beforeend', `<div class="dot ${i===0?'active':''}"></div>`);
                         });
                         initSlider();
                     }
@@ -2476,7 +2476,7 @@
         else if (status === 'Finished') m = rawMatches.filter(x => x.categoryId === currentActiveCategory && x.status === 'Finished');
         
         if(m.length === 0) c.innerHTML = `<div class='empty-msg'>No ${status} Matches Found</div>`;
-        else m.forEach(x => c.innerHTML += createMatchCardHTML(x, (status==='Finished' ? 'result' : 'play')));
+        else m.forEach(x => c.insertAdjacentHTML('beforeend', createMatchCardHTML(x, (status==='Finished' ? 'result' : 'play'))));
     }
 
     function loadMyMatches() {
@@ -2489,7 +2489,7 @@
          const m = rawMatches.filter(x => userJoinedMatches.includes(x.dbKey));
          
          if(m.length===0) c.innerHTML = "<div class='empty-msg'>No joined matches</div>";
-         else m.forEach(x => c.innerHTML += createMatchCardHTML(x, 'joined'));
+         else m.forEach(x => c.insertAdjacentHTML('beforeend', createMatchCardHTML(x, 'joined')));
     }
 
     function loadResults() {
@@ -2498,7 +2498,7 @@
          c.innerHTML = "";
          const m = rawMatches.filter(x => x.status === 'Finished');
          if(m.length===0) c.innerHTML = "<div class='empty-msg'>No results yet</div>";
-         else m.forEach(x => c.innerHTML += createMatchCardHTML(x, 'result'));
+         else m.forEach(x => c.insertAdjacentHTML('beforeend', createMatchCardHTML(x, 'result')));
     }
 
     function createMatchCardHTML(m, type) {
@@ -2623,14 +2623,14 @@
                 pList.innerHTML = `<div style="text-align:center; padding:20px; color:#999;">No participants joined yet.</div>`;
             } else {
                 parts.forEach((p, idx) => {
-                     pList.innerHTML += `
+                     pList.insertAdjacentHTML('beforeend', `
                      <div class="md-p-row">
                          <div style="width:10%">${idx+1}</div>
                          <div style="width:50%">${p.ign || 'Unknown'}</div>
                          <div style="width:20%; text-align:center;">${p.kills || 0}</div>
                          <div style="width:20%; text-align:right;">${p.win || 0}</div>
                      </div>
-                     `;
+                     `);
                 });
             }
             
@@ -2986,6 +2986,10 @@
     function triggerVerify() { verifyAutoPay(currentPayMethod); }
 
     async function verifyAutoPay(method) {
+        try { await _verifyAutoPay(method); }
+        catch (e) { console.error(e); toggleLoader(false); Swal.fire({ icon: 'error', title: 'Error', text: 'Something went wrong. Check internet and try again.' }); }
+    }
+    async function _verifyAutoPay(method) {
         if (!currentUser) return;
         const trxId = document.getElementById(`trx-${method}`).value.trim();
         if (!trxId) return Swal.fire({ icon: 'warning', title: 'Oops...', text: 'Please enter Transaction ID' });
@@ -3090,7 +3094,7 @@
             // Recalculate joined matches since currentUser is now set
             calculateJoinedMatches();
             
-            onValue(ref(db, 'users/'+u.uid), s => {
+            if(window._unU) window._unU(); window._unU = onValue(ref(db, 'users/'+u.uid), s => {
                 const d = s.val();
                 if(d) {
                     depositBal = d.deposit || 0;
@@ -3184,7 +3188,7 @@
          if(!l) return;
          l.innerHTML = "<div style='padding:20px; text-align:center;'>Loading...</div>";
          if(!currentUser) return;
-         onValue(ref(db, 'transactions/'+currentUser.uid), s => {
+         if(window._unT) window._unT(); window._unT = onValue(ref(db, 'transactions/'+currentUser.uid), s => {
              l.innerHTML = "";
              const d = s.val();
              if(d) {
@@ -3192,7 +3196,7 @@
                      const displayTitle = t.type || "Transaction";
                      const displayId = t.txID ? `#${t.txID.substring(0,4)}` : '#TRX';
                      
-                     l.innerHTML += `
+                     l.insertAdjacentHTML('beforeend', `
                      <div class="history-card" style="border-left: 5px solid ${t.type.includes('Deposit')?'green':'red'};">
                          <div class="hc-left">
                              <div class="hc-title">${displayTitle}</div>
@@ -3203,7 +3207,7 @@
                              <div class="hc-tag">${displayId}</div>
                              <div style="font-size:10px; color:#888;">${t.status || 'Success'}</div>
                          </div>
-                     </div>`;
+                     </div>`);
                  });
              } else l.innerHTML = "<div class='empty-msg'>No Transactions</div>";
          });
@@ -3212,11 +3216,11 @@
     function loadNotifs() {
         const l = document.getElementById('notif-list-container');
         if(!l) return;
-        onValue(ref(db, 'notifications'), s => {
+        if(window._unN) window._unN(); window._unN = onValue(ref(db, 'notifications'), s => {
             l.innerHTML = "";
             const d = s.val();
             if(d) Object.values(d).reverse().forEach(n => {
-                l.innerHTML += `<div style="padding:15px; border-bottom:1px solid #eee; font-weight:bold;">${n.title}<br><span style="font-weight:normal; font-size:13px; color:#666;">${n.body}</span></div>`;
+                l.insertAdjacentHTML('beforeend', `<div style="padding:15px; border-bottom:1px solid #eee; font-weight:bold;">${n.title}<br><span style="font-weight:normal; font-size:13px; color:#666;">${n.body}</span></div>`);
             });
         });
     }
