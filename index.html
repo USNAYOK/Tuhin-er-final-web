@@ -366,7 +366,7 @@
         display: block;
     }
 
-    #tab-shop-view, #tab-home-view, #wallet-view, #add-money-view, #withdraw-view, #history-view, #notifications-view, #result-details-view, #edit-profile-view, #refer-view, #matches-view, #match-details-view, #developer-view, #join-match-view { 
+    #tab-shop-view, #tab-home-view, #wallet-view, #add-money-view, #withdraw-view, #history-view, #notifications-view, #result-details-view, #edit-profile-view, #refer-view, #matches-view, #match-details-view, #join-match-view { 
         padding: 0; 
     }
 
@@ -655,63 +655,6 @@
         border: none;
         border-radius: 8px;
         cursor: pointer;
-    }
-
-    /* --- DEVELOPER PAGE NEW --- */
-    .dev-page { padding: 20px; }
-    .dev-header-title {
-        font-size: 20px;
-        font-weight: 800;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    .dev-card {
-        background: white;
-        border-radius: 10px;
-        padding: 20px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-    .dev-main-text {
-        font-size: 18px;
-        font-weight: 800;
-        color: #333;
-        margin-bottom: 10px;
-    }
-    .dev-desc {
-        font-size: 14px;
-        color: #555;
-        line-height: 1.5;
-        margin-bottom: 15px;
-    }
-    .dev-features {
-        list-style: none;
-        margin-bottom: 15px;
-    }
-    .dev-features li {
-        font-size: 14px;
-        font-weight: 600;
-        color: #333;
-        margin-bottom: 5px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-    .dev-price {
-        font-size: 16px;
-        font-weight: 800;
-        color: #D32F2F;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        margin-top: 10px;
-    }
-    .dev-link {
-        display: block;
-        margin-top: 20px;
-        color: var(--primary);
-        font-weight: 800;
-        text-decoration: underline;
-        font-size: 14px;
     }
 
     /* --- MATCH CARD STYLES --- */
@@ -1530,6 +1473,316 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
 .team.squad .slot.taken{background:#13317F;border-color:#13317F}
 
 </style>
+
+<style id="ebd-blue-white-yellow-redesign">
+/* E BD TOUR visual refresh: blue + white + yellow. Functional code and payment flows untouched. */
+:root{--primary:#1769E0;--primary-light:#EAF2FF;--secondary:#FFC928;--bg-color:#F3F7FF;--text-dark:#14213D;--white:#FFFFFF;--wallet-gradient:linear-gradient(135deg,#1457B8,#2F86F6)}
+body{background:var(--bg-color);color:var(--text-dark)}
+#app-splash{background:linear-gradient(145deg,#0B3478 0%,#1769E0 58%,#0D2550 100%)}
+.splash-line{background:var(--secondary)}
+.auth-top-section{background:linear-gradient(145deg,#0D3478,#1769E0)}
+.auth-bottom-card{border-radius:28px 28px 0 0}
+.auth-card-title,.category-title{color:#123B78}
+.auth-input-field,.ep-input{border:1px solid #D7E4F7;background:#F8FBFF;border-radius:13px}
+.auth-input-field:focus,.ep-input:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(23,105,224,.12)}
+.auth-black-btn,.ep-btn,.btn-join-main{background:linear-gradient(135deg,#1769E0,#0E4EAD);color:#fff;border-radius:14px;box-shadow:0 7px 18px rgba(23,105,224,.2)}
+.hero-banner{border-radius:22px;overflow:hidden}
+.cat-card-new,.match-card,.ep-card,.md-info-card,.rd-card{background:#fff;border:1px solid #E0EAF8;border-radius:18px;box-shadow:0 7px 22px rgba(24,67,130,.07)}
+.cat-card-new:active,.match-card:active{transform:scale(.99)}
+.cat-card-title,.mc-title-row,.ep-username,.md-title,.rd-main-title{color:#173B70}
+.cat-card-count,.mc-stat-label,.mc-spots-info{color:#71819A}
+.mc-stat-box{background:#F2F7FF;border:1px solid #E3EDFC;border-radius:12px}
+.mc-prog-bar{background:#E5EDF8}
+.mc-prog-fill{background:linear-gradient(90deg,#1769E0,#FFC928)}
+.btn-details,.m-tab.active{border-color:var(--primary);color:var(--primary)}
+.m-tab.active{background:#EAF2FF}
+.category-title:after{background:var(--secondary)}
+#dynamic-notice,.marquee-container{background:#FFF8D9;color:#755500;border:1px solid #FFE38A;border-radius:12px}
+.profile-header-bg{background:linear-gradient(135deg,#0F4FAE,#2781F5)}
+.ep-avatar-ring{border-color:var(--secondary)}
+.ep-btn{background:linear-gradient(135deg,#1769E0,#0E4EAD)}
+.rd-header-blue,.md-table-header{background:#1769E0;color:#fff}
+.btn-join-main{background:linear-gradient(135deg,#1769E0,#0E4EAD)}
+/* Keep bKash, Rocket and Nagad brand colors as originally configured. */
+
+/* ===================== V2 — NAVY · WHITE · YELLOW · PINK ===================== */
+:root{
+  --navy:#0B2E7A; --navy-deep:#071C52; --blue:#1F5BFF; --sky:#8DB8FF;
+  --yellow:#FFD23F; --yellow-deep:#F2B705; --yellow-soft:#FFF4C7;
+  --pink:#FF5FA2; --pink-deep:#E83C86; --pink-soft:#FFE3F0;
+  --mist:#EEF4FF; --ink:#0B2E7A; --muted:#6B7DA3; --line:#E3EBFA;
+  --shadow:0 10px 30px rgba(11,46,122,.10);
+  --primary:#1F5BFF; --primary-light:#EEF4FF; --bg-color:#F4F8FF; --text-dark:#0B2E7A;
+}
+body{background:linear-gradient(180deg,#EAF2FF 0%,#FFF8FC 60%,#FFFBEA 100%)!important;color:var(--ink);font-family:'Hind Siliguri',sans-serif!important;}
+.app-section{background:transparent!important}
+h1,h2,h3,.category-title,.mc-title-row,.md-title,.rd-main-title,.join-match-title,.wg-balance,.cat-card-title,.splash-app-name,.auth-title-large{font-family:'Rajdhani','Hind Siliguri',sans-serif!important}
+
+/* splash */
+#app-splash{background:radial-gradient(circle at 20% 15%,#1F5BFF 0%,transparent 45%),radial-gradient(circle at 85% 85%,#FF5FA2 0%,transparent 40%),linear-gradient(160deg,#0B2E7A,#071C52)!important}
+.splash-app-name{color:#fff!important;letter-spacing:2px;text-shadow:0 4px 18px rgba(255,210,63,.45)}
+.splash-version,.splash-welcome{color:var(--yellow)!important}
+.splash-logo-box{background:#fff!important;border-radius:32px!important;box-shadow:0 0 0 10px rgba(255,210,63,.25),0 20px 40px rgba(0,0,0,.35)}
+.splash-dot{background:var(--yellow)!important}
+.splash-line{background:linear-gradient(90deg,var(--yellow),var(--pink))!important}
+
+/* auth */
+#auth-view{background:radial-gradient(circle at 90% 0%,#FF5FA2 0%,transparent 35%),linear-gradient(180deg,#1F5BFF,#0B2E7A)!important}
+.auth-title-large{color:#fff!important;font-size:38px!important;font-weight:700}
+.auth-subtitle{color:#CFE0FF!important}
+.auth-bottom-card{background:#fff!important;border-radius:32px 32px 0 0!important;box-shadow:0 -10px 40px rgba(0,0,0,.2)}
+.auth-card-title{color:var(--navy)!important}
+.auth-input-field{background:var(--mist)!important;border:2px solid transparent!important;border-radius:16px!important;color:var(--navy)!important}
+.auth-input-field:focus{border-color:var(--pink)!important;background:#fff!important}
+.auth-black-btn{background:linear-gradient(135deg,var(--yellow),#FFB84D)!important;color:var(--navy)!important;border-radius:16px!important;font-weight:800!important;box-shadow:0 8px 20px rgba(255,184,77,.45)!important;border:none!important}
+.auth-footer-link{color:var(--muted)!important}.auth-footer-link span,.auth-forget-link{color:var(--pink-deep)!important;font-weight:700}
+
+/* top / nav */
+.back-nav{background:rgba(255,255,255,.92)!important;backdrop-filter:blur(10px);color:var(--navy)!important;border-bottom:none!important;box-shadow:0 4px 16px rgba(11,46,122,.06);border-radius:0 0 22px 22px;font-family:'Rajdhani',sans-serif!important;font-size:19px!important;letter-spacing:.3px}
+.back-nav.dark-mode{background:linear-gradient(135deg,var(--navy),var(--blue))!important;color:#fff!important}
+.tab-bar{background:var(--navy)!important;height:74px!important;border:none!important;border-radius:26px 26px 0 0;box-shadow:0 -10px 30px rgba(11,46,122,.25)!important;padding:0 6px}
+.tab-item span{color:#BCD2FF!important;font-weight:600;font-size:12px}
+.tab-item .tab-icon-box{background:#fff;border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;margin:0 auto 2px;transition:transform .2s}
+.tab-item.active .tab-icon-box{background:var(--yellow)!important;transform:translateY(-6px);box-shadow:0 8px 18px rgba(255,210,63,.5)}
+.tab-item.active span{color:var(--yellow)!important;font-weight:800}
+.fab-telegram{background:var(--pink)!important;border:3px solid #fff;box-shadow:0 8px 20px rgba(255,95,162,.45)!important;border-radius:50%}
+.fab-telegram img{filter:brightness(0) invert(1)}
+
+/* home */
+.hero-banner{margin:14px 14px 0;border-radius:26px;overflow:hidden;box-shadow:var(--shadow);background:var(--navy)}
+.slider-dots{background:transparent!important;padding:10px 0 4px}
+.dot{background:#C7D7F5!important;width:8px!important;height:8px!important;border-radius:8px!important;transition:all .3s}
+.dot.active{background:var(--pink)!important;width:22px!important}
+.home-content-wrapper{padding:0 4px}
+.marquee-container{background:linear-gradient(90deg,var(--yellow-soft),var(--pink-soft))!important;border:none!important;border-radius:16px!important;box-shadow:0 6px 16px rgba(255,95,162,.12);margin:14px 12px 4px}
+#dynamic-notice{color:var(--navy)!important;font-weight:700;font-size:15px}
+.category-title{display:inline-block;margin:22px auto 14px;color:var(--navy)!important;font-size:24px!important;font-weight:700;letter-spacing:2px;position:relative;text-align:center;width:100%}
+.category-title::after{content:"";display:block;width:56px;height:5px;border-radius:5px;background:linear-gradient(90deg,var(--yellow),var(--pink));margin:6px auto 0}
+.category-grid{gap:14px!important;padding:0 12px 18px!important}
+.cat-card-new{background:#fff!important;border:none!important;border-radius:24px!important;box-shadow:var(--shadow)!important;overflow:hidden;transition:transform .15s}
+.cat-card-new:active{transform:scale(.97)}
+.cat-card-img{border-radius:0!important}
+.cat-card-info{padding:12px 14px 14px!important;background:#fff!important}
+.cat-card-title{color:var(--navy)!important;font-size:18px;font-weight:700}
+.cat-card-count{display:inline-block;margin-top:6px;background:var(--pink-soft);color:var(--pink-deep)!important;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700}
+
+/* match list */
+.match-tabs-container{background:#fff!important;border:none!important;border-radius:0 0 22px 22px;box-shadow:0 6px 16px rgba(11,46,122,.06);padding:10px 12px!important;gap:8px}
+.m-tab{background:var(--mist);color:var(--navy)!important;border-radius:20px!important;font-weight:700;padding:8px 14px;border:none!important;flex:1;text-align:center}
+.m-tab.active{background:linear-gradient(135deg,var(--navy),var(--blue))!important;color:var(--yellow)!important;box-shadow:0 6px 14px rgba(31,91,255,.3)}
+.match-card{background:#fff!important;border:none!important;border-radius:26px!important;box-shadow:var(--shadow)!important;margin-bottom:18px!important;overflow:hidden;padding-bottom:4px}
+.mc-header{padding:14px!important}
+.mc-thumb{border-radius:16px!important;width:64px!important;height:64px!important;object-fit:cover;box-shadow:0 4px 12px rgba(11,46,122,.15)}
+.mc-title-row{color:var(--navy)!important;font-weight:800;font-size:17px}
+.mc-date-row{color:var(--pink-deep)!important;font-weight:700;font-size:13px}
+.mc-stats-grid{gap:8px!important;padding:0 14px!important}
+.mc-stat-box{background:var(--mist)!important;border-radius:14px!important;padding:8px 6px!important}
+.mc-stat-box:nth-child(3n+1){background:var(--yellow-soft)!important}
+.mc-stat-box:nth-child(3n+2){background:var(--pink-soft)!important}
+.mc-stat-label{color:var(--muted)!important;font-size:10px!important;letter-spacing:.5px}
+.mc-stat-value{color:var(--navy)!important;font-weight:800!important}
+.mc-join-row{padding:12px 14px 6px!important;align-items:center}
+.mc-prog-bar{background:var(--mist)!important;height:10px!important;border-radius:10px!important}
+.mc-prog-fill{background:linear-gradient(90deg,var(--yellow),var(--pink))!important;border-radius:10px}
+.mc-spots-info{color:var(--muted)!important;font-size:12px}
+.mc-spots-info span:first-child{color:var(--pink-deep);font-weight:700}
+.btn-join-main{background:linear-gradient(135deg,var(--yellow),#FFB84D)!important;color:var(--navy)!important;border:none!important;border-radius:14px!important;font-weight:800!important;padding:11px 22px!important;box-shadow:0 6px 16px rgba(255,184,77,.45);font-family:'Rajdhani',sans-serif!important;font-size:16px;letter-spacing:.5px}
+.btn-join-main.disabled{background:#DDE5F5!important;color:#8A99B8!important;box-shadow:none!important}
+.mc-details-row{padding:6px 14px 10px!important;gap:8px}
+.btn-details{background:var(--pink-soft)!important;color:var(--pink-deep)!important;border:none!important;border-radius:12px!important;font-weight:700;flex:1;text-align:center;padding:9px!important}
+.mc-footer-timer{background:linear-gradient(90deg,var(--navy),var(--blue))!important;color:var(--yellow)!important;font-weight:700;letter-spacing:.5px;border-radius:0 0 26px 26px!important}
+.empty-msg{color:var(--muted);text-align:center;padding:30px;font-weight:600}
+
+/* match join */
+.join-card{background:#fff!important;border:none!important;border-radius:26px!important;box-shadow:var(--shadow)!important;margin:12px!important;padding:20px!important}
+.join-match-title{color:var(--navy)!important;font-size:22px;font-weight:700}
+.join-meta{color:var(--muted)!important}
+.join-info-row{background:linear-gradient(135deg,var(--yellow-soft),var(--pink-soft));border-radius:16px;padding:12px 14px;font-weight:700;color:var(--navy)}
+.join-warning{background:#FFF0F6!important;color:var(--pink-deep)!important;border-radius:14px;border:none!important}
+.join-badge{background:linear-gradient(135deg,var(--navy),var(--blue))!important;color:var(--yellow)!important;border:none!important;border-radius:20px;padding:6px 18px}
+.join-btn-full{position:fixed!important;left:12px;right:12px;bottom:14px;width:auto!important;background:linear-gradient(135deg,var(--yellow),#FFB84D)!important;color:var(--navy)!important;border-radius:18px!important;box-shadow:0 10px 26px rgba(255,184,77,.55)!important;font-family:'Rajdhani',sans-serif!important;font-size:20px!important;font-weight:800!important;padding:16px!important;border:none!important;z-index:50}
+#join-match-view{padding-bottom:110px!important}
+
+/* slot board */
+.slot-board{gap:12px!important;padding:4px 2px}
+.slot{background:#fff!important;border:2px solid var(--line)!important;border-radius:16px!important;color:var(--navy)!important;box-shadow:0 4px 10px rgba(11,46,122,.06);font-family:'Rajdhani',sans-serif!important;font-size:24px!important;height:84px!important}
+.slot.taken{background:linear-gradient(160deg,var(--navy),var(--navy-deep))!important;border-color:var(--navy-deep)!important;color:#fff!important;opacity:1!important}
+.slot.taken .sn{color:var(--yellow)!important;font-family:'Hind Siliguri',sans-serif;font-weight:700}
+.slot.sel{background:linear-gradient(135deg,var(--yellow),#FFB84D)!important;border-color:var(--yellow-deep)!important;color:var(--navy)!important;box-shadow:0 8px 18px rgba(255,210,63,.55)!important;transform:translateY(-2px)}
+.team{padding:24px 10px 10px!important;gap:10px!important}
+.team.duo{background:var(--pink-soft)!important;border:2px solid var(--pink)!important;border-radius:22px!important}
+.team.duo .team-tag{background:linear-gradient(90deg,var(--pink),#FF8AC0)!important;color:#fff!important}
+.team.squad{background:var(--yellow-soft)!important;border:2px dashed var(--yellow-deep)!important;border-radius:22px!important}
+.team.squad .team-tag{background:var(--navy)!important;color:var(--yellow)!important}
+.team.squad .slot.taken{background:var(--navy-deep)!important}
+.team-tag{font-family:'Rajdhani',sans-serif;font-size:14px!important;letter-spacing:1px!important;padding:3px 14px!important;box-shadow:0 4px 10px rgba(0,0,0,.1)}
+#join-slot-help{color:var(--muted)!important;font-weight:600}
+.join-input{background:var(--mist)!important;border:2px solid transparent!important;border-radius:14px!important;color:var(--navy)!important;padding:12px!important}
+.join-input:focus{border-color:var(--pink)!important;background:#fff!important}
+
+/* results */
+.rd-card{background:#fff!important;border:none!important;border-radius:26px!important;box-shadow:var(--shadow)!important;margin:12px;overflow:hidden}
+.rd-title-box{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;padding:18px}
+.rd-main-title{color:#fff!important;font-size:20px;font-weight:700}
+.rd-sub-title{color:var(--yellow)!important}
+.rd-stats-row{background:var(--yellow-soft)!important}
+.rd-header-blue{background:linear-gradient(90deg,var(--pink),#FF8AC0)!important;color:#fff!important;font-family:'Rajdhani',sans-serif;letter-spacing:1px}
+.rd-table-head{background:var(--mist)!important;color:var(--navy)!important;font-weight:700}
+.rd-row:nth-child(odd){background:#FBFCFF}
+.md-info-card{background:linear-gradient(135deg,var(--navy),var(--blue))!important;color:#fff!important;border-radius:26px!important;margin:12px;padding:20px;border:none!important;box-shadow:var(--shadow)}
+.md-time{color:var(--yellow)!important}
+.md-table-container{background:#fff!important;border-radius:26px!important;margin:12px;border:none!important;box-shadow:var(--shadow)!important;overflow:hidden}
+.md-table-header{background:var(--mist)!important;color:var(--navy)!important;font-weight:800}
+.md-p-row{border-bottom:1px solid var(--line)!important}
+
+/* profile / wallet */
+.profile-header-bg{background:radial-gradient(circle at 85% 20%,rgba(255,95,162,.55),transparent 40%),linear-gradient(160deg,var(--blue),var(--navy))!important;border-radius:0 0 34px 34px;padding-bottom:22px!important;box-shadow:0 14px 30px rgba(11,46,122,.25)}
+.profile-avatar-box{background:var(--yellow);border-radius:50%;padding:4px;display:inline-block;box-shadow:0 0 0 6px rgba(255,255,255,.25)}
+.profile-avatar-box img{border-radius:50%;border:3px solid #fff}
+.menu-list{display:flex;flex-direction:column;gap:10px}
+.menu-item{background:#fff!important;border-radius:18px!important;box-shadow:0 6px 16px rgba(11,46,122,.06);border:none!important;padding:14px 16px!important;font-weight:700;color:var(--navy)}
+.menu-item:nth-child(4n+1) img{background:var(--yellow-soft);border-radius:12px;padding:6px}
+.menu-item:nth-child(4n+2) img{background:var(--pink-soft);border-radius:12px;padding:6px}
+.menu-item:nth-child(4n+3) img{background:var(--mist);border-radius:12px;padding:6px}
+.menu-item img{width:36px!important;height:36px!important}
+#profile-logout-btn{background:#FFF0F3!important}
+.wallet-gradient-card{background:radial-gradient(circle at 90% 10%,rgba(255,95,162,.6),transparent 40%),linear-gradient(135deg,var(--navy),var(--blue))!important;border-radius:28px!important;box-shadow:0 18px 36px rgba(11,46,122,.3);color:#fff!important;padding:22px!important;border:none!important}
+.wg-balance{color:var(--yellow)!important;font-size:44px!important}
+.wg-label,.wg-header{color:#D7E5FF!important}
+.wg-footer{color:var(--pink)!important;letter-spacing:4px}
+.wallet-stats-white-card{background:#fff!important;border-radius:22px!important;box-shadow:var(--shadow)!important;border:none!important}
+.ws-item:first-child{border-right:1px solid var(--line)}
+.ws-amount{color:var(--navy)!important;font-weight:800}
+.wa-btn{border-radius:18px!important;font-weight:800!important;font-family:'Rajdhani',sans-serif;font-size:17px;padding:16px!important;border:none!important;box-shadow:0 8px 18px rgba(11,46,122,.12)}
+.wa-btn.add{background:linear-gradient(135deg,var(--yellow),#FFB84D)!important;color:var(--navy)!important}
+.wa-btn.withdraw{background:linear-gradient(135deg,var(--pink),#FF8AC0)!important;color:#fff!important;border:none!important}
+.wallet-section-title{color:var(--navy)!important;font-weight:800}
+.quick-action-card,.learn-item{background:#fff!important;border-radius:20px!important;box-shadow:var(--shadow)!important;border:none!important;margin-bottom:10px}
+.qa-icon,.li-icon{background:var(--yellow-soft);border-radius:14px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:var(--navy)}
+.learn-list{display:flex;flex-direction:column;gap:10px}
+.am-card{background:#fff!important;border-radius:20px!important;box-shadow:var(--shadow);border:2px solid transparent!important}
+.am-card.active{border-color:var(--pink)!important;background:var(--pink-soft)!important}
+.am-box{border-radius:24px!important}
+.am-verify-btn,.wd-submit-btn,.ep-btn,.refer-btn-fixed,.warning-popup-btn,.startup-btn{background:linear-gradient(135deg,var(--yellow),#FFB84D)!important;color:var(--navy)!important;border:none!important;border-radius:18px!important;font-family:'Rajdhani',sans-serif;font-weight:800!important;font-size:18px!important;box-shadow:0 10px 22px rgba(255,184,77,.4)}
+.withdraw-balance-card{background:radial-gradient(circle at 90% 10%,rgba(255,95,162,.6),transparent 40%),linear-gradient(135deg,var(--navy),var(--blue))!important;color:#fff!important;border-radius:26px!important;border:none!important;box-shadow:var(--shadow)}
+.wb-amount{color:var(--yellow)!important}
+.method-card{border-radius:18px!important;border:2px solid var(--line)!important;background:#fff!important}
+.method-card.active{border-color:var(--pink)!important;background:var(--pink-soft)!important}
+.withdraw-section-box{background:#fff!important;border:none!important;border-radius:22px!important;box-shadow:var(--shadow)!important;margin-bottom:14px;padding:16px}
+.wd-input{background:var(--mist)!important;border-radius:14px!important;color:var(--navy)!important}
+.min-notice{background:var(--yellow-soft);color:var(--navy)!important;border-radius:12px}
+.history-card{background:#fff!important;border-radius:18px!important;box-shadow:var(--shadow);border:none!important;margin:10px 12px!important}
+.hc-title{color:var(--navy);font-weight:800}
+.hc-tag{background:var(--pink-soft);color:var(--pink-deep);padding:3px 8px;border-radius:10px;font-weight:700}
+.refer-page-container{padding:0 0 30px}
+.refer-header{background:radial-gradient(circle at 90% 10%,rgba(255,210,63,.5),transparent 40%),linear-gradient(160deg,var(--blue),var(--navy))!important;border-radius:0 0 34px 34px;padding:30px 20px 24px;color:#fff!important}
+.refer-title{color:var(--yellow)!important;font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:700}
+.refer-desc{color:#E3EEFF!important}
+.refer-body{padding:22px 18px}
+.refer-label{color:var(--pink-deep)!important;font-weight:800;letter-spacing:1px}
+.refer-code-box{background:#fff!important;border:2px dashed var(--pink)!important;border-radius:20px!important;color:var(--navy)!important;font-family:'Rajdhani',sans-serif;font-size:30px!important;font-weight:700;letter-spacing:4px;padding:18px!important;box-shadow:var(--shadow)}
+.refer-illustration{border-radius:22px;box-shadow:var(--shadow)}
+.refer-btn-fixed{width:100%}
+.ep-card{background:#fff!important;border-radius:22px!important;box-shadow:var(--shadow)!important;border:none!important}
+.ep-avatar-ring{background:linear-gradient(135deg,var(--yellow),var(--pink))!important}
+.ep-username{color:var(--navy)!important}.ep-email{color:var(--muted)!important}
+.ep-input{background:var(--mist)!important;border-radius:14px!important;border:2px solid transparent!important;color:var(--navy)!important}
+.ep-input:focus{border-color:var(--pink)!important;background:#fff!important}
+
+/* modals */
+.modal{background:rgba(7,28,82,.6)!important;backdrop-filter:blur(4px)}
+.modal-box,.startup-modal-box{background:#fff!important;border-radius:28px!important;border:none!important;box-shadow:0 24px 60px rgba(7,28,82,.35)!important;overflow:hidden}
+.popup-header-yellow{background:linear-gradient(135deg,var(--yellow),var(--pink))!important;padding:22px!important}
+.popup-title{color:var(--navy)!important;font-family:'Rajdhani',sans-serif;font-size:24px;letter-spacing:1px}
+.popup-subtitle{color:var(--navy)!important}
+.popup-content{color:var(--navy)}
+.popup-close-btn{background:var(--navy)!important;color:var(--yellow)!important;border-radius:50%!important;box-shadow:0 6px 14px rgba(0,0,0,.2)}
+.prize-row{background:var(--mist);border-radius:14px;padding:10px 12px;margin-bottom:8px;font-weight:700;color:var(--navy)}
+.prize-row:nth-child(even){background:var(--pink-soft)}
+.warning-popup-icon{color:var(--pink)!important}
+.swal2-popup{border-radius:26px!important;font-family:'Hind Siliguri',sans-serif!important}
+.swal2-confirm{background:linear-gradient(135deg,var(--yellow),#FFB84D)!important;color:var(--navy)!important;font-weight:800!important;border-radius:14px!important}
+.swal2-cancel{border-radius:14px!important}
+.swal2-title{color:var(--navy)!important}
+
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style id="v3-upgrade">
+/* ===== V3: speed, smoothness, clock, wizard, leaderboard ===== */
+html{-webkit-text-size-adjust:100%;touch-action:manipulation;overscroll-behavior-y:none}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeSpeed}
+.back-nav,.modal{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.modal{background:rgba(7,28,82,.72)!important}
+.back-nav{background:#fff!important}
+.tab-icon-box,.method-card,.dot{transition:transform .2s,opacity .2s,background-color .2s!important}
+.match-card,.cat-card-new{contain:layout paint style;box-shadow:0 3px 10px rgba(24,67,130,.07)!important}
+.match-card{content-visibility:auto;contain-intrinsic-size:auto 360px}
+.slider-wrapper,#dynamic-notice{will-change:transform;backface-visibility:hidden;transform:translateZ(0)}
+.slide img,.cat-card-img,.mc-thumb{content-visibility:auto}
+.app-section{contain:layout style}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* live clock */
+#app-clock{display:none;position:fixed;top:calc(env(safe-area-inset-top,0px) + 6px);right:8px;z-index:4500;align-items:center;gap:6px;padding:4px 10px;border-radius:20px;background:rgba(11,46,122,.88);color:#fff;font:700 12px/1 'Rajdhani','Hind Siliguri',sans-serif;letter-spacing:.4px;pointer-events:none;font-variant-numeric:tabular-nums}
+#app-clock i{color:#FFC928;font-size:11px}
+body.logged-in #app-clock{display:flex}
+
+/* support pin card */
+.sp-card{margin:16px 20px 0;padding:12px 14px;border-radius:16px;background:#fff;border:1px solid #E0EAF8;display:flex;align-items:center;justify-content:space-between;gap:10px;box-shadow:0 3px 10px rgba(24,67,130,.06)}
+.sp-card small{display:block;color:#71819A;font-size:11px;font-weight:700;letter-spacing:.5px}
+.sp-card b{font:800 22px/1.2 'Rajdhani',sans-serif;letter-spacing:3px;color:#123B78}
+.sp-copy{border:none;background:#EAF2FF;color:#1769E0;border-radius:10px;padding:8px 12px;font-weight:800;font-size:12px}
+
+/* join wizard */
+#join-match-view{padding-bottom:100px!important}
+.jw-steps{display:flex;align-items:center;gap:6px;margin:16px 0 6px}
+.jw-step{display:flex;align-items:center;gap:6px;font:700 13px 'Rajdhani','Hind Siliguri',sans-serif;color:#94a3b8}
+.jw-step b{width:24px;height:24px;border-radius:50%;background:#E5EDF8;color:#71819A;display:flex;align-items:center;justify-content:center;font-size:13px}
+.jw-step.active{color:#123B78}.jw-step.active b{background:#1769E0;color:#fff}
+.jw-step.done b{background:#43A047;color:#fff}
+.jw-line{flex:1;height:2px;background:#E5EDF8;border-radius:2px}
+.pl-head,.pl-fields{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pl-head{font-size:11px;font-weight:800;color:#71819A;letter-spacing:.5px;margin:12px 2px 0}
+.pl-row{margin-top:10px;padding:10px;border:1.5px solid #D7E4F7;border-radius:14px;background:#F8FBFF}
+.pl-slot{font:800 13px 'Rajdhani',sans-serif;color:#1769E0;margin-bottom:6px}
+.pl-fields .join-input{width:100%;min-width:0;margin:0;padding:11px 10px;font-size:14px}
+.jw-sum{display:flex;justify-content:space-between;gap:8px;padding:10px 12px;border-radius:12px;background:#EAF2FF;color:#123B78;font-weight:700;font-size:13px;margin-top:12px}
+.jw-rules{margin-top:12px;padding:12px 14px;border-radius:14px;background:#FFF8D9;border:1px solid #FFE38A;color:#5b4300;font-size:14px;line-height:1.7}
+.jw-rules ol{padding-left:20px}
+.jw-agree{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:14px;font-weight:600;color:#123B78}
+.jw-agree input{width:20px;height:20px;margin-top:2px;accent-color:#1769E0;flex:none;user-select:auto}
+
+/* leaderboard */
+.lb-card{background:#fff;border:1px solid #E0EAF8;border-radius:18px;overflow:hidden;margin:12px 15px;box-shadow:0 3px 10px rgba(24,67,130,.07)}
+.lb-head{padding:14px;background:linear-gradient(135deg,#0F4FAE,#2781F5);color:#fff}
+.lb-head h3{font:800 18px 'Rajdhani','Hind Siliguri',sans-serif}.lb-head p{font-size:12px;opacity:.85;margin-top:2px}
+.lb-sub{padding:9px 14px;background:#FFC928;color:#14213D;font:800 13px 'Rajdhani',sans-serif;letter-spacing:.6px}
+.lb-row{display:grid;grid-template-columns:38px 1fr auto auto;gap:8px;align-items:center;padding:11px 14px;border-bottom:1px solid #EEF3FB;font-size:14px}
+.lb-row:last-child{border-bottom:none}
+.lb-rank{font:800 15px 'Rajdhani',sans-serif;color:#123B78;text-align:center}
+.lb-name{font-weight:700;color:#173B70;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lb-val{font:800 15px 'Rajdhani',sans-serif;color:#1769E0;min-width:34px;text-align:right}
+.lb-prize{font:800 13px 'Rajdhani',sans-serif;color:#43A047;min-width:44px;text-align:right}
+.lb-row.mine,.lb-team.mine{background:#FFF8D9}
+.lb-team{border-bottom:1px solid #EEF3FB}.lb-team:last-child{border-bottom:none}
+.lb-team .lb-row{border:none;padding-bottom:4px}
+.lb-players{padding:0 14px 10px 60px;font-size:13px;color:#4b5d7a}
+.lb-players div{display:flex;justify-content:space-between;padding:2px 0}
+.lb-empty{padding:26px 14px;text-align:center;color:#71819A;font-weight:600}
+.lb-me{margin:12px 15px 0;padding:12px 14px;border-radius:16px;background:linear-gradient(135deg,#FFC928,#FFB84D);color:#14213D}
+.lb-me small{font-weight:800;letter-spacing:.5px;font-size:11px}
+.lb-me div{font:800 17px 'Rajdhani','Hind Siliguri',sans-serif;margin-top:2px}
+
+/* match history */
+.mh-card{margin:10px 15px;padding:13px 14px;border-radius:16px;background:#fff;border:1px solid #E0EAF8;display:flex;gap:12px;align-items:center;box-shadow:0 3px 10px rgba(24,67,130,.06)}
+.mh-rank{flex:none;width:46px;height:46px;border-radius:14px;background:#EAF2FF;color:#1769E0;display:flex;align-items:center;justify-content:center;font:800 18px 'Rajdhani',sans-serif}
+.mh-body{flex:1;min-width:0}.mh-title{font-weight:800;color:#173B70;font-size:14px}
+.mh-meta{font-size:12px;color:#71819A;margin-top:2px}
+.mh-stats{display:flex;gap:12px;margin-top:6px;font:800 13px 'Rajdhani',sans-serif;color:#123B78}
+.mh-stats .pz{color:#43A047}
+</style>
+
 </head>
 
 <body>
@@ -1645,6 +1898,8 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
     </div>
 </div>
 
+<div id="app-clock"><i class="far fa-clock"></i><span id="clock-time">--:--:--</span></div>
+
 <main id="main-content" style="display:none;">
     
     <!-- SHOP PAGE -->
@@ -1668,7 +1923,7 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
 
         <div class="home-content-wrapper">
             <div class="marquee-container">
-                <div id="dynamic-notice">Welcome to Developer JIHAD Tour! Join matches and win big prizes.</div>
+                <div id="dynamic-notice">Welcome to E BD TOUR! Join matches and win big prizes.</div>
             </div>
 
             <div class="category-title">FREE FIRE</div>
@@ -1707,6 +1962,10 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
             </div>
         </div>
 
+        <div class="sp-card">
+            <div><small>SUPPORT PIN</small><b id="support-pin-display">......</b></div>
+            <button class="sp-copy" onclick="window.copyToClipboard('support-pin-display')">COPY</button>
+        </div>
         <div style="padding: 20px;">
             <div class="menu-list">
                 <div class="menu-item" onclick="window.navigateSub('wallet')">
@@ -1734,12 +1993,12 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
                     <span>Notification</span>
                     <span id="menu-notif-badge" style="background:red; color:white; font-size:10px; padding:2px 6px; border-radius:10px; margin-left:auto; display:none;">0</span>
                 </div>
-                
-                <div class="menu-item" onclick="window.navigateSub('developer')">
-                    <img src="https://img.icons8.com/?size=100&id=Aiy01hWHN0hk&format=png&color=000000">
-                    <span>Developer</span>
+                <div class="menu-item" onclick="window.navigateSub('mhistory')">
+                    <i class="fas fa-trophy" style="width:24px;color:#1769E0;font-size:20px;text-align:center"></i>
+                    <span>Match History</span>
                     <i class="fas fa-chevron-right" style="margin-left:auto; color:#ccc;"></i>
                 </div>
+
 
                 <div class="menu-item" onclick="window.handleLogout()" id="profile-logout-btn">
                     <i class="fas fa-sign-out-alt" style="color:var(--danger); width:20px;"></i>
@@ -1751,9 +2010,11 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
     </section>
 
     <section id="matches-view" class="app-section">
-        <div class="back-nav" onclick="window.showTab('home')">
-            <i class="fas fa-arrow-left"></i> Back to Home
+        <div class="back-nav" onclick="window.catBack()">
+            <i class="fas fa-arrow-left"></i> <span id="cat-back-label">Back to Home</span>
         </div>
+        <div class="category-title" id="cat-view-title" style="display:none"></div>
+        <div id="subcat-container" class="category-grid" style="display:none"></div>
         
         <div class="match-tabs-container">
             <div class="m-tab active" id="mt-Upcoming" onclick="window.filterMatchTab('Upcoming')">Upcoming</div>
@@ -1813,48 +2074,7 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
         </div>
     </section>
 
-<!-- NEW DEVELOPER PAGE -->
-    <section id="developer-view" class="app-section" style="background: #fff; min-height: 100vh;">
-        <div class="back-nav" onclick="window.showTab('profile')" style="background: transparent; border: none; padding: 25px 20px; justify-content: flex-start; align-items: center; gap: 15px;">
-            <i class="fas fa-chevron-left" style="font-size: 22px; color: #000;"></i> 
-            <span style="font-size: 20px; font-weight: 800; color: #000;">Developer Profile</span>
-        </div>
-        
-        <div class="dev-page" style="padding: 0 25px;">
-            <div style="font-size: 22px; font-weight: 700; color: #4a4a4a; margin-bottom: 20px; text-align: left;">
-                টুর্নামেন্ট অ্যাপ বিক্রি হচ্ছে
-            </div>
-            
-            <div style="font-size: 15px; font-weight: 600; color: #4a4a4a; line-height: 1.5; margin-bottom: 25px; text-align: left;">
-                আমরা তৈরি করে দিচ্ছি আপনার নিজস্ব Android Tournament App এবং Website Tournament System।
-            </div>
-            
-            <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px;">
-                <div style="display: flex; align-items: center; gap: 10px; font-weight: 700; color: #333; font-size: 15px;">
-                    <i class="fas fa-check" style="color: #333; font-size: 16px;"></i> Automatic Payment System
-                </div>
-                <div style="display: flex; align-items: center; gap: 10px; font-weight: 700; color: #333; font-size: 15px;">
-                    <i class="fas fa-check" style="color: #333; font-size: 16px;"></i> Admin System
-                </div>
-                <div style="display: flex; align-items: center; gap: 10px; font-weight: 700; color: #333; font-size: 15px;">
-                    <i class="fas fa-check" style="color: #333; font-size: 16px;"></i> Moderator Panel
-                </div>
-                <div style="display: flex; align-items: center; gap: 10px; font-weight: 700; color: #333; font-size: 15px;">
-                    <i class="fas fa-check" style="color: #333; font-size: 16px;"></i> সম্পূর্ণ কাস্টম ডিজাইন
-                </div>
-            </div>
-            
-            <div style="font-size: 16px; font-weight: 800; color: #333; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-                <span style="font-size: 20px;">💰</span> শুরু মাত্র ২৫,০০০ টাকা থেকে!
-            </div>
-            
-            <a href="https://t.me/DeveloperSketvia01" target="_blank" style="font-size: 16px; font-weight: 700; color: #673AB7; text-decoration: underline; display: block;">
-                https://t.me/DeveloperSketvia01
-            </a>
-        </div>
-    </section>
 
-    <!-- NEW MATCH DETAILS FULL PAGE -->
     <section id="match-details-view" class="app-section">
         <div class="back-nav" onclick="window.showTab('mymatches')"><i class="fas fa-arrow-left"></i> Match Details</div>
         
@@ -1877,7 +2097,7 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
 
     <!-- NEW RESULT DETAILS FULL PAGE -->
     <section id="result-details-view" class="app-section">
-        <div class="back-nav dark-mode" onclick="window.showTab('result')"><i class="fas fa-arrow-left"></i> Results</div>
+        <div class="back-nav dark-mode" onclick="window.leaveResult()"><i class="fas fa-arrow-left"></i> Results</div>
         
         <div id="rd-container">
             <!-- Populated via JS -->
@@ -1886,35 +2106,55 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
 
     <!-- NEW JOIN MATCH FULL PAGE -->
     <section id="join-match-view" class="app-section">
-        <div class="back-nav" onclick="window.closeJoinPage()"><i class="fas fa-arrow-left"></i> Match Joining</div>
-        
+        <div class="back-nav" onclick="window.joinBack()"><i class="fas fa-arrow-left"></i> Match Joining</div>
+
         <div class="join-card">
             <div class="join-match-title" id="join-page-title">Match Name</div>
             <div class="join-meta" id="join-page-meta">Time</div>
-            
+
             <div class="join-info-row">
                 <span>Win Prize: <span id="join-page-win">0</span>TK</span>
                 <span>Entry Fee: <span id="join-page-fee">0</span>TK</span>
             </div>
-            
-            <div class="join-warning">
-                *অবশ্যই এখানে আপনার গেমের এর নামটি দিয়ে জয়েন করবেন।
-            </div>
-            
+
             <div class="join-badge-container">
                 <div class="join-badge" id="join-page-type">Solo</div>
             </div>
-            
-            <div style="margin:18px 0 8px;font-weight:800;color:#111">Select Slot(s)</div>
-            <div id="join-slot-help" style="font-size:13px;color:#94a3b8;margin-bottom:10px">Choose your available slot(s)</div>
-            <div id="join-slots-container" class="slot-board"></div>
-            <div class="join-inputs" id="join-inputs-container"><!-- Player names generated from selected slots --></div>
+
+            <div class="jw-steps" id="jw-steps">
+                <div class="jw-step active" data-s="1"><b>1</b><span>Slot</span></div><div class="jw-line"></div>
+                <div class="jw-step" data-s="2"><b>2</b><span>Players</span></div><div class="jw-line"></div>
+                <div class="jw-step" data-s="3"><b>3</b><span>Rules</span></div>
+            </div>
+
+            <div id="jw-pane-1">
+                <div style="margin:14px 0 8px;font-weight:800;color:#111">Select Slot(s)</div>
+                <div id="join-slot-help" style="font-size:13px;color:#94a3b8;margin-bottom:10px">Choose your available slot(s)</div>
+                <div id="join-slots-container" class="slot-board"></div>
+            </div>
+
+            <div id="jw-pane-2" style="display:none">
+                <div class="join-warning">*অবশ্যই এখানে আপনার গেমের নাম ও সঠিক UID দিয়ে জয়েন করবেন।</div>
+                <div class="pl-head"><span>PLAYER NAME</span><span>GAME UID</span></div>
+                <div id="join-inputs-container"></div>
+            </div>
+
+            <div id="jw-pane-3" style="display:none">
+                <div class="jw-sum" id="jw-summary"></div>
+                <div class="jw-rules" id="jw-rules"></div>
+                <label class="jw-agree"><input type="checkbox" id="jw-agree"><span>আমি সব নিয়ম পড়েছি এবং মানতে রাজি আছি।</span></label>
+            </div>
         </div>
-        
-        <button class="join-btn-full" onclick="window.confirmJoin()">Join Now!</button>
+
+        <button class="join-btn-full" id="jw-next" onclick="window.joinNext()">Next</button>
     </section>
 
-    <!-- WALLET VIEW -->
+    <section id="mhistory-view" class="app-section">
+        <div class="back-nav" onclick="window.showTab('profile')"><i class="fas fa-arrow-left"></i> Match History</div>
+        <div id="mhistory-list"></div>
+    </section>
+
+<!-- WALLET VIEW -->
     <section id="wallet-view" class="app-section">
         <div class="wallet-redesign-container">
             <div class="back-nav dark-mode" onclick="window.showTab('profile')">
@@ -2314,6 +2554,7 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
     window.openMatchDetails = openMatchDetails;
     window.openResultDetails = openResultDetails;
     window.closeJoinPage = closeJoinPage;
+    window.openResultDetails = openResultDetails;
 
     window.onload = () => { initData(); };
 
@@ -2324,17 +2565,11 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
                 activeCategories = d;
                 const c = document.getElementById('dynamic-category-list');
                 c.innerHTML = "";
-                Object.entries(d).forEach(([k,v]) => {
-                    c.insertAdjacentHTML('beforeend', `
-                    <div class="cat-card-new" onclick="window.openCategory('${k}')">
-                         <img src="${v.img}" class="cat-card-img">
-                         <div class="cat-card-info">
-                             <div class="cat-card-title">${v.name}</div>
-                             <div class="cat-card-count" id="count-${k}">0 matches found</div>
-                         </div>
-                     </div>`);
+                Object.entries(d).filter(([k]) => !catParent(k)).forEach(([k,v]) => {
+                    c.insertAdjacentHTML('beforeend', catCardHTML(k, v));
                 });
                 updateCounts();
+                if(document.getElementById('matches-view').classList.contains('active') && currentActiveCategory) filterMatchTab(currentMatchFilter);
             }
         });
 
@@ -2345,16 +2580,7 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
                 // Store dbKey explicitly
                 rawMatches.push({dbKey:k, ...v});
             });
-            updateCounts();
-            
-            // If matches view is active, refresh to show correct status
-            if(document.getElementById('matches-view').classList.contains('active')) {
-                filterMatchTab(currentMatchFilter);
-            }
-            if(document.getElementById('tab-mymatches-view').classList.contains('active')) {
-                loadMyMatches();
-            }
-            loadResults(); 
+            scheduleRefresh();
         });
 
         onValue(ref(db, 'match_participants'), s => {
@@ -2363,6 +2589,7 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
             calculateJoinedMatches();
             if(currentJoinId && document.getElementById('join-match-view').classList.contains('active')) renderJoinSlots();
         });
+        onValue(ref(db, 'match_results'), s => { allResults = s.val() || {}; scheduleRefresh(); });
         onValue(ref(db, 'match_slots'), s => {
             allReservedSlots = s.val() || {};
             if(currentJoinId && document.getElementById('join-match-view').classList.contains('active')) renderJoinSlots();
@@ -2382,6 +2609,7 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
                 videoLinks.getRoom = d.how_to_get_room_id_link;
                 videoLinks.howPlay = d.how_to_play_link;
                 supportLink = d.support_link;
+                if(d.match_rules) rulesText = d.match_rules;
                 shopLink = d.shop_link;
 
                 if(d.show_popup && d.popup_text) {
@@ -2428,20 +2656,32 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
             });
         }
         
-        // Refresh UI to reflect joined status
-        if(document.getElementById('matches-view').classList.contains('active')) {
-            filterMatchTab(currentMatchFilter);
-        }
-        if(document.getElementById('tab-mymatches-view').classList.contains('active')) {
-            loadMyMatches();
-        }
+        scheduleRefresh();
     }
 
+    // --- nested categories helpers (category > sub-category > ...) ---
+    function catParent(k) { const p = activeCategories[k] && activeCategories[k].parentId; return (p && activeCategories[p]) ? p : ''; }
+    function catKids(pid) { return Object.keys(activeCategories).filter(k => catParent(k) === pid); }
+    function catIds(k) { const out = [k]; catKids(k).forEach(c => out.push(...catIds(c))); return out; }
+    function catImage(k) { let c = k, g = 0; while(c && g++ < 10) { const v = activeCategories[c]; if(v && v.img) return v.img; c = catParent(c); } return ''; }
+    function catCardHTML(k, v) {
+        return `<div class="cat-card-new" onclick="window.openCategory('${k}')">
+             <img src="${esc(catImage(k))}" class="cat-card-img">
+             <div class="cat-card-info">
+                 <div class="cat-card-title">${esc(v.name)}</div>
+                 <div class="cat-card-count" data-cat-count="${k}">0 matches found</div>
+             </div>
+         </div>`;
+    }
+    window.catBack = () => {
+        const p = catParent(currentActiveCategory);
+        if(p) openCategory(p); else window.showTab('home');
+    };
     function updateCounts() {
          Object.keys(activeCategories).forEach(k => {
-             const n = rawMatches.filter(m => m.categoryId === k && m.status !== 'Finished').length;
-             const el = document.getElementById(`count-${k}`);
-             if(el) el.innerText = `${n} matches found`;
+             const ids = new Set(catIds(k));
+             const n = rawMatches.filter(m => ids.has(m.categoryId) && m.status !== 'Finished').length;
+             document.querySelectorAll(`[data-cat-count="${k}"]`).forEach(el => { el.innerText = `${n} matches found`; });
          });
     }
     
@@ -2495,7 +2735,7 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
                            t === 'notifications' ? 'notifications-view' :
                            t === 'refer' ? 'refer-view' :
                            t === 'edit-profile' ? 'edit-profile-view' : 
-                           t === 'developer' ? 'developer-view' : '';
+                           t === 'mhistory' ? 'mhistory-view' : '';
             if(targetId) document.getElementById(targetId).classList.add('active');
             if(t==='wallet' && currentUser) {
                 document.getElementById('withdraw-available-wallet').innerText = winningBal;
@@ -2504,6 +2744,7 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
                 document.getElementById('withdraw-available').innerText = winningBal;
             } else if(t==='history') loadHistory();
             else if(t==='notifications') loadNotifs();
+            else if(t==='mhistory') loadMatchHistory();
             else if(t==='edit-profile' && currentUser) {
                  document.getElementById('ep-username').value = currentUser.displayName || '';
                  document.getElementById('ep-email').value = currentUser.email || '';
@@ -2524,6 +2765,8 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
         document.getElementById('matches-view').classList.add('active');
         document.body.classList.add('sub-page');
         document.querySelector('.tab-bar').classList.add('hidden');
+        const par = catParent(cid);
+        document.getElementById('cat-back-label').textContent = par ? 'Back to ' + activeCategories[par].name : 'Back to Home';
         filterMatchTab('Upcoming');
     }
 
@@ -2533,13 +2776,27 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
         document.getElementById('mt-'+status).classList.add('active');
         const c = document.getElementById('matches-container');
         c.innerHTML = "";
+        // sub-categories of the opened category
+        const kids = catKids(currentActiveCategory);
+        const sc = document.getElementById('subcat-container');
+        const ttl = document.getElementById('cat-view-title');
+        const cur = activeCategories[currentActiveCategory];
+        sc.innerHTML = kids.map(k => catCardHTML(k, activeCategories[k])).join('');
+        sc.style.display = kids.length ? '' : 'none';
+        ttl.style.display = kids.length && cur ? '' : 'none';
+        if(cur) ttl.textContent = cur.name;
+        const hasOwn = rawMatches.some(x => x.categoryId === currentActiveCategory);
+        const showMatches = !kids.length || hasOwn;
+        document.querySelector('#matches-view .match-tabs-container').style.display = showMatches ? '' : 'none';
+        c.style.display = showMatches ? '' : 'none';
+        if(kids.length) updateCounts();
         let m = [];
         if(status === 'Upcoming') m = rawMatches.filter(x => x.categoryId === currentActiveCategory && x.status === 'Upcoming');
         else if (status === 'Ongoing') m = rawMatches.filter(x => x.categoryId === currentActiveCategory && x.status === 'Ongoing');
         else if (status === 'Finished') m = rawMatches.filter(x => x.categoryId === currentActiveCategory && x.status === 'Finished');
         
         if(m.length === 0) c.innerHTML = `<div class='empty-msg'>No ${status} Matches Found</div>`;
-        else m.forEach(x => c.insertAdjacentHTML('beforeend', createMatchCardHTML(x, (status==='Finished' ? 'result' : 'play'))));
+        else { c.innerHTML = m.map(x => createMatchCardHTML(x, (status==='Finished' ? 'result' : 'play'))).join(''); tickCountdowns(); }
     }
 
     function loadMyMatches() {
@@ -2552,7 +2809,7 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
          const m = rawMatches.filter(x => userJoinedMatches.includes(x.dbKey));
          
          if(m.length===0) c.innerHTML = "<div class='empty-msg'>No joined matches</div>";
-         else m.forEach(x => c.insertAdjacentHTML('beforeend', createMatchCardHTML(x, 'joined')));
+         else { c.innerHTML = m.map(x => createMatchCardHTML(x, 'joined')).join(''); tickCountdowns(); }
     }
 
     function loadResults() {
@@ -2561,7 +2818,7 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
          c.innerHTML = "";
          const m = rawMatches.filter(x => x.status === 'Finished');
          if(m.length===0) c.innerHTML = "<div class='empty-msg'>No results yet</div>";
-         else m.forEach(x => c.insertAdjacentHTML('beforeend', createMatchCardHTML(x, 'result')));
+         else c.innerHTML = m.map(x => createMatchCardHTML(x, 'result')).join('');
     }
 
     function createMatchCardHTML(m, type) {
@@ -2572,7 +2829,7 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
         // FIX: Use m.dbKey to check joined status uniquely
         const isJoined = userJoinedMatches.includes(m.dbKey);
         
-        const catImg = activeCategories[m.categoryId] ? activeCategories[m.categoryId].img : '';
+        const catImg = catImage(m.categoryId);
         
         let btnJoinHTML = '';
         if (type === 'play') {
@@ -2583,7 +2840,7 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
                 btnJoinHTML = `<button class="btn-join-main" onclick="event.stopPropagation(); window.prepJoin('${m.dbKey}', '${m.type}', ${m.entry}, '${m.dbKey}', '${m.title}')">Join</button>`;
             }
         } else if (type === 'joined') {
-             btnJoinHTML = `<button class="btn-join-main disabled">JOINED</button>`;
+             btnJoinHTML = m.status === 'Finished' ? `<button class="btn-join-main" onclick="event.stopPropagation(); window.openResultDetails('${m.dbKey}')">RESULT</button>` : `<button class="btn-join-main disabled">JOINED</button>`;
         } else {
              btnJoinHTML = `<button class="btn-join-main" onclick="event.stopPropagation(); window.openResultDetails('${m.dbKey}')">RESULT</button>`;
         }
@@ -2591,7 +2848,7 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
         return `
         <div class="match-card" onclick="${type==='result' ? `window.openResultDetails('${m.dbKey}')` : `window.openMatchDetails('${m.dbKey}')`}">
             <div class="mc-header">
-                <img src="${catImg}" class="mc-thumb">
+                <img src="${catImg}" class="mc-thumb" loading="lazy" decoding="async">
                 <div class="mc-header-info">
                     <div class="mc-title-row">${m.title} | Mobile | Regular</div>
                     <div class="mc-date-row">${m.time}</div>
@@ -2668,8 +2925,9 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
 
             document.getElementById('md-title').innerText = m.title;
             const timerEl = document.getElementById('md-timer');
-            timerEl.dataset.time = m.timestamp;
-            document.getElementById('md-time').innerText = "Starts In: " + m.time;
+            timerEl.dataset.time = m.timestamp || '';
+            tickCountdowns();
+            document.getElementById('md-time').innerText = "Match Time: " + m.time;
             
             // Populate Participants by using the match key
             const pList = document.getElementById('md-p-list');
@@ -2701,86 +2959,107 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
         }, 0);
     }
     
-    function openResultDetails(key) {
+    let currentResultKey = null, resultBack = 'result';
+    window.leaveResult = () => {
+        currentResultKey = null;
+        if(resultBack === 'mhistory') window.navigateSub('mhistory'); else window.showTab('result');
+    };
+
+    function buildBoard(m, key) {
+        const size = teamSizeOf(m.type);
+        const res = allResults[key] || {};
+        const parts = Object.entries(allParticipants[key] || {}).map(([id, p], i) => ({
+            id, ign: p.ign || 'Unknown', kills: Number(p.kills) || 0, win: Number(p.win) || 0,
+            slot: Number(p.slotNo) > 0 ? Number(p.slotNo) : i + 1, mine: !!currentUser && p.joinedBy === currentUser.uid
+        }));
+        const live = !!res.published || parts.some(p => p.kills > 0 || p.win > 0);
+        let rows;
+        if(size === 1) {
+            rows = parts.map(p => ({ name: p.ign, score: p.kills, prize: p.win, mine: p.mine, slot: p.slot }))
+                        .sort((a, b) => b.score - a.score || a.slot - b.slot);
+        } else {
+            const g = {};
+            parts.forEach(p => { (g[Math.ceil(p.slot / size)] = g[Math.ceil(p.slot / size)] || []).push(p); });
+            rows = Object.entries(g).map(([n, ps]) => {
+                const meta = (res.teams && res.teams[n]) || {};
+                const sum = ps.reduce((a, p) => a + p.kills, 0);
+                return {
+                    team: Number(n), name: meta.name || ('Team ' + n), players: ps.sort((a, b) => a.slot - b.slot),
+                    score: size === 4 ? (Number(meta.score) || 0) : sum,
+                    prize: size === 4 ? (Number(meta.prize) || 0) : ps.reduce((a, p) => a + p.win, 0),
+                    mine: ps.some(p => p.mine)
+                };
+            }).sort((a, b) => b.score - a.score || a.team - b.team);
+        }
+        rows.forEach((r, i) => r.rank = i + 1);
+        return { size, rows, live };
+    }
+
+    const medal = r => r === 1 ? '🥇' : r === 2 ? '🥈' : r === 3 ? '🥉' : '#' + r;
+
+    function leaderboardHTML(m, key) {
+        const { size, rows, live } = buildBoard(m, key);
+        const head = `<div class="lb-card"><div class="lb-head"><h3>${esc(m.title)} | ${esc(m.type || '')}</h3><p>Organized On ${esc(m.time)} • Prize ৳${esc(m.total_prize)} • Per Kill ৳${esc(m.per_kill)}</p></div>`;
+        if(!live || !rows.length) return head + `<div class="lb-empty">লিডারবোর্ড এখনো প্রকাশ হয়নি। কিছুক্ষণ পরে দেখুন।</div></div>`;
+        const mine = rows.filter(r => r.mine);
+        const prizeCell = r => r.prize > 0 ? `<div class="lb-prize">৳${r.prize}</div>` : '<div class="lb-prize"></div>';
+        let me = '';
+        if(mine.length) {
+            me = mine.map(r => `<div class="lb-me"><small>YOUR RESULT</small><div>${size === 4 ? esc(r.name) + ' • ' : ''}Rank #${r.rank} • ${size === 4 ? 'Score' : 'Kills'} ${r.score}${r.prize > 0 ? ' • ৳' + r.prize : ''}</div></div>`).join('');
+        }
+        let body = '';
+        if(size === 1) {
+            body = `<div class="lb-sub">TOP 10 PLAYERS</div>` + rows.slice(0, 10).map(r =>
+                `<div class="lb-row${r.mine ? ' mine' : ''}"><div class="lb-rank">${medal(r.rank)}</div><div class="lb-name">${esc(r.name)}</div><div class="lb-val">${r.score} K</div>${prizeCell(r)}</div>`).join('');
+        } else if(size === 2) {
+            body = `<div class="lb-sub">TOP 10 TEAMS</div>` + rows.slice(0, 10).map(r =>
+                `<div class="lb-team${r.mine ? ' mine' : ''}"><div class="lb-row"><div class="lb-rank">${medal(r.rank)}</div><div class="lb-name">${esc(r.name)}</div><div class="lb-val">${r.score} K</div>${prizeCell(r)}</div>
+                 <div class="lb-players">${r.players.map(p => `<div><span>${esc(p.ign)}</span><b>${p.kills} K</b></div>`).join('')}</div></div>`).join('');
+        } else {
+            body = `<div class="lb-sub">TEAM STANDINGS</div>` + rows.map(r =>
+                `<div class="lb-row${r.mine ? ' mine' : ''}"><div class="lb-rank">${medal(r.rank)}</div><div class="lb-name">${esc(r.name)}</div><div class="lb-val">${r.score}</div>${prizeCell(r)}</div>`).join('');
+        }
+        return me + head + body + '</div>';
+    }
+
+    function renderResultDetails(key) {
         const m = rawMatches.find(x => x.dbKey === key);
         if(!m) return;
-        
-        
-        setTimeout(() => {
-            document.querySelectorAll('.app-section').forEach(e => e.classList.remove('active'));
-            document.body.classList.add('sub-page');
-            document.querySelector('.tab-bar').classList.add('hidden');
-            document.getElementById('result-details-view').classList.add('active');
-            
-            const c = document.getElementById('rd-container');
-            
-            let parts = [];
-            if(allParticipants[key]) {
-                parts = Object.values(allParticipants[key]);
-                parts.sort((a,b) => (b.win || 0) - (a.win || 0));
-            }
-            
-            let winnersHTML = '';
-            let fullHTML = '';
-            
-            parts.forEach((p, idx) => {
-                const row = `
-                <div class="rd-row">
-                    <div class="col-hash">${idx+1}</div>
-                    <div class="col-name">${p.ign || 'Unknown'}</div>
-                    <div class="col-kill">${p.kills || 0}</div>
-                    <div class="col-win">৳${p.win || 0}</div>
-                </div>`;
-                
-                if(p.win > 0) winnersHTML += row;
-                fullHTML += row;
-            });
+        document.getElementById('rd-container').innerHTML = leaderboardHTML(m, key);
+    }
 
-            if(!winnersHTML) winnersHTML = '<div style="padding:10px; text-align:center; color:#777;">No winners declared yet</div>';
-            if(!fullHTML) fullHTML = '<div style="padding:10px; text-align:center; color:#777;">No participants</div>';
+    function openResultDetails(key, from) {
+        const m = rawMatches.find(x => x.dbKey === key);
+        if(!m) return;
+        currentResultKey = key;
+        resultBack = from === 'mhistory' ? 'mhistory' : 'result';
+        document.querySelectorAll('.app-section').forEach(e => e.classList.remove('active'));
+        document.body.classList.add('sub-page');
+        document.querySelector('.tab-bar').classList.add('hidden');
+        document.getElementById('result-details-view').classList.add('active');
+        renderResultDetails(key);
+        window.scrollTo(0, 0);
+    }
 
-            c.innerHTML = `
-            <div class="rd-card">
-                 <div class="rd-title-box">
-                     <div class="rd-main-title">${m.title} | Mobile |</div>
-                     <div class="rd-sub-title">Organized On ${m.time}</div>
-                 </div>
-                 <div class="rd-stats-row">
-                     <div class="rd-stat-item">
-                         <div>WIN PRIZE</div>
-                         <div>৳${m.total_prize}</div>
-                     </div>
-                     <div class="rd-stat-item">
-                         <div>PER KILL</div>
-                         <div>৳${m.per_kill}</div>
-                     </div>
-                     <div class="rd-stat-item">
-                         <div>ENTRY FEE</div>
-                         <div>৳${m.entry}</div>
-                     </div>
-                 </div>
-                 
-                 <div class="rd-header-blue">WINNER WINNER CHICKEN DINNER</div>
-                 <div class="rd-table-head">
-                      <div class="col-hash">#</div>
-                      <div class="col-name">Player Name</div>
-                      <div class="col-kill">Kills</div>
-                      <div class="col-win">Winning</div>
-                 </div>
-                 ${winnersHTML}
-                 
-                 <div class="rd-header-blue" style="margin-top:10px;">FULL RESULT</div>
-                 <div class="rd-table-head">
-                      <div class="col-hash">#</div>
-                      <div class="col-name">Player Name</div>
-                      <div class="col-kill">Kills</div>
-                      <div class="col-win">Winning</div>
-                 </div>
-                 ${fullHTML}
-            </div>`;
-            
-            
-        }, 0);
+    function loadMatchHistory() {
+        const l = document.getElementById('mhistory-list');
+        l.innerHTML = "<div class='empty-msg'>Loading...</div>";
+        if(!currentUser) return;
+        if(window._unH) window._unH();
+        window._unH = onValue(ref(db, 'match_history/' + currentUser.uid), s => {
+            const d = s.val();
+            if(!d) { l.innerHTML = "<div class='empty-msg'>এখনো কোনো ম্যাচ রেজাল্ট নেই</div>"; return; }
+            const items = Object.entries(d).sort((a, b) => (b[1].publishedAt || 0) - (a[1].publishedAt || 0));
+            l.innerHTML = items.map(([k, h]) => {
+                const sq = teamSizeOf(h.type) === 4;
+                return `<div class="mh-card" onclick="window.openResultDetails('${esc(k)}','mhistory')">
+                    <div class="mh-rank">#${esc(h.rank ?? '-')}</div>
+                    <div class="mh-body"><div class="mh-title">${esc(h.title)}</div>
+                    <div class="mh-meta">${esc(h.type)} • ${esc(h.time)}${h.slots ? ' • Slot ' + esc([].concat(h.slots).join(', ')) : ''}</div>
+                    <div class="mh-stats"><span>${sq ? 'Score' : 'Kills'}: ${esc(sq ? (h.score ?? 0) : (h.kills ?? 0))}</span>${Number(h.prize) > 0 ? `<span class="pz">Won ৳${esc(h.prize)}</span>` : ''}</div></div>
+                    <i class="fas fa-chevron-right" style="color:#ccc"></i></div>`;
+            }).join('');
+        });
     }
 
     function openPrizePool(key) {
@@ -2828,6 +3107,11 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
          }
     }
 
+    const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const DEFAULT_RULES = "ম্যাচ শুরুর ১০ মিনিট আগে রুম আইডি ও পাসওয়ার্ড দেওয়া হবে।\nনিজের সঠিক গেম নাম ও UID দিয়ে জয়েন করুন। ভুল তথ্যের জন্য আমরা দায়ী নই।\nহ্যাক, গ্লিচ, টিমিং বা এমুলেটর ব্যবহার সম্পূর্ণ নিষিদ্ধ। ধরা পড়লে ব্যান করা হবে।\nরুমে দেরিতে ঢুকলে বা ম্যাচ মিস করলে এন্ট্রি ফি ফেরত দেওয়া হবে না।\nঅ্যাডমিনের সিদ্ধান্তই চূড়ান্ত।";
+    let rulesText = DEFAULT_RULES;
+    let joinStep = 1, joinDraft = {};
+
     function prepJoin(id, type, fee, key, title) {
          if(!currentUser) return;
          if(userJoinedMatches.includes(id)) {
@@ -2837,18 +3121,19 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
          currentJoinId = id;
          currentEntryFee = Number(fee) || 0;
          currentJoinMatch = rawMatches.find(m => m.dbKey === id) || {};
-         const normalizedType = String(type || currentJoinMatch.type || 'Solo').toLowerCase();
-         currentSlotCount = normalizedType.includes('squad') ? 4 : (normalizedType.includes('duo') ? 2 : 1);
+         currentSlotCount = teamSizeOf(type || currentJoinMatch.type);
          currentTotalSlots = Math.max(currentSlotCount, Number(currentJoinMatch.total) || 48);
          selectedJoinSlots = [];
+         joinDraft = {};
 
          document.getElementById('join-page-title').innerText = title || currentJoinMatch.title || 'Match Joining';
          document.getElementById('join-page-meta').innerText = [currentJoinMatch.time, currentJoinMatch.map].filter(Boolean).join(' • ');
          document.getElementById('join-page-win').innerText = currentJoinMatch.total_prize ?? '—';
          document.getElementById('join-page-fee').innerText = currentEntryFee;
          document.getElementById('join-page-type').innerText = type || currentJoinMatch.type || 'Solo';
+         document.getElementById('jw-agree').checked = false;
          renderJoinSlots();
-         renderJoinPlayerInputs();
+         setJoinStep(1);
          document.querySelector('.join-btn-full').dataset.key = key || id;
          document.querySelectorAll('.app-section').forEach(e => e.classList.remove('active'));
          document.body.classList.add('sub-page');
@@ -2856,7 +3141,19 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
          document.getElementById('join-match-view').classList.add('active');
     }
 
-    const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    function setJoinStep(n) {
+        joinStep = n;
+        for(let i = 1; i <= 3; i++) document.getElementById('jw-pane-' + i).style.display = i === n ? 'block' : 'none';
+        document.querySelectorAll('#jw-steps .jw-step').forEach(el => {
+            const s = Number(el.dataset.s);
+            el.classList.toggle('active', s === n);
+            el.classList.toggle('done', s < n);
+        });
+        const total = currentEntryFee * Math.max(selectedJoinSlots.length, currentSlotCount);
+        document.getElementById('jw-next').textContent = n === 1 ? 'Next' : (n === 2 ? 'Next: Rules' : `Book Slot  •  ৳${total}`);
+        window.scrollTo(0, 0);
+    }
+
     function renderJoinSlots() {
         const container = document.getElementById('join-slots-container');
         const help = document.getElementById('join-slot-help');
@@ -2867,6 +3164,7 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
         participants.filter(p => Number(p.slotNo) > 0).forEach(p => { occupied.add(Number(p.slotNo)); names[Number(p.slotNo)] = p.ign; });
         Object.entries(reservations).forEach(([k, r]) => { occupied.add(Number(k)); if(!names[k]) names[k] = r && r.ign; });
         participants.filter(p => !p.slotNo).forEach((p, i) => { occupied.add(i + 1); if(!names[i + 1]) names[i + 1] = p.ign; });
+        selectedJoinSlots = selectedJoinSlots.filter(n => !occupied.has(n));
         const size = currentSlotCount, total = currentTotalSlots;
         const slot = n => { const tk = occupied.has(n), sl = selectedJoinSlots.includes(n);
             return `<button type="button" class="slot${tk ? ' taken' : ''}${sl ? ' sel' : ''}" data-n="${n}" ${tk ? 'disabled' : ''}>${tk ? `<span class="sn">${esc(names[n] || 'Booked')}</span>` : ''}${n}</button>`; };
@@ -2884,20 +3182,66 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
             if(selectedJoinSlots.includes(n)) selectedJoinSlots = selectedJoinSlots.filter(x => x !== n);
             else if(selectedJoinSlots.length < currentSlotCount) selectedJoinSlots.push(n);
             else return Swal.fire({icon:'info',title:'Slot limit',text:`For ${document.getElementById('join-page-type').innerText}, select ${currentSlotCount} slot(s).`});
-            selectedJoinSlots.sort((a,b)=>a-b); renderJoinSlots(); renderJoinPlayerInputs();
+            selectedJoinSlots.sort((a,b)=>a-b); renderJoinSlots();
         };
         help.textContent = `Choose ${size} available slot(s). ${selectedJoinSlots.length}/${size} selected. Booked slots show the player name.`;
     }
 
+    function captureJoinInputs() {
+        document.querySelectorAll('#join-inputs-container .pl-row').forEach(r => {
+            const n = r.querySelector('.p-name'), u = r.querySelector('.p-uid');
+            joinDraft[n.dataset.slot] = { ign: n.value, uid: u.value };
+        });
+    }
+
     function renderJoinPlayerInputs() {
         const ic = document.getElementById('join-inputs-container');
-        if(!ic) return;
-        if(!selectedJoinSlots.length) {
-            ic.innerHTML = '<div style="color:#94a3b8;font-size:13px;padding:8px 0">Select slot(s) above to enter player name(s).</div>';
-            return;
-        }
-        ic.innerHTML = selectedJoinSlots.map((slot,i) => `<label style="display:block;font-size:12px;font-weight:700;color:#555;margin:8px 0 4px">Slot ${slot} — Player ${i+1}</label><input type="text" class="join-input p-name" data-slot="${slot}" placeholder="Player ${i+1} Name (max 15)" maxlength="15" autocomplete="off">`).join('');
+        ic.innerHTML = selectedJoinSlots.map((slot, i) => {
+            const d = joinDraft[slot] || {};
+            return `<div class="pl-row"><div class="pl-slot">Slot ${slot} — Player ${i+1}</div><div class="pl-fields">
+                <input type="text" class="join-input p-name" data-slot="${slot}" placeholder="Name (max 15)" maxlength="15" autocomplete="off" value="${esc(d.ign || '')}">
+                <input type="text" class="join-input p-uid" data-slot="${slot}" placeholder="Game UID" inputmode="numeric" maxlength="14" autocomplete="off" value="${esc(d.uid || '')}">
+            </div></div>`;
+        }).join('');
     }
+
+    function readJoinPlayers() {
+        const rows = Array.from(document.querySelectorAll('#join-inputs-container .pl-row'));
+        if(rows.length !== currentSlotCount) { Swal.fire('Select slots', `Please select ${currentSlotCount} available slot(s).`, 'warning'); return null; }
+        const out = [], seen = new Set();
+        for(const r of rows) {
+            const n = r.querySelector('.p-name'), u = r.querySelector('.p-uid');
+            const ign = n.value.trim(), uid = u.value.trim();
+            if(!ign || !uid) { Swal.fire('Error', 'প্রতিটি প্লেয়ারের নাম ও UID দিন।', 'error'); return null; }
+            if(ign.length > 15) { Swal.fire('Name too long', 'Player name must be 15 characters or less.', 'warning'); return null; }
+            if(!/^\d{6,14}$/.test(uid)) { Swal.fire('UID ভুল', 'UID শুধু সংখ্যা হবে (৬–১৪ ডিজিট)।', 'warning'); return null; }
+            if(seen.has(uid)) { Swal.fire('UID ভুল', 'একই UID দুইবার দেওয়া যাবে না।', 'warning'); return null; }
+            seen.add(uid);
+            out.push({ ign, gameUid: uid, slotNo: Number(n.dataset.slot) });
+        }
+        return out;
+    }
+
+    function renderRulesStep(players) {
+        const total = currentEntryFee * players.length;
+        document.getElementById('jw-summary').innerHTML = `<span>Slot: ${players.map(p => p.slotNo).join(', ')}</span><span>Total: ৳${total}</span>`;
+        const lines = String((currentJoinMatch && String(currentJoinMatch.rules || '').trim()) || rulesText || DEFAULT_RULES).split('\n').map(s => s.trim()).filter(Boolean);
+        document.getElementById('jw-rules').innerHTML = '<ol>' + lines.map(l => `<li>${esc(l)}</li>`).join('') + '</ol>';
+    }
+
+    window.joinNext = () => {
+        if(joinStep === 1) {
+            if(selectedJoinSlots.length !== currentSlotCount) return Swal.fire('Select slots', `Please select ${currentSlotCount} available slot(s).`, 'warning');
+            captureJoinInputs(); renderJoinPlayerInputs(); setJoinStep(2);
+        } else if(joinStep === 2) {
+            const p = readJoinPlayers(); if(!p) return;
+            renderRulesStep(p); setJoinStep(3);
+        } else confirmJoin();
+    };
+    window.joinBack = () => {
+        if(joinStep > 1) { if(joinStep === 2) captureJoinInputs(); setJoinStep(joinStep - 1); }
+        else closeJoinPage();
+    };
 
     function closeJoinPage() {
          document.getElementById('join-match-view').classList.remove('active');
@@ -2914,11 +3258,9 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
          if(!currentUser) return Swal.fire('Error','Please sign in first.','error');
          if(!currentJoinId) return Swal.fire('Error','Please select a match first.','error');
          if(userJoinedMatches.includes(currentJoinId)) return Swal.fire({ icon:'warning', title:'Already Joined', text:'You have already joined this match!' });
-         if(selectedJoinSlots.length !== currentSlotCount) return Swal.fire('Select slots', `Please select ${currentSlotCount} available slot(s).`, 'warning');
-         const inputs = Array.from(document.querySelectorAll('.p-name'));
-         if(inputs.length !== currentSlotCount || inputs.some(i => !i.value.trim())) return Swal.fire('Error','Fill all selected player names.','error');
-         if(inputs.some(i => i.value.trim().length > 15)) return Swal.fire('Name too long','Player name must be 15 characters or less.','warning');
-         const names = inputs.map(i => ({ign:i.value.trim(),slotNo:Number(i.dataset.slot)}));
+         if(!document.getElementById('jw-agree').checked) return Swal.fire('নিয়ম', 'বুক করতে নিয়মগুলো মানতে রাজি হয়ে টিক দিন।', 'info');
+         const names = readJoinPlayers();
+         if(!names) return;
          const total = currentEntryFee * names.length;
          if((depositBal + winningBal) < total) return Swal.fire('Error','Insufficient Balance','error');
          const key = document.querySelector('.join-btn-full').dataset.key || currentJoinId;
@@ -2931,28 +3273,26 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
              for(const item of names) {
                  const slotRef = ref(db, `match_slots/${currentJoinId}/${item.slotNo}`);
                  const result = await runTransaction(slotRef, current => current === null ? {
-                     uid: currentUser.uid, email: currentUser.email || '', ign: item.ign, slotNo: item.slotNo, reservedAt: Date.now()
+                     uid: currentUser.uid, email: currentUser.email || '', ign: item.ign, gameUid: item.gameUid, slotNo: item.slotNo, reservedAt: Date.now()
                  } : undefined, {applyLocally:false});
                  if(!result.committed) throw new Error(`Slot ${item.slotNo} has just been booked. Please choose another slot.`);
                  reserved.push(item.slotNo);
              }
              await update(ref(db, 'users/'+currentUser.uid), {deposit:d, winning:w});
              await Promise.all(names.map(item => push(ref(db, 'match_participants/'+currentJoinId), {
-                     ign:item.ign, joinedBy:currentUser.uid, email:currentUser.email || '', slotNo:item.slotNo, kills:0, win:0
+                     ign:item.ign, gameUid:item.gameUid, joinedBy:currentUser.uid, email:currentUser.email || '', slotNo:item.slotNo, kills:0, win:0, joinedAt:nowMs()
                  })));
              const mRef = ref(db, 'matches/'+key);
-             const snap = await get(mRef);
-             const cur = (snap.val() && snap.val().joined) ? Number(snap.val().joined) : 0;
-             await update(mRef, {joined:cur + names.length});
+             await runTransaction(mRef, cur => { if(cur) cur.joined = (Number(cur.joined) || 0) + names.length; return cur; });
              const tid = push(ref(db, 'transactions/'+currentUser.uid)).key;
              await set(ref(db, 'transactions/'+currentUser.uid+'/'+tid), {
                  type:'Match Join', amount:total, method:'Wallet', status:'Success', matchId:currentJoinId,
-                 matchTitle:currentJoinMatch?.title || '', slots:names.map(x=>x.slotNo), email:currentUser.email || '', date:new Date().toLocaleString()
+                 matchTitle:currentJoinMatch?.title || '', slots:names.map(x=>x.slotNo), email:currentUser.email || '', date:new Date(nowMs()).toLocaleString()
              });
              if(!userJoinedMatches.includes(currentJoinId)) userJoinedMatches.push(currentJoinId);
              filterMatchTab(currentMatchFilter);
              toggleLoader(false);
-             Swal.fire({icon:'success',title:'Joined!',text:`Successfully booked slot(s): ${names.map(x=>x.slotNo).join(', ')}.`}).then(()=>closeJoinPage());
+             Swal.fire({icon:'success',title:'Booked!',text:`Successfully booked slot(s): ${names.map(x=>x.slotNo).join(', ')}.`}).then(()=>closeJoinPage());
          } catch(e) {
              // Release any seats reserved by this attempt if the booking could not finish.
              for(const slotNo of reserved) {
@@ -3127,25 +3467,79 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
         return null;
     }
 
+    const teamSizeOf = t => { t = String(t || '').toLowerCase(); return t.includes('squad') ? 4 : (t.includes('duo') ? 2 : 1); };
+    let serverOffset = 0;
+    const nowMs = () => Date.now() + serverOffset;
+    const pad2 = n => String(n).padStart(2, '0');
+
+    function tickClock() {
+        const d = new Date(nowMs());
+        let h = d.getHours(); const ap = h >= 12 ? 'PM' : 'AM'; h = h % 12 || 12;
+        const t = `${pad2(h)}:${pad2(d.getMinutes())}:${pad2(d.getSeconds())} ${ap}`;
+        const el = document.getElementById('clock-time');
+        if(el && el.textContent !== t) el.textContent = t;
+    }
+
+    function tickCountdowns() {
+        const els = document.getElementsByClassName('match-countdown');
+        const now = nowMs();
+        for(let i = 0; i < els.length; i++) {
+            const e = els[i];
+            const t = Number(e.dataset.time);
+            let txt;
+            if(!t) txt = 'Time not set';
+            else {
+                const diff = t - now;
+                if(diff <= 0) txt = 'Match Started';
+                else {
+                    const s = Math.floor(diff / 1000);
+                    const dd = Math.floor(s / 86400), hh = Math.floor((s % 86400) / 3600), mm = Math.floor((s % 3600) / 60), ss = s % 60;
+                    txt = 'STARTS IN - ' + (dd > 0 ? `${dd}d ` : '') + `${pad2(hh)}h:${pad2(mm)}m:${pad2(ss)}s`;
+                }
+            }
+            if(e.dataset.txt !== txt) { e.dataset.txt = txt; e.innerHTML = `<i class="far fa-clock"></i> ${txt}`; }
+        }
+    }
+
+    function tick() { tickClock(); tickCountdowns(); }
+
     function startTimers() {
-        setInterval(() => {
-            document.querySelectorAll('.match-countdown').forEach(e => {
-                 const t = parseInt(e.dataset.time);
-                 const diff = t - new Date().getTime();
-                 if(diff < 0) e.innerText = "Match Started";
-                 else {
-                     const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                     const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                     const s = Math.floor((diff % (1000 * 60)) / 1000);
-                     e.innerText = `Starts In: ${h}h:${m}m:${s}s`;
-                 }
-            });
-        }, 1000);
+        onValue(ref(db, '.info/serverTimeOffset'), s => { serverOffset = Number(s.val()) || 0; tick(); });
+        tick();
+        setInterval(() => { if(!document.hidden) tick(); }, 1000);
+        document.addEventListener('visibilitychange', () => { if(!document.hidden) tick(); });
+    }
+
+    let allResults = {};
+    let _rf = 0;
+    function scheduleRefresh() {
+        if(_rf) return;
+        _rf = requestAnimationFrame(() => {
+            _rf = 0;
+            updateCounts();
+            const on = id => document.getElementById(id).classList.contains('active');
+            if(on('matches-view')) filterMatchTab(currentMatchFilter);
+            if(on('tab-mymatches-view')) loadMyMatches();
+            if(on('tab-result-view')) loadResults();
+            if(on('result-details-view') && currentResultKey) renderResultDetails(currentResultKey);
+            tickCountdowns();
+        });
+    }
+
+    let ensuringPin = false;
+    async function claimSupportPin(uid) {
+        for(let i = 0; i < 12; i++) {
+            const c = String(Math.floor(100000 + Math.random() * 900000));
+            const r = await runTransaction(ref(db, 'support_pins/' + c), cur => cur === null ? uid : undefined);
+            if(r.committed) return c;
+        }
+        return null;
     }
 
     onAuthStateChanged(auth, u => {
         if(u) {
             currentUser = u;
+            document.body.classList.add('logged-in');
             document.getElementById('profile-name').innerText = u.displayName || 'User';
             document.getElementById('profile-email').innerText = u.email;
             
@@ -3178,12 +3572,15 @@ body{font-family:'Hind Siliguri','Rajdhani',sans-serif;color:var(--ink);-webkit-
                     document.getElementById('wallet-balance-display').innerText = (depositBal+winningBal);
                     document.getElementById('withdraw-available').innerText = winningBal;
                     if(d.phone) document.getElementById('ep-phone').value = d.phone;
+                    const spd = document.getElementById('support-pin-display'); if(spd) spd.innerText = d.support_pin || '......';
+                    if(!d.support_pin && !ensuringPin) { ensuringPin = true; claimSupportPin(u.uid).then(c => { if(c) update(ref(db, 'users/'+u.uid), {support_pin:c}); }).finally(() => ensuringPin = false); }
                     if(d.refer_code) document.getElementById('refer-code-display').innerText = d.refer_code;
                     else if(!ensuringRefer) { ensuringRefer = true; claimReferCode(u.uid).then(c => { if(c) update(ref(db, 'users/'+u.uid), {refer_code:c}); }).finally(() => ensuringRefer = false); }
                 }
             });
         } else {
             currentUser = null;
+            document.body.classList.remove('logged-in');
             userJoinedMatches = []; // Clear joined status
             // Show Auth View, Hide Main
             document.getElementById('main-content').style.display = 'none';
