@@ -168,6 +168,161 @@
         .swal2-confirm { background: var(--primary) !important; border-radius: 10px !important; font-weight: 700 !important; box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3) !important; }
         .swal2-cancel { background: rgba(255, 68, 68, 0.15) !important; color: var(--danger) !important; border-radius: 10px !important; font-weight: 700 !important; }
     </style>
+
+<style id="ebd-admin-blue-white-yellow-redesign">
+/* Matching admin palette: blue + white + yellow; no data/auth/payment logic changed. */
+:root{--primary:#1769E0;--primary-glow:rgba(23,105,224,.22);--bg-dark:#F3F7FF;--card-bg:#FFFFFF;--input-bg:#F7FAFF;--border:#DFE9F7;--text-main:#17345F;--text-muted:#71819A;--warning:#D99A00;--info:#1769E0}
+body{background:#F3F7FF;background-image:radial-gradient(circle at 10% 0%,rgba(23,105,224,.09),transparent 38%);color:#17345F}
+.admin-header{background:rgba(255,255,255,.94);border-bottom:1px solid #DFE9F7;box-shadow:0 4px 18px rgba(24,67,130,.05)}
+.admin-logo,.dash-text,.fc-title,.fc-value{color:#17345F}
+.logo-dot{background:#FFC928;box-shadow:0 0 10px rgba(255,201,40,.55)}
+.section{color:#17345F}
+.stat-card{background:linear-gradient(135deg,#1769E0,#0D4DA8);box-shadow:0 12px 28px rgba(23,105,224,.18);border:1px solid rgba(255,255,255,.35)}
+.dash-item,.flat-card{background:#fff;border:1px solid #DFE9F7;box-shadow:0 7px 22px rgba(24,67,130,.06);border-radius:18px}
+.dash-item:active,.btn:active{transform:scale(.98)}
+.grid-section-title,.fc-detail,.form-label,.back-nav{color:#71819A}
+.fc-title{color:#17345F}
+.btn-primary,.fab{background:linear-gradient(135deg,#1769E0,#0E4EAD);box-shadow:0 6px 16px rgba(23,105,224,.2)}
+.btn-primary{color:#fff}
+.form-input{background:#F7FAFF;border:1px solid #DCE7F5;color:#17345F}
+.form-input:focus{border-color:#1769E0;background:#fff;box-shadow:0 0 0 4px rgba(23,105,224,.10)}
+#auth-overlay{background:linear-gradient(145deg,#0B3478,#1769E0 60%,#0D2550)}
+.pin-title{color:#FFD447}
+.dot.filled,.num-key:active{background:#FFC928;border-color:#FFC928;color:#17345F;box-shadow:0 0 14px rgba(255,201,40,.35)}
+.num-key{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);color:#fff}
+.tag-yellow{background:#FFF5CC;color:#8A6500;border-color:#FFE38A}
+.tag-blue{background:#EAF2FF;color:#1769E0;border-color:#CFE0FA}
+.tag-green{background:#E8F8EF;color:#16834A;border-color:#C8EED8}
+.swal2-popup{background:#fff!important;border:1px solid #DFE9F7!important}
+.swal2-title{color:#17345F!important}
+.swal2-input,.swal2-textarea,.swal2-select{background:#F7FAFF!important;border:1px solid #DCE7F5!important;color:#17345F!important}
+.swal2-confirm{background:#1769E0!important;box-shadow:0 4px 15px rgba(23,105,224,.2)!important}
+/* Yellow is an accent only; blue remains the primary action color. */
+
+/* ===================== V2 ADMIN — NAVY · WHITE · YELLOW · PINK ===================== */
+:root{
+  --primary:#1F5BFF; --primary-glow:rgba(31,91,255,.25);
+  --navy:#0B2E7A; --navy-deep:#071C52; --yellow:#FFD23F; --yellow-deep:#F2B705; --yellow-soft:#FFF4C7;
+  --pink:#FF5FA2; --pink-deep:#E83C86; --pink-soft:#FFE3F0; --mist:#EEF4FF;
+  --bg-dark:#F4F8FF; --card-bg:#FFFFFF; --input-bg:#F7FAFF; --border:#E3EBFA;
+  --text-main:#0B2E7A; --text-muted:#6B7DA3; --warning:#F2B705; --info:#1F5BFF; --success:#1BA672; --danger:#E83C86;
+  --blue:#1F5BFF; --shadow:0 8px 24px rgba(11,46,122,.10);
+}
+body{background:linear-gradient(180deg,#EAF2FF 0%,#FFF8FC 100%)!important;color:var(--navy)!important;font-family:'Hind Siliguri','Plus Jakarta Sans',sans-serif!important}
+*{font-family:'Hind Siliguri','Plus Jakarta Sans',sans-serif}
+h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind Siliguri',sans-serif!important}
+
+/* header */
+.admin-header{background:linear-gradient(135deg,var(--navy),var(--blue,#1F5BFF))!important;color:#fff!important;border-radius:0 0 28px 28px!important;box-shadow:0 12px 30px rgba(11,46,122,.25)!important;padding:18px 18px!important}
+.admin-logo{color:#fff!important;font-size:22px!important;letter-spacing:1px}
+.logo-dot{background:var(--yellow)!important;box-shadow:0 0 0 4px rgba(255,210,63,.3)}
+.logout-btn{background:rgba(255,255,255,.15)!important;color:#fff!important;border-radius:12px!important}
+
+/* stats & dashboard */
+.stat-card{background:#fff!important;border:none!important;border-radius:22px!important;box-shadow:var(--shadow)!important;position:relative;overflow:hidden}
+.stat-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--yellow),var(--pink))}
+.stat-card:nth-child(2)::before{background:var(--pink)}
+.stat-card:nth-child(3)::before{background:var(--navy)}
+.stat-val{color:var(--navy)!important;font-weight:700}
+.stat-lbl{color:var(--text-muted)!important;font-weight:700}
+.grid-section-title{color:var(--navy)!important;font-weight:800;letter-spacing:.5px}
+.dash-item{background:#fff!important;border:none!important;border-radius:20px!important;box-shadow:var(--shadow)!important}
+.dash-item:nth-child(4n+1) .dash-icon-box{background:var(--yellow-soft)!important;color:var(--navy)!important}
+.dash-item:nth-child(4n+2) .dash-icon-box{background:var(--pink-soft)!important;color:var(--pink-deep)!important}
+.dash-item:nth-child(4n+3) .dash-icon-box{background:var(--mist)!important;color:var(--blue)!important}
+.dash-item:nth-child(4n+4) .dash-icon-box{background:#FFF0D9!important;color:#E08A00!important}
+.dash-icon-box{border-radius:16px!important}
+.dash-text{color:var(--navy)!important;font-weight:700}
+
+/* lists */
+.flat-card{background:#fff!important;border:none!important;border-radius:22px!important;box-shadow:var(--shadow)!important;padding:16px!important;margin-bottom:14px!important;position:relative}
+.flat-card::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:5px;border-radius:0 5px 5px 0;background:linear-gradient(var(--yellow),var(--pink))}
+.fc-title{color:var(--navy)!important;font-weight:700;font-size:18px}
+.fc-detail{color:var(--text-muted)}
+.fc-value{color:var(--navy)!important;font-weight:600}
+.fc-tag{border-radius:20px!important;padding:4px 12px!important;font-weight:700!important;font-size:12px}
+.tag-yellow{background:var(--yellow)!important;color:var(--navy)!important}
+.tag-blue{background:var(--mist)!important;color:var(--blue,#1F5BFF)!important}
+.tag-green{background:#D8F5E8!important;color:#0E7A4F!important}
+.fc-actions{gap:8px}
+.fc-actions .btn{flex:1}
+.list-container{padding:0 4px}
+.cat-card-row{background:#fff!important;border-radius:20px!important;box-shadow:var(--shadow)!important;border:none!important}
+.cat-img{border-radius:14px!important}
+
+/* buttons */
+.btn{border-radius:14px!important;font-weight:800!important;border:none!important;font-family:'Rajdhani',sans-serif!important;font-size:16px!important;letter-spacing:.3px;transition:transform .12s,box-shadow .2s}
+.btn:active{transform:scale(.96)}
+.btn-primary{background:linear-gradient(135deg,var(--navy),var(--blue))!important;color:#fff!important;box-shadow:0 8px 18px rgba(31,91,255,.3)!important}
+.btn-success{background:linear-gradient(135deg,var(--yellow),#FFB84D)!important;color:var(--navy)!important;box-shadow:0 8px 18px rgba(255,184,77,.4)!important}
+.btn-danger{background:linear-gradient(135deg,var(--pink),#FF8AC0)!important;color:#fff!important;box-shadow:0 8px 18px rgba(255,95,162,.35)!important}
+.fab{background:linear-gradient(135deg,var(--yellow),var(--pink))!important;color:var(--navy)!important;box-shadow:0 12px 24px rgba(255,95,162,.4)!important}
+
+/* forms */
+.form-label{color:var(--navy)!important;font-weight:700}
+.form-input,.swal2-input,.swal2-textarea,.swal2-select{background:var(--mist)!important;border:2px solid transparent!important;border-radius:14px!important;color:var(--navy)!important;box-shadow:none!important}
+.form-input:focus,.swal2-input:focus,.swal2-textarea:focus,.swal2-select:focus{border-color:var(--pink)!important;background:#fff!important;outline:none}
+.search-box{background:#fff!important;border-radius:18px!important;box-shadow:var(--shadow)!important;border:none!important}
+.search-input{color:var(--navy)!important;background:transparent!important}
+.back-nav{background:#fff!important;color:var(--navy)!important;border-radius:0 0 20px 20px;box-shadow:var(--shadow)}
+
+/* pin / auth */
+#auth-overlay{background:radial-gradient(circle at 85% 10%,rgba(255,95,162,.5),transparent 40%),linear-gradient(180deg,var(--blue),var(--navy))!important}
+.pin-title{color:#fff!important;font-size:28px!important}
+.dot{border-color:var(--yellow)!important}
+.dot.filled{background:var(--yellow)!important;box-shadow:0 0 12px rgba(255,210,63,.6)}
+.num-key{background:rgba(255,255,255,.12)!important;color:#fff!important;border:1px solid rgba(255,255,255,.2)!important;border-radius:22px!important;font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:700}
+.num-key:active{background:var(--yellow)!important;color:var(--navy)!important}
+
+/* sweetalert */
+.swal2-popup{border-radius:26px!important;background:#fff!important}
+.swal2-title{color:var(--navy)!important;font-family:'Rajdhani',sans-serif!important;font-size:22px!important}
+.swal2-confirm{background:linear-gradient(135deg,var(--yellow),#FFB84D)!important;color:var(--navy)!important;border-radius:14px!important;font-weight:800!important}
+.swal2-cancel{background:var(--pink-soft)!important;color:var(--pink-deep)!important;border-radius:14px!important;font-weight:700!important}
+
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style id="v3-admin">
+/* PIN pad: solid, high-contrast (the old gradient used an undefined variable so the pad had no background) */
+#auth-overlay{background:linear-gradient(180deg,#1F5BFF 0%,#0B2E7A 100%)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.pin-title{color:#fff!important;text-shadow:0 2px 8px rgba(0,0,0,.25)}
+.pin-dots .dot{width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.25)!important;border:2px solid #FFD23F!important}
+.pin-dots .dot.filled{background:#FFD23F!important;box-shadow:0 0 12px rgba(255,210,63,.7)!important}
+.num-key{background:#fff!important;color:#0B2E7A!important;font-size:30px!important;font-weight:800!important;border:none!important;box-shadow:0 6px 16px rgba(0,0,0,.28)!important;border-radius:50%!important}
+.num-key:active{background:#FFD23F!important;color:#0B2E7A!important;transform:scale(.92)}
+.num-key[style*="cursor:default"]{background:transparent!important;box-shadow:none!important}
+.num-key i{color:#E83C86!important}
+.flat-card,.dash-item,.u-card{content-visibility:auto;contain-intrinsic-size:auto 200px}
+/* user boxes */
+.u-card{background:#fff;border:1px solid #DFE9F7;border-radius:20px;padding:14px;margin-bottom:14px;box-shadow:0 7px 22px rgba(24,67,130,.07);position:relative;overflow:hidden}
+.u-card:before{content:"";position:absolute;left:0;top:0;right:0;height:4px;background:linear-gradient(90deg,#FFD23F,#FF5FA2)}
+.u-head{display:flex;gap:12px;align-items:center;margin-top:4px}
+.u-av{flex:none;width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#1F5BFF,#0B2E7A);color:#fff;display:flex;align-items:center;justify-content:center;font:800 20px 'Rajdhani',sans-serif}
+.u-id{flex:1;min-width:0}.u-name{font:800 17px 'Rajdhani','Hind Siliguri',sans-serif;color:#0B2E7A}
+.u-sub{font-size:12px;color:#71819A;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.u-pin{flex:none;border:none;background:#FFF4C7;color:#7a5a00;border-radius:12px;padding:6px 10px;text-align:center;font-size:9px;font-weight:800;letter-spacing:.6px;cursor:pointer}
+.u-pin b{display:block;font:800 16px 'Rajdhani',sans-serif;letter-spacing:2px;color:#0B2E7A}
+.u-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.u-cell{background:#F2F7FF;border:1px solid #E3EDFC;border-radius:12px;padding:8px 6px;text-align:center}
+.u-cell small{display:block;font-size:10px;color:#71819A;font-weight:700}.u-cell b{font:800 15px 'Rajdhani',sans-serif;color:#0B2E7A}
+.u-uid{font-size:11px;color:#94a3b8;margin-top:10px;overflow-wrap:anywhere}
+.u-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.uh-row{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid #EEF3FB;text-align:left;font-size:13px}
+.uh-row b{color:#0B2E7A}.uh-row small{color:#71819A;display:block}
+.uh-amt{font-weight:800;white-space:nowrap}
+.rs-box{max-height:58vh;overflow:auto;text-align:left;padding-right:4px}
+.rs-team{border:1.5px solid #DFE9F7;border-radius:14px;padding:8px;margin-bottom:10px;background:#F8FBFF}
+.rs-team h4{font:800 13px 'Rajdhani',sans-serif;color:#1F5BFF;margin-bottom:6px}
+.rs-row{display:grid;grid-template-columns:34px 1fr 64px 64px;gap:6px;align-items:center;margin-bottom:6px;font-size:13px}
+.rs-row.sq{grid-template-columns:1fr 70px 70px}
+.rs-row span.n{font-weight:800;color:#0B2E7A;text-align:center}
+.rs-row .nm small{display:block;color:#94a3b8;font-size:10px}
+.rs-in{width:100%;padding:8px 6px;border:1.5px solid #D7E4F7;border-radius:10px;font-size:13px;background:#fff;color:#0B2E7A;text-align:center}
+.rs-hd{display:grid;grid-template-columns:34px 1fr 64px 64px;gap:6px;font-size:10px;font-weight:800;color:#71819A;margin-bottom:4px}
+.rs-opt{display:flex;gap:8px;align-items:center;margin-top:10px;font-size:13px;font-weight:700;color:#0B2E7A}
+.rs-opt input{width:18px;height:18px;accent-color:#1F5BFF}
+</style>
 </head>
 <body>
 
@@ -296,7 +451,7 @@
         <div class="back-nav" onclick="navTo('dashboard')"><i class="fas fa-chevron-left"></i> Back to Dashboard</div>
         <div class="search-box">
             <i class="fas fa-search"></i>
-            <input type="text" id="user-search" class="form-input search-input" placeholder="Search user name, email, uid..." onkeyup="filterUsers()">
+            <input type="text" id="user-search" class="form-input search-input" placeholder="Search name, email, phone, Support PIN, UID..." onkeyup="filterUsers()">
         </div>
         <div class="list-container" id="user-list"></div>
     </section>
@@ -324,6 +479,10 @@
             <div class="form-group">
                 <label class="form-label">Marquee Notice</label>
                 <textarea id="set-notice" class="form-input" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Match Joining Rules (প্রতি লাইনে একটি নিয়ম)</label>
+                <textarea id="set-rules" class="form-input" rows="5" placeholder="খালি রাখলে ডিফল্ট নিয়ম দেখাবে"></textarea>
             </div>
             <div class="form-group">
                 <label class="form-label">Startup Popup Text</label>
@@ -468,7 +627,8 @@
                 if(d) {
                     allUsers = Object.entries(d).map(([k,v]) => ({uid:k, ...v}));
                     document.getElementById('stat-users').innerText = allUsers.length;
-                    renderUsers(allUsers);
+                    scheduleUsers();
+                    backfillPins();
                 }
             });
             loadCategories();
@@ -534,25 +694,41 @@
         };
 
         // --- CATEGORIES MANAGEMENT ---
+        // --- CATEGORIES MANAGEMENT (nested: category > sub-category > ...) ---
+        let catData = {};
+        const catParentOf = k => { const p = catData[k] && catData[k].parentId; return (p && catData[p]) ? p : ''; };
+        const catChildren = pid => Object.keys(catData).filter(k => catParentOf(k) === pid);
+        const catPath = k => { const out = []; let c = k, g = 0; while (c && catData[c] && g++ < 10) { out.unshift(catData[c].name); c = catParentOf(c); } return out.join(' › '); };
+        const catDescendants = k => { const out = []; const st = [k]; while (st.length) { const x = st.pop(); catChildren(x).forEach(c => { out.push(c); st.push(c); }); } return out; };
+        const catTree = () => { const out = []; const walk = (pid, d) => catChildren(pid).forEach(k => { out.push({id: k, depth: d}); walk(k, d + 1); }); walk('', 0); return out; };
+        const catParentOptions = (selected, excludeId) => {
+            const bad = excludeId ? new Set([excludeId, ...catDescendants(excludeId)]) : new Set();
+            return '<option value="">— Top level (main category) —</option>' + catTree().filter(t => !bad.has(t.id)).map(t =>
+                `<option value="${t.id}" ${t.id === selected ? 'selected' : ''}>${'&nbsp;&nbsp;'.repeat(t.depth)}${t.depth ? '↳ ' : ''}${escA(catData[t.id].name)}</option>`).join('');
+        };
+
         function loadCategories() {
             onValue(ref(db, 'categories'), s => {
                 const list = document.getElementById('category-list');
                 list.innerHTML = "";
-                const d = s.val();
-                allCategories = []; // Reset global var for dropdowns
-                if(!d) return list.innerHTML = "<div style='text-align:center;color:#666'>No categories found</div>";
-                
-                Object.entries(d).forEach(([key, c]) => {
-                    allCategories.push({id: key, name: c.name}); // Store for match dropdown
+                catData = s.val() || {};
+                const tree = catTree();
+                allCategories = tree.map(t => ({id: t.id, name: catPath(t.id)})); // for match dropdown (full path)
+                if (!tree.length) return list.innerHTML = "<div style='text-align:center;color:#666'>No categories found</div>";
+
+                tree.forEach(({id: key, depth}) => {
+                    const c = catData[key];
+                    const kids = catChildren(key).length;
                     list.insertAdjacentHTML('beforeend', `
-                    <div class="flat-card">
+                    <div class="flat-card" style="margin-left:${depth * 18}px">
                         <div class="cat-card-row">
-                            <img src="${c.img}" class="cat-img">
+                            ${c.img ? `<img src="${escA(c.img)}" class="cat-img">` : `<div class="cat-img" style="display:flex;align-items:center;justify-content:center;background:var(--mist);color:var(--navy)"><i class="fas fa-folder"></i></div>`}
                             <div class="cat-info">
-                                <div class="fc-title">${c.name}</div>
-                                <div style="font-size:10px; color:var(--text-muted); opacity:0.7">ID: ${key}</div>
+                                <div class="fc-title">${depth ? '↳ ' : ''}${escA(c.name)}</div>
+                                <div style="font-size:11px; color:var(--text-muted)">${kids ? kids + ' sub-categories' : (depth ? 'Sub-category' : 'Main category')}</div>
                             </div>
                             <div class="cat-actions">
+                                <button class="btn btn-success" style="padding:10px" title="Add sub-category" onclick="addCategory('${key}')"><i class="fas fa-folder-plus"></i></button>
                                 <button class="btn btn-primary" style="padding:10px" onclick="editCategory('${key}')"><i class="fas fa-edit"></i></button>
                                 <button class="btn btn-danger" style="padding:10px" onclick="deleteCategory('${key}')"><i class="fas fa-trash"></i></button>
                             </div>
@@ -562,56 +738,54 @@
             });
         }
 
-        window.addCategory = async () => {
+        const catForm = (cat, parentId, excludeId) => `
+            <label class="form-label" style="text-align:left">Parent Category</label>
+            <select id="cat-parent" class="swal2-select" style="width:100%;margin:0 0 10px">${catParentOptions(parentId, excludeId)}</select>
+            <label class="form-label" style="text-align:left">Category Name</label>
+            <input id="cat-name" class="swal2-input" placeholder="e.g. BR Solo" value="${escA(cat.name || '')}">
+            <label class="form-label" style="text-align:left; margin-top:10px;">Image URL ${'(sub-category তে খালি রাখলে parent এর ছবি দেখাবে)'}</label>
+            <input id="cat-img" class="swal2-input" placeholder="https://..." value="${escA(cat.img || '')}">`;
+        const readCatForm = () => ({
+            name: document.getElementById('cat-name').value.trim(),
+            img: document.getElementById('cat-img').value.trim(),
+            parentId: document.getElementById('cat-parent').value || ''
+        });
+
+        window.addCategory = async (parentId) => {
+            parentId = typeof parentId === 'string' ? parentId : '';
             const { value: formValues } = await Swal.fire({
-                title: 'Add Category',
-                html: `
-                    <label class="form-label" style="text-align:left">Category Name</label>
-                    <input id="cat-name" class="swal2-input" placeholder="e.g. Free Fire">
-                    <label class="form-label" style="text-align:left; margin-top:10px;">Image URL</label>
-                    <input id="cat-img" class="swal2-input" placeholder="https://...">
-                `,
+                title: parentId ? 'Add Sub-category' : 'Add Category',
+                html: catForm({}, parentId, ''),
                 focusConfirm: false,
                 showCancelButton: true,
                 confirmButtonText: 'Add',
-                confirmButtonColor: '#00BCD4',
                 preConfirm: () => {
-                    return {
-                        name: document.getElementById('cat-name').value,
-                        img: document.getElementById('cat-img').value
-                    }
+                    const v = readCatForm();
+                    if (!v.name) return Swal.showValidationMessage('Name required');
+                    if (!v.parentId && !v.img) return Swal.showValidationMessage('Main category needs an image URL');
+                    return v;
                 }
             });
-
-            if (formValues && formValues.name) {
+            if (formValues) {
                 push(ref(db, 'categories'), formValues);
                 Swal.fire({icon:'success', title:'Category Added', timer:1000, showConfirmButton:false});
             }
         }
 
         window.editCategory = async (key) => {
-            const snap = await get(ref(db, `categories/${key}`));
-            const cat = snap.val();
+            const cat = (await get(ref(db, `categories/${key}`))).val() || {};
             const { value: formValues } = await Swal.fire({
                 title: 'Edit Category',
-                html: `
-                    <label class="form-label" style="text-align:left">Category Name</label>
-                    <input id="cat-name" class="swal2-input" value="${cat.name}">
-                    <label class="form-label" style="text-align:left; margin-top:10px;">Image URL</label>
-                    <input id="cat-img" class="swal2-input" value="${cat.img}">
-                `,
+                html: catForm(cat, catParentOf(key), key),
                 focusConfirm: false,
                 showCancelButton: true,
                 confirmButtonText: 'Update',
-                confirmButtonColor: '#7C4DFF',
                 preConfirm: () => {
-                    return {
-                        name: document.getElementById('cat-name').value,
-                        img: document.getElementById('cat-img').value
-                    }
+                    const v = readCatForm();
+                    if (!v.name) return Swal.showValidationMessage('Name required');
+                    return v;
                 }
             });
-
             if (formValues) {
                 update(ref(db, `categories/${key}`), formValues);
                 Swal.fire({icon:'success', title:'Updated', timer:1000, showConfirmButton:false});
@@ -619,6 +793,7 @@
         }
 
         window.deleteCategory = (key) => {
+            if (catChildren(key).length) return Swal.fire('Cannot delete', 'এই ক্যাটাগরির ভেতরে সাব-ক্যাটাগরি আছে। আগে সেগুলো ডিলিট করুন বা অন্য ক্যাটাগরিতে সরান (Edit → Parent)।', 'warning');
             Swal.fire({title:'Delete Category?', text:"Matches in this category won't be deleted automatically.", icon:'warning', showCancelButton:true, confirmButtonColor:'#FF5252'}).then((r)=>{
                 if(r.isConfirmed) remove(ref(db, `categories/${key}`));
             });
@@ -627,7 +802,54 @@
         // --- MATCHES (With Date/Time Picker & Dynamic Category) ---
         const escA = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
         const pzRow = (p = {pos:'', amt:''}) => `<div class="pz-row" style="display:flex;gap:6px;margin-top:8px"><input class="swal2-input pz-pos" placeholder="1st / Winner" value="${escA(p.pos)}" style="margin:0;flex:1.2;width:auto"><input type="number" class="swal2-input pz-amt" placeholder="Taka" value="${p.amt}" style="margin:0;flex:1;width:auto"><button type="button" class="btn btn-danger" style="padding:8px" onclick="this.parentNode.remove()">✕</button></div>`;
-        const pzEditor = (list = []) => `<label class="form-label" style="margin-top:15px;display:block">Prize List (Position / Taka)</label><div id="pz-rows">${(list.length ? list : [{pos:'1st',amt:''}]).map(pzRow).join('')}</div><button type="button" class="btn btn-primary" style="width:100%;margin-top:8px" onclick="addPzRow()">+ Add Position</button>`;
+        // --- SAVED TEMPLATES (rules & prize lists: write once, reuse in next matches) ---
+        let ruleTemplates = {}, prizeTemplates = {};
+        onValue(ref(db, 'rule_templates'), sn => { ruleTemplates = sn.val() || {}; });
+        onValue(ref(db, 'prize_templates'), sn => { prizeTemplates = sn.val() || {}; });
+        const tplOpts = (obj, sel = '') => '<option value="">— Saved templates —</option>' + Object.entries(obj).map(([k, v]) => `<option value="${k}" ${k === sel ? 'selected' : ''}>${escA(v.name)}</option>`).join('');
+        const $id = i => document.getElementById(i);
+        const tplRow = (pickId, nameId, saveFn, delFn, label) => `
+            <div style="display:flex;gap:6px;margin-top:6px;align-items:center"><select id="${pickId}" class="swal2-select" style="margin:0;flex:1;min-width:0" onchange="${pickId === 'rt-pick' ? 'applyRuleTpl' : 'applyPrizeTpl'}()">${tplOpts(pickId === 'rt-pick' ? ruleTemplates : prizeTemplates)}</select><button type="button" class="btn btn-danger" style="padding:8px 12px" title="Delete selected template" onclick="${delFn}()"><i class="fas fa-trash"></i></button></div>
+            <div style="display:flex;gap:6px;margin-top:6px;align-items:center"><input id="${nameId}" class="swal2-input" placeholder="নতুন টেমপ্লেটের নাম" style="margin:0;flex:1;width:auto;min-width:0"><button type="button" class="btn btn-success" style="padding:8px 12px" onclick="${saveFn}()">${label}</button></div>`;
+        const refreshPick = (pickId, obj, sel) => { const el = $id(pickId); if (el) el.innerHTML = tplOpts(obj, sel); };
+
+        const pzEditor = (list = []) => `<label class="form-label" style="margin-top:15px;display:block">Prize List (Position / Taka)</label>
+            ${tplRow('pt-pick', 'pt-name', 'savePrizeTpl', 'delPrizeTpl', 'Save')}
+            <div id="pz-rows">${(list.length ? list : [{pos:'1st',amt:''}]).map(pzRow).join('')}</div><button type="button" class="btn btn-primary" style="width:100%;margin-top:8px" onclick="addPzRow()">+ Add Position</button>`;
+        const rulesEditor = (val = '') => `<label class="form-label" style="margin-top:15px;display:block">Match Rules (প্রতি লাইনে একটি নিয়ম — খালি রাখলে ডিফল্ট রুলস দেখাবে)</label>
+            ${tplRow('rt-pick', 'rt-name', 'saveRuleTpl', 'delRuleTpl', 'Save')}
+            <textarea id="swal-rules" class="swal2-textarea" style="margin:8px 0 0;width:100%;box-sizing:border-box" rows="4">${escA(val)}</textarea>`;
+
+        window.applyRuleTpl = () => { const t = ruleTemplates[$id('rt-pick').value]; if (t) $id('swal-rules').value = t.text || ''; };
+        window.saveRuleTpl = async () => {
+            const name = $id('rt-name').value.trim(), text = $id('swal-rules').value.trim();
+            if (!name || !text) return Swal.showValidationMessage('টেমপ্লেটের নাম ও রুলস দুটোই লাগবে');
+            const r = await push(ref(db, 'rule_templates'), { name, text });
+            $id('rt-name').value = ''; refreshPick('rt-pick', ruleTemplates, r.key);
+            $id('rt-name').placeholder = 'Saved ✓';
+        };
+        window.delRuleTpl = async () => {
+            const k = $id('rt-pick').value; if (!k) return;
+            await remove(ref(db, `rule_templates/${k}`)); refreshPick('rt-pick', ruleTemplates, '');
+        };
+        window.applyPrizeTpl = () => {
+            const t = prizeTemplates[$id('pt-pick').value]; if (!t) return;
+            const list = Object.values(t.list || {});
+            $id('pz-rows').innerHTML = (list.length ? list : [{pos:'', amt:''}]).map(pzRow).join('');
+            const tp = $id('swal-prize');
+            if (tp && !tp.value) tp.value = list.reduce((a, x) => a + (Number(x.amt) || 0), 0) || '';
+        };
+        window.savePrizeTpl = async () => {
+            const name = $id('pt-name').value.trim(), list = readPz();
+            if (!name || !list.length) return Swal.showValidationMessage('টেমপ্লেটের নাম ও অন্তত একটি প্রাইজ লাগবে');
+            const r = await push(ref(db, 'prize_templates'), { name, list });
+            $id('pt-name').value = ''; refreshPick('pt-pick', prizeTemplates, r.key);
+            $id('pt-name').placeholder = 'Saved ✓';
+        };
+        window.delPrizeTpl = async () => {
+            const k = $id('pt-pick').value; if (!k) return;
+            await remove(ref(db, `prize_templates/${k}`)); refreshPick('pt-pick', prizeTemplates, '');
+        };
         window.addPzRow = () => document.getElementById('pz-rows').insertAdjacentHTML('beforeend', pzRow());
         const readPz = () => [...document.querySelectorAll('.pz-row')].map(r => ({pos: r.querySelector('.pz-pos').value.trim(), amt: Number(r.querySelector('.pz-amt').value) || 0})).filter(p => p.pos);
 
@@ -654,6 +876,7 @@
                         <div class="fc-actions">
                             <button class="btn btn-primary" onclick="editMatch('${key}')"><i class="fas fa-cog"></i> Manage</button>
                             <button class="btn btn-primary" onclick="viewMatchHistory('${key}', '${String(m.title || '').replace(/'/g, "\\'")}')"><i class="fas fa-history"></i> History</button>
+                            <button class="btn btn-primary" onclick="editResults('${key}')"><i class="fas fa-trophy"></i> Leaderboard</button>
                             <button class="btn btn-danger" onclick="deleteMatch('${key}')"><i class="fas fa-trash"></i></button>
                         </div>
                     </div>`);
@@ -668,7 +891,7 @@
                 catOptions = "<option disabled selected>No categories! Add one first.</option>";
             } else {
                 allCategories.forEach(c => {
-                    catOptions += `<option value="${c.id}">${c.name}</option>`;
+                    catOptions += `<option value="${c.id}">${escA(c.name)}</option>`;
                 });
             }
 
@@ -707,6 +930,7 @@
                         </div>
 
                         ${pzEditor()}
+                        ${rulesEditor()}
                         <label class="form-label" style="margin-top:15px;">Category</label>
                         <select id="swal-cat" class="swal2-select" style="width:100%">
                             ${catOptions}
@@ -742,6 +966,7 @@
                         total: parseInt(document.getElementById('swal-total').value),
                         categoryId: catId,
                         prize_list: readPz(),
+                        rules: document.getElementById('swal-rules').value.trim(),
                         status: 'Upcoming',
                         timestamp: dObj.getTime()
                     }
@@ -774,6 +999,7 @@
                         }
                     }
                     await remove(ref(db, `match_slots/${key}`));
+                    await remove(ref(db, `match_results/${key}`));
                     await remove(ref(db, `match_participants/${key}`));
                     await remove(ref(db, `matches/${key}`));
                     Swal.fire({icon:'success', title:'Deleted & refunded', timer:1500, showConfirmButton:false});
@@ -799,6 +1025,7 @@
                     <label class="form-label" style="text-align:left; margin-top:15px">Room Password</label>
                     <input id="edit-pass" class="swal2-input" value="${m.room_pass || ''}" placeholder="Enter Password">
                     ${pzEditor(Object.values(m.prize_list || {}))}
+                    ${rulesEditor(m.rules || '')}
                     <label class="form-label" style="text-align:left; margin-top:15px">Extra Prize Note (optional)</label>
                     <textarea id="edit-desc" class="swal2-textarea" placeholder="Winner: 100tk...">${m.prize_desc || ''}</textarea>
                 `,
@@ -810,6 +1037,7 @@
                         room_id: document.getElementById('edit-roomid').value,
                         room_pass: document.getElementById('edit-pass').value,
                         prize_list: readPz(),
+                        rules: document.getElementById('swal-rules').value.trim(),
                         prize_desc: document.getElementById('edit-desc').value
                     }
                 }
@@ -838,6 +1066,7 @@
                         ign: p.ign || p.username || 'Unknown',
                         email: p.email || account.email || 'Not recorded for this booking',
                         uid,
+                        gameUid: p.gameUid || '—',
                         slot: p.slotNo || p.slot || '—',
                         joinedAt: p.joinedAt ? new Date(Number(p.joinedAt)).toLocaleString() : (p.date || '—'),
                         kills: Number(p.kills || 0),
@@ -851,7 +1080,8 @@
                     ${rows.map((p, i) => `<div class="flat-card">
                         <div class="fc-header"><div class="fc-title">${i+1}. ${esc(p.ign)}</div><div class="fc-tag tag-blue">Slot ${esc(p.slot)}</div></div>
                         <div class="fc-detail"><span>Email:</span> <span class="fc-value" style="overflow-wrap:anywhere">${esc(p.email)}</span></div>
-                        <div class="fc-detail"><span>UID:</span> <span class="fc-value">${esc(p.uid || '—')}</span></div>
+                        <div class="fc-detail"><span>Game UID:</span> <span class="fc-value">${esc(p.gameUid)}</span></div>
+                        <div class="fc-detail"><span>Account UID:</span> <span class="fc-value" style="overflow-wrap:anywhere">${esc(p.uid || '—')}</span></div>
                         <div class="fc-detail"><span>Joined:</span> <span class="fc-value">${esc(p.joinedAt)}</span></div>
                         <div class="fc-detail"><span>Kills:</span> <span class="fc-value">${p.kills}</span></div>
                     </div>`).join('')}
@@ -863,33 +1093,122 @@
         };
 
         // --- USERS ---
-        function renderUsers(users) {
-            const list = document.getElementById('user-list');
-            list.innerHTML = "";
-            users.forEach(u => {
-                list.insertAdjacentHTML('beforeend', `
-                <div class="flat-card">
-                    <div class="fc-header"><div class="fc-title">${u.username || 'No Name'}</div></div>
-                    <div class="fc-detail"><span>Email:</span> ${u.email}</div>
-                    <div class="fc-detail"><span>UID:</span> ${u.uid}</div>
-                    <div style="display:flex; justify-content:space-between; margin-top:10px; background:#2a2a32; padding:10px; border-radius:8px;">
-                        <div style="text-align:center"><div style="font-size:10px; color:#aaa;">Deposit</div><div style="color:var(--success); font-weight:bold;">৳${u.deposit || 0}</div></div>
-                        <div style="text-align:center"><div style="font-size:10px; color:#aaa;">Winning</div><div style="color:var(--warning); font-weight:bold;">৳${u.winning || 0}</div></div>
-                    </div>
-                    <button class="btn btn-primary" style="width:100%; margin-top:10px;" onclick="editUserBalance('${u.uid}', ${u.deposit || 0}, ${u.winning || 0})">Edit Balance</button>
-                </div>`);
-            });
+        // --- USERS (boxes with full info + Support PIN) ---
+        let allTrans = {};
+        const eh = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        const teamSizeOf = t => { t = String(t || '').toLowerCase(); return t.includes('squad') ? 4 : (t.includes('duo') ? 2 : 1); };
+        let _ur = 0;
+        function scheduleUsers() { if(_ur) return; _ur = requestAnimationFrame(() => { _ur = 0; filterUsers(); }); }
+
+        async function claimSupportPin(uid) {
+            for(let i = 0; i < 12; i++) {
+                const c = String(Math.floor(100000 + Math.random() * 900000));
+                const r = await runTransaction(ref(db, 'support_pins/' + c), cur => cur === null ? uid : undefined);
+                if(r.committed) return c;
+            }
+            return null;
+        }
+        let _pinBusy = false;
+        async function backfillPins() {
+            if(_pinBusy) return; _pinBusy = true;
+            try {
+                for(const u of allUsers.filter(u => !u.support_pin)) {
+                    const c = await claimSupportPin(u.uid);
+                    if(c) await runTransaction(ref(db, `users/${u.uid}/support_pin`), cur => cur === null ? c : undefined);
+                }
+            } catch(e) { console.error(e); }
+            _pinBusy = false;
         }
 
+        function userStats(uid) {
+            const t = Object.values(allTrans[uid] || {});
+            const r = { dep: 0, spent: 0, wd: 0, joins: 0, count: t.length };
+            t.forEach(x => {
+                const a = Number(x.amount) || 0, ty = String(x.type || ''), ok = !x.status || x.status === 'Success';
+                if(/^Deposit/i.test(ty) && ok) r.dep += a;
+                else if(ty === 'Match Join') { r.spent += a; r.joins++; }
+                else if(ty === 'Withdraw' && ok) r.wd += a;
+            });
+            return r;
+        }
+
+        function renderUsers(users, total) {
+            const list = document.getElementById('user-list');
+            const shown = users.slice(0, 50);
+            list.innerHTML = shown.map(u => {
+                const st = userStats(u.uid);
+                const name = u.username || 'No Name';
+                return `<div class="u-card">
+                    <div class="u-head">
+                        <div class="u-av">${eh(name.trim().charAt(0).toUpperCase() || '?')}</div>
+                        <div class="u-id"><div class="u-name">${eh(name)}</div><div class="u-sub">${eh(u.email || '')}</div><div class="u-sub">${eh(u.phone || '')}</div></div>
+                        <button class="u-pin" onclick="copyText('${eh(u.support_pin || '')}')">SUPPORT PIN<b>${eh(u.support_pin || '······')}</b></button>
+                    </div>
+                    <div class="u-grid">
+                        <div class="u-cell"><small>Deposit Wallet</small><b>৳${u.deposit || 0}</b></div>
+                        <div class="u-cell"><small>Winning</small><b>৳${u.winning || 0}</b></div>
+                        <div class="u-cell"><small>Total Deposited</small><b>৳${st.dep}</b></div>
+                        <div class="u-cell"><small>Spent (Matches)</small><b>৳${st.spent}</b></div>
+                        <div class="u-cell"><small>Withdrawn</small><b>৳${st.wd}</b></div>
+                        <div class="u-cell"><small>Slots Booked</small><b>${st.joins}</b></div>
+                    </div>
+                    <div class="u-uid">UID: ${eh(u.uid)}</div>
+                    <div class="u-actions">
+                        <button class="btn btn-primary" onclick="userHistory('${eh(u.uid)}')"><i class="fas fa-clock-rotate-left"></i> Full History</button>
+                        <button class="btn btn-primary" onclick="editUserBalance('${eh(u.uid)}', ${u.deposit || 0}, ${u.winning || 0})"><i class="fas fa-wallet"></i> Edit Balance</button>
+                    </div>
+                </div>`;
+            }).join('') + (users.length > 50 ? `<div style="text-align:center;color:#71819A;padding:10px;font-size:13px">Showing 50 of ${users.length} — search to find others</div>` : '') +
+                (users.length === 0 ? '<div style="text-align:center;color:#71819A;padding:20px">No users found</div>' : '');
+        }
+
+        window.copyText = (t) => { if(!t) return; try { navigator.clipboard.writeText(t); } catch(e) {} Swal.fire({icon:'success', title:'Copied', text:t, timer:900, showConfirmButton:false}); };
+
         window.filterUsers = () => {
-            const q = document.getElementById('user-search').value.toLowerCase();
-            const filtered = allUsers.filter(u => 
-                (u.username && u.username.toLowerCase().includes(q)) || 
+            const q = (document.getElementById('user-search').value || '').trim().toLowerCase();
+            const filtered = !q ? allUsers : allUsers.filter(u =>
+                (u.username && u.username.toLowerCase().includes(q)) ||
                 (u.email && u.email.toLowerCase().includes(q)) ||
+                (u.phone && String(u.phone).includes(q)) ||
+                (u.support_pin && String(u.support_pin) === q.replace(/\s/g, '')) ||
                 u.uid.toLowerCase().includes(q)
             );
             renderUsers(filtered);
-        }
+        };
+
+        window.userHistory = async (uid) => {
+            const u = allUsers.find(x => x.uid === uid) || {};
+            const st = userStats(uid);
+            let mh = {};
+            try { mh = (await get(ref(db, `match_history/${uid}`))).val() || {}; } catch(e) {}
+            const tx = Object.values(allTrans[uid] || {}).reverse();
+            const plus = /Deposit|Refund|Referral|Win/i;
+            const txHtml = tx.length ? tx.map(t => {
+                const sub = [t.method, t.matchTitle, t.slots ? 'Slot ' + [].concat(t.slots).join(',') : '', t.number, t.trxID || t.txID].filter(Boolean).map(eh).join(' • ');
+                return `<div class="uh-row"><div><b>${eh(t.type || 'Transaction')}</b><small>${eh(t.date || '')}${sub ? ' • ' + sub : ''}</small><small>${eh(t.status || 'Success')}</small></div><div class="uh-amt" style="color:${plus.test(t.type || '') ? '#2E9E4F' : '#D32F2F'}">${plus.test(t.type || '') ? '+' : '-'}৳${eh(t.amount || 0)}</div></div>`;
+            }).join('') : '<div style="padding:14px;color:#71819A;text-align:center">No transactions</div>';
+            const mhItems = Object.values(mh).sort((a, b) => (b.publishedAt || 0) - (a.publishedAt || 0));
+            const mhHtml = mhItems.length ? mhItems.map(h => `<div class="uh-row"><div><b>${eh(h.title)}</b><small>${eh(h.type)} • ${eh(h.time)}</small></div><div class="uh-amt">#${eh(h.rank ?? '-')} • ${teamSizeOf(h.type) === 4 ? 'Score ' + eh(h.score ?? 0) : eh(h.kills ?? 0) + ' K'}${Number(h.prize) > 0 ? ' • ৳' + eh(h.prize) : ''}</div></div>`).join('') : '<div style="padding:14px;color:#71819A;text-align:center">No match results yet</div>';
+            Swal.fire({
+                title: eh(u.username || 'User'),
+                width: 700,
+                confirmButtonText: 'Close',
+                html: `<div style="text-align:left;max-height:64vh;overflow:auto">
+                    <div class="u-sub" style="margin-bottom:4px">${eh(u.email || '')} • ${eh(u.phone || '')}</div>
+                    <div class="u-sub" style="margin-bottom:10px">Support PIN: <b style="color:#0B2E7A">${eh(u.support_pin || '—')}</b> • UID: ${eh(uid)}</div>
+                    <div class="u-grid" style="margin-bottom:12px">
+                        <div class="u-cell"><small>Deposit Wallet</small><b>৳${u.deposit || 0}</b></div>
+                        <div class="u-cell"><small>Winning</small><b>৳${u.winning || 0}</b></div>
+                        <div class="u-cell"><small>Total Deposited</small><b>৳${st.dep}</b></div>
+                        <div class="u-cell"><small>Spent (Matches)</small><b>৳${st.spent}</b></div>
+                        <div class="u-cell"><small>Withdrawn</small><b>৳${st.wd}</b></div>
+                        <div class="u-cell"><small>Slots Booked</small><b>${st.joins}</b></div>
+                    </div>
+                    <div style="font:800 14px 'Rajdhani',sans-serif;color:#1F5BFF;margin:6px 0">MATCH RESULTS</div>${mhHtml}
+                    <div style="font:800 14px 'Rajdhani',sans-serif;color:#1F5BFF;margin:14px 0 6px">ALL TRANSACTIONS (${tx.length})</div>${txHtml}
+                </div>`
+            });
+        };
 
         window.editUserBalance = async (uid, dep, win) => {
             const { value: formValues } = await Swal.fire({
@@ -916,12 +1235,118 @@
             }
         }
 
+        // --- LEADERBOARD / RESULTS EDITOR ---
+        function boardFor(size, parts, teams) {
+            let rows;
+            if(size === 1) {
+                rows = parts.map(p => ({ name: p.ign, score: p.kills, prize: p.win, slot: p.slot, uids: [p.joinedBy], players: [p] }))
+                            .sort((a, b) => b.score - a.score || a.slot - b.slot);
+            } else {
+                const g = {};
+                parts.forEach(p => { (g[Math.ceil(p.slot / size)] = g[Math.ceil(p.slot / size)] || []).push(p); });
+                rows = Object.entries(g).map(([n, ps]) => {
+                    const meta = (teams && teams[n]) || {};
+                    return {
+                        team: Number(n), name: meta.name || ('Team ' + n), players: ps,
+                        score: size === 4 ? (Number(meta.score) || 0) : ps.reduce((a, p) => a + p.kills, 0),
+                        prize: size === 4 ? (Number(meta.prize) || 0) : ps.reduce((a, p) => a + p.win, 0),
+                        uids: [...new Set(ps.map(p => p.joinedBy))]
+                    };
+                }).sort((a, b) => b.score - a.score || a.team - b.team);
+            }
+            rows.forEach((r, i) => r.rank = i + 1);
+            return rows;
+        }
+
+        window.editResults = async (key) => {
+            try {
+                const [mS, pS, rS] = await Promise.all([get(ref(db, `matches/${key}`)), get(ref(db, `match_participants/${key}`)), get(ref(db, `match_results/${key}`))]);
+                const m = mS.val() || {}, res = rS.val() || {};
+                const size = teamSizeOf(m.type);
+                const parts = Object.entries(pS.val() || {}).map(([id, p], i) => ({
+                    id, ign: p.ign || 'Unknown', gameUid: p.gameUid || '', kills: Number(p.kills) || 0, win: Number(p.win) || 0,
+                    joinedBy: p.joinedBy || p.uid || '', slot: Number(p.slotNo) > 0 ? Number(p.slotNo) : i + 1
+                })).sort((a, b) => a.slot - b.slot);
+                if(!parts.length) return Swal.fire('No players', 'এই ম্যাচে এখনো কেউ জয়েন করেনি।', 'info');
+
+                const pRow = p => `<div class="rs-row"><span class="n">${p.slot}</span><div class="nm">${eh(p.ign)}<small>${eh(p.gameUid || '')}</small></div>
+                    <input class="rs-in rs-kill" data-id="${p.id}" type="number" min="0" inputmode="numeric" value="${p.kills}">
+                    <input class="rs-in rs-win" data-id="${p.id}" type="number" min="0" inputmode="numeric" value="${p.win}"></div>`;
+                const head = '<div class="rs-hd"><span>SLOT</span><span>PLAYER</span><span>KILLS</span><span>PRIZE ৳</span></div>';
+                let body = '';
+                if(size === 1) body = head + parts.map(pRow).join('');
+                else {
+                    const g = {};
+                    parts.forEach(p => { (g[Math.ceil(p.slot / size)] = g[Math.ceil(p.slot / size)] || []).push(p); });
+                    body = Object.entries(g).map(([n, ps]) => {
+                        const meta = (res.teams && res.teams[n]) || {};
+                        if(size === 2) return `<div class="rs-team"><h4>TEAM ${n}</h4>${head}${ps.map(pRow).join('')}</div>`;
+                        return `<div class="rs-team"><h4>TEAM ${n} — ${ps.map(p => eh(p.ign)).join(', ')}</h4>
+                            <div class="rs-row sq"><input class="rs-in rs-tname" data-team="${n}" value="${eh(meta.name || 'Team ' + n)}" placeholder="Team name">
+                            <input class="rs-in rs-tscore" data-team="${n}" type="number" inputmode="numeric" value="${Number(meta.score) || 0}" placeholder="Score">
+                            <input class="rs-in rs-tprize" data-team="${n}" type="number" min="0" inputmode="numeric" value="${Number(meta.prize) || 0}" placeholder="Prize"></div>
+                            <div style="font-size:10px;color:#94a3b8">Team name · Score · Prize ৳</div></div>`;
+                    }).join('');
+                }
+                const hint = size === 1 ? 'Solo: kills দিন — Top 10 অটো সাজানো হবে।' : (size === 2 ? 'Duo: প্রতি প্লেয়ারের kills দিন — টিমের মোট kills অনুযায়ী Top 10 টিম সাজানো হবে।' : 'Squad: শুধু টিমের নাম ও স্কোর দেখানো হবে।');
+
+                const { value: v } = await Swal.fire({
+                    title: 'Leaderboard',
+                    width: 720,
+                    confirmButtonText: 'Save',
+                    showCancelButton: true,
+                    html: `<div style="text-align:left;font-size:12px;color:#71819A;margin-bottom:8px">${eh(m.title)} • ${eh(m.type)} — ${hint}</div>
+                        <div class="rs-box">${body}</div>
+                        <label class="rs-opt"><input type="checkbox" id="rs-publish" ${res.published === false ? '' : 'checked'}> Publish leaderboard &amp; save to players' history</label>
+                        <label class="rs-opt"><input type="checkbox" id="rs-finish" ${m.status === 'Finished' ? '' : 'checked'}> Mark match as Finished</label>`,
+                    preConfirm: () => {
+                        const kills = {}, wins = {}, teams = {};
+                        document.querySelectorAll('.rs-kill').forEach(i => kills[i.dataset.id] = Math.max(0, Number(i.value) || 0));
+                        document.querySelectorAll('.rs-win').forEach(i => wins[i.dataset.id] = Math.max(0, Number(i.value) || 0));
+                        document.querySelectorAll('.rs-tname').forEach(i => { teams[i.dataset.team] = { name: i.value.trim() || ('Team ' + i.dataset.team) }; });
+                        document.querySelectorAll('.rs-tscore').forEach(i => teams[i.dataset.team].score = Number(i.value) || 0);
+                        document.querySelectorAll('.rs-tprize').forEach(i => teams[i.dataset.team].prize = Math.max(0, Number(i.value) || 0));
+                        return { kills, wins, teams, publish: document.getElementById('rs-publish').checked, finish: document.getElementById('rs-finish').checked };
+                    }
+                });
+                if(!v) return;
+
+                parts.forEach(p => { p.kills = size === 4 ? 0 : (v.kills[p.id] || 0); p.win = size === 4 ? 0 : (v.wins[p.id] || 0); });
+                const teams = size === 4 ? v.teams : null;
+                const upd = {};
+                parts.forEach(p => { upd[`match_participants/${key}/${p.id}/kills`] = p.kills; upd[`match_participants/${key}/${p.id}/win`] = p.win; });
+                upd[`match_results/${key}`] = { published: v.publish, type: m.type || '', updatedAt: Date.now(), teams: teams };
+                if(v.finish) upd[`matches/${key}/status`] = 'Finished';
+
+                const rows = boardFor(size, parts, teams);
+                const uids = [...new Set(parts.map(p => p.joinedBy).filter(Boolean))];
+                uids.forEach(uid => {
+                    const path = `match_history/${uid}/${key}`;
+                    if(!v.publish) { upd[path] = null; return; }
+                    const mine = rows.filter(r => r.uids.includes(uid));
+                    const myParts = parts.filter(p => p.joinedBy === uid);
+                    upd[path] = {
+                        matchId: key, title: m.title || '', type: m.type || '', time: m.time || '', map: m.map || '', entry: Number(m.entry) || 0,
+                        rank: mine.length ? Math.min(...mine.map(r => r.rank)) : null,
+                        kills: myParts.reduce((a, p) => a + p.kills, 0),
+                        score: size === 4 ? mine.reduce((a, r) => a + r.score, 0) : myParts.reduce((a, p) => a + p.kills, 0),
+                        prize: mine.reduce((a, r) => a + (Number(r.prize) || 0), 0),
+                        slots: myParts.map(p => p.slot), players: myParts.map(p => p.ign), publishedAt: Date.now()
+                    };
+                });
+                await update(ref(db), upd);
+                Swal.fire({ icon: 'success', title: v.publish ? 'Leaderboard published' : 'Saved (hidden from players)', timer: 1600, showConfirmButton: false });
+            } catch(err) { Swal.fire('Error', err.message || 'Could not save', 'error'); }
+        };
+
+
         // --- WITHDRAWALS ---
         function loadWithdrawals() {
             onValue(ref(db, 'transactions'), s => {
                 const list = document.getElementById('withdraw-list');
                 list.innerHTML = "";
                 const d = s.val();
+                allTrans = d || {}; scheduleUsers();
                 if(!d) return list.innerHTML = "<div style='text-align:center;color:#666'>No transactions</div>";
 
                 let pendings = [];
@@ -1004,6 +1429,7 @@
                     document.getElementById('set-app-logo').value = d.app_logo || '';
                     document.getElementById('set-notice').value = d.notice || '';
                     document.getElementById('set-popup').value = d.popup_text || '';
+                    document.getElementById('set-rules').value = d.match_rules || '';
                     document.getElementById('set-show-popup').value = d.show_popup || 'false';
                     document.getElementById('set-bkash').value = d.bkash_number || '';
                     document.getElementById('set-nagad').value = d.nagad_number || '';
@@ -1023,6 +1449,7 @@
                 app_logo: document.getElementById('set-app-logo').value,
                 notice: document.getElementById('set-notice').value,
                 popup_text: document.getElementById('set-popup').value,
+                match_rules: document.getElementById('set-rules').value,
                 show_popup: document.getElementById('set-show-popup').value === 'true',
                 bkash_number: document.getElementById('set-bkash').value,
                 nagad_number: document.getElementById('set-nagad').value,
