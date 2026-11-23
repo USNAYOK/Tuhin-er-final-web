@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>E BD TOUR</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Lato:wght@400;700;900&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -1781,6 +1781,19 @@ body.logged-in #app-clock{display:flex}
 .mh-meta{font-size:12px;color:#71819A;margin-top:2px}
 .mh-stats{display:flex;gap:12px;margin-top:6px;font:800 13px 'Rajdhani',sans-serif;color:#123B78}
 .mh-stats .pz{color:#43A047}
+
+/* ===== AGREE POPUP (blue) ===== */
+.agree-box{background:linear-gradient(180deg,#0B2E7A,#1F5BFF)!important;color:#fff!important;max-width:360px!important;width:90%!important;padding:0!important;border-radius:26px!important;display:flex;flex-direction:column;max-height:82vh}
+.agree-head{font-family:'Rajdhani','Hind Siliguri',sans-serif;font-weight:800;font-size:22px;padding:20px 20px 10px;color:#FFD23F;display:flex;gap:10px;align-items:center}
+.agree-scroll{flex:1;overflow-y:auto;color:#fff!important;font-size:15px!important;line-height:1.7!important;padding:6px 20px 12px!important;margin:0!important;white-space:pre-wrap;word-break:break-word;-webkit-overflow-scrolling:touch}
+.agree-hint{font-size:12px;text-align:center;color:#BFD4FF;padding:4px 0 8px}
+.agree-btn{margin:0 20px 20px!important;width:calc(100% - 40px)!important}
+.agree-btn:disabled{opacity:.45;filter:grayscale(.4)}
+/* ===== BACK BAR / TOAST / MODAL X ===== */
+.back-nav{position:sticky!important;top:0;z-index:3000!important;min-height:56px;padding-top:calc(15px + env(safe-area-inset-top,0px))!important;box-sizing:border-box}
+#back-toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:rgba(11,46,122,.95);color:#fff;padding:10px 18px;border-radius:22px;font-size:14px;font-weight:700;z-index:99999;opacity:0;pointer-events:none;transition:opacity .25s;max-width:86vw;text-align:center}
+#back-toast.show{opacity:1}
+.modal-x{position:absolute;top:8px;right:10px;width:34px;height:34px;border-radius:50%;border:none;background:rgba(11,46,122,.12);color:#0B2E7A;font-size:20px;font-weight:900;line-height:1;cursor:pointer;z-index:5}
 </style>
 
 </head>
@@ -1880,9 +1893,6 @@ body.logged-in #app-clock{display:flex}
                  <input type="password" id="reg-pass" class="auth-input-field" placeholder="Password">
                  <i class="fas fa-eye-slash auth-password-eye"></i>
             </div>
-            <div class="auth-input-group">
-                 <input type="text" id="reg-promo" class="auth-input-field" placeholder="Promo Code (Optional)">
-            </div>
             
             <div class="auth-checkbox-row">
                  <input type="checkbox" checked>
@@ -1976,11 +1986,6 @@ body.logged-in #app-clock{display:flex}
                 <div class="menu-item" onclick="window.navigateSub('edit-profile')">
                     <img src="https://img.icons8.com/?size=100&id=O6yJLWcR6TNz&format=png&color=000000">
                     <span>Edit Profile</span>
-                    <i class="fas fa-chevron-right" style="margin-left:auto; color:#ccc;"></i>
-                </div>
-                <div class="menu-item" onclick="window.navigateSub('refer')">
-                    <img src="https://img.icons8.com/?size=100&id=mvX5rQmbiHy1&format=png&color=000000">
-                    <span>Refer & Earn</span>
                     <i class="fas fa-chevron-right" style="margin-left:auto; color:#ccc;"></i>
                 </div>
                 <div class="menu-item" onclick="window.navigateSub('history')">
@@ -2387,32 +2392,6 @@ body.logged-in #app-clock{display:flex}
         <div id="notif-list-container" style="background:white;"></div>
     </section>
 
-<!-- NEW REFER PAGE REDESIGN -->
-    <section id="refer-view" class="app-section">
-        <div class="refer-page-container">
-            <div class="refer-header">
-                 <div class="refer-avatar-circle">
-                     <img src="https://cdn-icons-png.flaticon.com/512/3233/3233483.png" alt="Team">
-                 </div>
-                 <div class="refer-title">REFER MORE TO EARN MORE!</div>
-                 <div class="refer-desc">
-                     আপনি যখন কাউকে আপনার রেফার কোড দিয়ে রেফার করবেন তখন উক্ত ইউজার যদি প্রথমবার ১০০ টাকা বা তার বেশি ডিপোজিট করে তাহলে আপনি ১০ টাকা পাবেন
-                 </div>
-            </div>
-            
-            <div class="refer-body">
-                 <div class="refer-label">YOUR PROMO CODE</div>
-                 <div class="refer-code-box" id="refer-code-display" onclick="window.copyToClipboard('refer-code-display')">
-                     Loading...
-                 </div>
-                 
-                 <img src="https://cdn.dribbble.com/users/3835731/screenshots/17804471/media/e898952467d013233777592cf1cc4da1.jpg?resize=400x300&vertical=center" alt="Steps" class="refer-illustration">
-                 
-                 <button class="refer-btn-fixed" onclick="window.copyToClipboard('refer-code-display')">REFER NOW</button>
-            </div>
-        </div>
-    </section>
-
 <div class="tab-bar hidden">
     <div class="tab-item" onclick="window.showTab('shop')" id="nav-shop">
         <div class="tab-icon-box"><img src="https://img.icons8.com/?size=100&id=x5pyLTwajYMT&format=png&color=000000"></div>
@@ -2438,10 +2417,11 @@ body.logged-in #app-clock{display:flex}
 
 <!-- STARTUP POPUP MODAL -->
 <div id="startup-modal" class="modal">
-    <div class="startup-modal-box">
-         <div class="sm-header" style="font-weight:900; font-size:18px; margin-bottom:10px;">আসসালামু আলাইকুম 😍</div>
-         <div id="startup-popup-content" class="startup-content">Loading...</div>
-         <button class="startup-btn" onclick="document.getElementById('startup-modal').classList.remove('active')">Okay</button>
+    <div class="startup-modal-box agree-box">
+         <div class="agree-head"><i class="fas fa-bullhorn"></i> আসসালামু আলাইকুম 😍</div>
+         <div id="startup-popup-content" class="startup-content agree-scroll">Loading...</div>
+         <div id="agree-hint" class="agree-hint"><i class="fas fa-arrow-down"></i> পুরোটা পড়তে নিচে স্ক্রল করুন</div>
+         <button id="agree-btn" class="startup-btn agree-btn" disabled onclick="window.acceptStartup()">I Agree</button>
     </div>
 </div>
 
@@ -2613,8 +2593,12 @@ body.logged-in #app-clock{display:flex}
                 shopLink = d.shop_link;
 
                 if(d.show_popup && d.popup_text) {
-                    document.getElementById('startup-popup-content').innerHTML = d.popup_text.replace(/\n/g, '<br>');
-                    setTimeout(() => { document.getElementById('startup-modal').classList.add('active'); }, 1500);
+                    const pc = document.getElementById('startup-popup-content');
+                    if(pc.dataset.txt !== d.popup_text) {
+                        pc.dataset.txt = d.popup_text;
+                        pc.textContent = d.popup_text;
+                        if(!sessionStorage.getItem('agreed_' + d.popup_text.length)) setTimeout(() => { window.openStartup(); }, 1500);
+                    }
                 }
 
                 if(d.banners) {
@@ -2705,6 +2689,122 @@ body.logged-in #app-clock{display:flex}
         if(show) l.classList.add('active'); else l.classList.remove('active');
     }
 
+    // ================= BACK BUTTON / NAVIGATION =================
+    const CapApp = (window.Capacitor && window.Capacitor.Plugins) ? window.Capacitor.Plugins : {};
+    let lastBackAt = 0;
+    function backToast(msg) {
+        let t = document.getElementById('back-toast');
+        if(!t) { t = document.createElement('div'); t.id = 'back-toast'; document.body.appendChild(t); }
+        t.textContent = msg; t.classList.add('show');
+        clearTimeout(backToast._t); backToast._t = setTimeout(() => t.classList.remove('show'), 1800);
+    }
+    // returns true when the back press was handled inside the app
+    function appBack() {
+        if(window.Swal && Swal.isVisible && Swal.isVisible()) { Swal.close(); return true; }
+        const m = document.querySelector('.modal.active');
+        if(m) { if(m.id !== 'startup-modal') m.classList.remove('active'); return true; }
+        const sec = document.querySelector('.app-section.active');
+        if(sec) {
+            const b = sec.querySelector('.back-nav');
+            if(b) { b.click(); return true; }
+            if(sec.id !== 'tab-home-view') { window.showTab('home'); return true; }
+        }
+        return false;
+    }
+    function hardwareBack() {
+        if(appBack()) return;
+        const now = Date.now();
+        if(now - lastBackAt < 2000) { if(CapApp.App && CapApp.App.exitApp) CapApp.App.exitApp(); }
+        else { lastBackAt = now; backToast('অ্যাপ বন্ধ করতে আবার ব্যাক চাপুন'); }
+    }
+    window.appBack = appBack;
+    if(CapApp.App && CapApp.App.addListener) {
+        CapApp.App.addListener('backButton', hardwareBack);
+    } else {
+        history.pushState({a:1}, '');
+        window.addEventListener('popstate', () => { history.pushState({a:1}, ''); hardwareBack(); });
+    }
+    // every sub page gets a visible back bar, every popup gets an X
+    function ensureBackButtons() {
+        document.querySelectorAll('.app-section').forEach(sec => {
+            if(/^tab-/.test(sec.id) || sec.querySelector('.back-nav')) return;
+            const d = document.createElement('div');
+            d.className = 'back-nav';
+            d.innerHTML = '<i class="fas fa-arrow-left"></i> Back';
+            d.onclick = () => window.showTab('home');
+            sec.insertBefore(d, sec.firstChild);
+        });
+        document.querySelectorAll('.modal .modal-box').forEach(box => {
+            if(box.querySelector('.modal-x')) return;
+            if(getComputedStyle(box).position === 'static') box.style.position = 'relative';
+            const x = document.createElement('button');
+            x.className = 'modal-x'; x.type = 'button'; x.innerHTML = '&times;';
+            x.onclick = () => box.closest('.modal').classList.remove('active');
+            box.appendChild(x);
+        });
+    }
+    if(document.readyState !== 'loading') ensureBackButtons(); else document.addEventListener('DOMContentLoaded', ensureBackButtons);
+
+    // ================= STARTUP "I AGREE" POPUP =================
+    window.openStartup = () => {
+        const modal = document.getElementById('startup-modal');
+        modal.classList.add('active');
+        const sc = document.getElementById('startup-popup-content');
+        const btn = document.getElementById('agree-btn'), hint = document.getElementById('agree-hint');
+        const check = () => {
+            const done = sc.scrollHeight - sc.scrollTop - sc.clientHeight < 12;
+            btn.disabled = !done; hint.style.display = done ? 'none' : '';
+        };
+        sc.scrollTop = 0; sc.onscroll = check; setTimeout(check, 50);
+    };
+    window.acceptStartup = () => {
+        const sc = document.getElementById('startup-popup-content');
+        sessionStorage.setItem('agreed_' + (sc.dataset.txt || '').length, '1');
+        document.getElementById('startup-modal').classList.remove('active');
+    };
+
+    // ================= APP UPDATE CHECK (set from admin panel) =================
+    async function readMyBuild() {
+        try { if(CapApp.App && CapApp.App.getInfo) { const i = await CapApp.App.getInfo(); return parseInt(i.build, 10) || null; } } catch(_) {}
+        return null;
+    }
+    function showUpdatePopup(u) {
+        const force = !!u.force;
+        Swal.fire({
+            icon: 'info', title: u.title || 'নতুন আপডেট!', text: u.message || 'নতুন অ্যাপ চলে এসেছে, অ্যাপ আপডেট করুন',
+            confirmButtonText: 'Update Now', confirmButtonColor: '#1F5BFF',
+            showCancelButton: !force, cancelButtonText: 'Later',
+            allowOutsideClick: !force, allowEscapeKey: !force, backdrop: 'rgba(7,28,82,.7)'
+        }).then(r => {
+            if(r.isConfirmed && u.link) window.open(u.link, '_system');
+            if(force) setTimeout(() => showUpdatePopup(u), 300);
+        });
+    }
+    function startUpdateWatcher() {
+        readMyBuild().then(b => {
+            if(!b) return; // normal browser: skip
+            let shown = 0;
+            onValue(ref(db, 'app_config/update'), s => {
+                const u = s.val();
+                if(!u || !u.enabled) return;
+                const latest = parseInt(u.latest_build, 10);
+                if(b < latest && shown !== latest) { shown = latest; showUpdatePopup(u); }
+            });
+        });
+    }
+
+    // ================= PUSH NOTIFICATIONS (phone notification bar) =================
+    async function setupPush() {
+        const PN = CapApp.PushNotifications;
+        if(!PN) return;
+        try {
+            const perm = await PN.requestPermissions();
+            if(perm.receive === 'granted') await PN.register();
+            PN.addListener('pushNotificationReceived', n => backToast((n.title || '') + (n.body ? ': ' + n.body : '')));
+        } catch(e) { console.log('push setup', e); }
+    }
+    window.addEventListener('load', () => { startUpdateWatcher(); setupPush(); });
+
     function showTab(t) {
         
         document.querySelectorAll('.tab-item').forEach(e => e.classList.remove('active'));
@@ -2733,7 +2833,6 @@ body.logged-in #app-clock{display:flex}
                            t === 'withdraw' ? 'withdraw-view' :
                            t === 'history' ? 'history-view' :
                            t === 'notifications' ? 'notifications-view' :
-                           t === 'refer' ? 'refer-view' :
                            t === 'edit-profile' ? 'edit-profile-view' : 
                            t === 'mhistory' ? 'mhistory-view' : '';
             if(targetId) document.getElementById(targetId).classList.add('active');
@@ -3439,14 +3538,6 @@ body.logged-in #app-clock{display:flex}
                 type: 'Deposit (Auto)', amount, method, status: 'Success',
                 txID: trxId, date: new Date().toLocaleString()
             });
-            try {
-                const me = (await get(ref(db, 'users/' + currentUser.uid))).val() || {};
-                if(me.referred_by && !me.refer_rewarded && amount >= 100 && me.referred_by !== currentUser.uid) {
-                    await update(ref(db, 'users/' + currentUser.uid), { refer_rewarded: true });
-                    await runTransaction(ref(db, 'users/' + me.referred_by + '/winning'), c => (c || 0) + 10);
-                    await push(ref(db, 'transactions/' + me.referred_by), { type: 'Referral Bonus', amount: 10, method: 'Refer', status: 'Success', date: new Date().toLocaleString() });
-                }
-            } catch(_) {}
             toggleLoader(false);
             Swal.fire({ icon: 'success', title: 'Successful!', text: `Successfully added ${amount} TK!` })
               .then(() => { document.getElementById(`trx-${method}`).value = ""; window.navigateSub('wallet'); });
@@ -3454,17 +3545,6 @@ body.logged-in #app-clock{display:flex}
             toggleLoader(false);
             Swal.fire({ icon: 'error', title: 'Invalid', text: 'Invalid TrxID or SMS not received yet. Please wait 10 seconds and try again.' });
         }
-    }
-
-    let ensuringRefer = false;
-    async function claimReferCode(uid) {
-        const A = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-        for(let i = 0; i < 10; i++) {
-            let c = ''; for(let k = 0; k < 6; k++) c += A[Math.floor(Math.random() * A.length)];
-            const r = await runTransaction(ref(db, 'refer_codes/' + c), cur => cur === null ? uid : undefined);
-            if(r.committed) return c;
-        }
-        return null;
     }
 
     const teamSizeOf = t => { t = String(t || '').toLowerCase(); return t.includes('squad') ? 4 : (t.includes('duo') ? 2 : 1); };
@@ -3551,7 +3631,6 @@ body.logged-in #app-clock{display:flex}
 
             if(u.photoURL) document.getElementById('profile-avatar').src = u.photoURL;
             document.getElementById('profile-logout-btn').classList.remove('hidden');
-            document.getElementById('refer-code-display').innerText = "..."; 
             
             // Hide Auth View, Show Home
             document.getElementById('auth-view').classList.remove('active');
@@ -3574,8 +3653,6 @@ body.logged-in #app-clock{display:flex}
                     if(d.phone) document.getElementById('ep-phone').value = d.phone;
                     const spd = document.getElementById('support-pin-display'); if(spd) spd.innerText = d.support_pin || '......';
                     if(!d.support_pin && !ensuringPin) { ensuringPin = true; claimSupportPin(u.uid).then(c => { if(c) update(ref(db, 'users/'+u.uid), {support_pin:c}); }).finally(() => ensuringPin = false); }
-                    if(d.refer_code) document.getElementById('refer-code-display').innerText = d.refer_code;
-                    else if(!ensuringRefer) { ensuringRefer = true; claimReferCode(u.uid).then(c => { if(c) update(ref(db, 'users/'+u.uid), {refer_code:c}); }).finally(() => ensuringRefer = false); }
                 }
             });
         } else {
@@ -3615,18 +3692,13 @@ body.logged-in #app-clock{display:flex}
          const e = document.getElementById('reg-email').value;
          const ph = document.getElementById('reg-phone').value;
          const p = document.getElementById('reg-pass').value;
-         // reg-promo can be used if needed
          if(!n || !e || !ph || !p) return Swal.fire('Error', "Please fill all fields", 'error');
 
          toggleLoader(true);
          createUserWithEmailAndPassword(auth, e, p).then(async (c) => {
              try {
                  updateProfile(c.user, {displayName:n});
-                 const promo = (document.getElementById('reg-promo').value || '').trim().toUpperCase();
-                 let by = null;
-                 if(promo) { const s = await get(ref(db, 'refer_codes/' + promo)); if(s.exists() && s.val() !== c.user.uid) by = s.val(); }
-                 const data = {username:n, email:e, phone:ph, deposit:0, winning:0, refer_code: await claimReferCode(c.user.uid)};
-                 if(by) data.referred_by = by;
+                 const data = {username:n, email:e, phone:ph, deposit:0, winning:0};
                  await set(ref(db, 'users/'+c.user.uid), data);
              } catch(err) { console.error(err); }
              toggleLoader(false);
