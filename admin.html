@@ -141,6 +141,7 @@
         /* BACK NAV */
         .back-nav { display: inline-flex; align-items: center; gap: 10px; color: var(--text-muted); font-size: 14px; font-weight: 700; margin-bottom: 25px; cursor: pointer; padding: 8px 0; }
         .back-nav:active { opacity: 0.7; }
+        .back-nav { position: sticky; top: 0; z-index: 200; background: var(--bg-color, #EEF3FF); width: 100%; box-sizing: border-box; }
         
         /* AUTH SCREEN */
         #auth-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #05050a; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; backdrop-filter: blur(20px); }
@@ -418,6 +419,18 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
                 </div>
                 <div class="dash-text">SMS Payments</div>
             </div>
+            <div class="dash-item" onclick="navTo('presets')">
+                <div class="dash-icon-box" style="background: rgba(255, 193, 7, 0.18); color: #F2A900;">
+                    <i class="fas fa-scroll"></i>
+                </div>
+                <div class="dash-text">Rules &amp; Prizes</div>
+            </div>
+            <div class="dash-item" onclick="navTo('update')">
+                <div class="dash-icon-box" style="background: rgba(31, 91, 255, 0.15); color: #1F5BFF;">
+                    <i class="fas fa-cloud-arrow-down"></i>
+                </div>
+                <div class="dash-text">App Update</div>
+            </div>
             <!-- CHANGED PIN LOCATION -->
             <div class="dash-item" onclick="changeAdminPinPopup()">
                 <div class="dash-icon-box" style="background: rgba(255, 23, 68, 0.15); color: #FF1744;">
@@ -428,9 +441,47 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
         </div>
     </section>
 
+    <!-- RULES & PRIZE PRESETS -->
+    <section id="sec-presets" class="section">
+        <div class="back-nav" onclick="navTo('dashboard')"><i class="fas fa-chevron-left"></i> Back to Dashboard</div>
+        <div class="list-container" id="preset-list">
+            <div style="text-align:center; padding:40px; color:var(--text-muted);">Loading...</div>
+        </div>
+        <div class="fab" onclick="addPreset()"><i class="fas fa-plus"></i></div>
+    </section>
+
+    <!-- APP UPDATE -->
+    <section id="sec-update" class="section">
+        <div class="back-nav" onclick="navTo('dashboard')"><i class="fas fa-chevron-left"></i> Back to Dashboard</div>
+        <div class="flat-card">
+            <div id="upd-current" style="font-size:13px;color:var(--text-muted);margin-bottom:14px"></div>
+            <div class="form-group">
+                <label class="form-label">Latest Version Number (অটো)</label>
+                <input type="number" id="upd-build" class="form-input" placeholder="Build number">
+                <div id="upd-auto" style="font-size:12px;color:var(--text-muted);margin-top:6px"></div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Popup Title</label>
+                <input type="text" id="upd-title" class="form-input" placeholder="নতুন আপডেট!">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Message (পুরনো ভার্সনের ইউজাররা দেখবে)</label>
+                <textarea id="upd-msg" class="form-input" rows="3" placeholder="নতুন অ্যাপ চলে এসেছে, অ্যাপ আপডেট করুন"></textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Update Link (ট্যাপ করলে এখানে যাবে)</label>
+                <input type="text" id="upd-link" class="form-input" placeholder="https://...">
+            </div>
+            <label style="display:flex;gap:10px;align-items:center;margin:10px 0;font-weight:700;color:var(--navy)"><input type="checkbox" id="upd-force" style="width:20px;height:20px"> আপডেট না করলে অ্যাপ চলবে না (Force)</label>
+            <label style="display:flex;gap:10px;align-items:center;margin:10px 0 18px;font-weight:700;color:var(--navy)"><input type="checkbox" id="upd-on" checked style="width:20px;height:20px"> আপডেট পপআপ চালু</label>
+            <button class="btn btn-primary" style="width:100%" onclick="saveUpdate()"><i class="fas fa-cloud-arrow-up"></i> PUBLISH UPDATE</button>
+        </div>
+    </section>
+
     <!-- CATEGORIES SECTION -->
     <section id="sec-categories" class="section">
-        <div class="back-nav" onclick="navTo('dashboard')"><i class="fas fa-chevron-left"></i> Back to Dashboard</div>
+        <div class="back-nav" onclick="catUp()"><i class="fas fa-chevron-left"></i> <span id="cat-back-label">Back to Dashboard</span></div>
+        <div id="cat-crumb" style="font-weight:800;color:var(--navy);margin:0 4px 14px;font-size:15px"></div>
         <div class="list-container" id="category-list">
             <div style="text-align:center; padding:40px; color:var(--text-muted);">Loading categories...</div>
         </div>
@@ -552,6 +603,7 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
                 <textarea id="notif-body" class="form-input" rows="4"></textarea>
             </div>
             <button class="btn btn-primary" style="width:100%" onclick="sendNotification()"><i class="fas fa-paper-plane"></i> SEND NOW</button>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:12px;line-height:1.6">📱 ফোনের নোটিফিকেশন বারে পাঠাতে Firebase Console → Messaging থেকে নোটিফিকেশন পাঠান (অ্যাপ বন্ধ থাকলেও যাবে)।</div>
         </div>
     </section>
 
@@ -612,9 +664,65 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
         }
 
         // --- NAVIGATION ---
+        // --- APP UPDATE (version popup for old versions) ---
+        const CapA = (window.Capacitor && window.Capacitor.Plugins) ? window.Capacitor.Plugins : {};
+        let myBuild = null;
+        async function readMyBuild() {
+            try { if (CapA.App && CapA.App.getInfo) { const i = await CapA.App.getInfo(); myBuild = parseInt(i.build, 10) || null; } } catch (_) {}
+            return myBuild;
+        }
+        async function loadUpdateForm() {
+            await readMyBuild();
+            onValue(ref(db, 'app_config/update'), sn => {
+                const u = sn.val() || {};
+                $id('upd-current').innerText = u.latest_build ? `এখন পাবলিশড: Version ${u.latest_build}` : 'এখনো কোনো আপডেট পাবলিশ করা হয়নি';
+                if (u.title) $id('upd-title').value = u.title;
+                if (u.message) $id('upd-msg').value = u.message;
+                if (u.link) $id('upd-link').value = u.link;
+                $id('upd-force').checked = !!u.force;
+                $id('upd-on').checked = u.enabled !== false;
+                if (myBuild) { $id('upd-build').value = myBuild; $id('upd-auto').innerText = `✅ এই অ্যাডমিন অ্যাপের ভার্সন নম্বর থেকে অটো নেওয়া হয়েছে (${myBuild})`; }
+                else { if (u.latest_build && !$id('upd-build').value) $id('upd-build').value = u.latest_build; $id('upd-auto').innerText = 'ব্রাউজারে খুলেছেন, তাই নম্বরটা নিজে লিখুন (অ্যাপে খুললে অটো আসবে)'; }
+            }, { onlyOnce: true });
+        }
+        window.saveUpdate = async () => {
+            const b = parseInt($id('upd-build').value, 10);
+            if (!b) return Swal.fire('Error', 'ভার্সন নম্বর দিন', 'error');
+            await set(ref(db, 'app_config/update'), {
+                latest_build: b, title: $id('upd-title').value.trim(), message: $id('upd-msg').value.trim(),
+                link: $id('upd-link').value.trim(), force: $id('upd-force').checked, enabled: $id('upd-on').checked, updated: Date.now()
+            });
+            $id('upd-current').innerText = `এখন পাবলিশড: Version ${b}`;
+            Swal.fire({icon:'success', title:'Published', text:`Version ${b} এর নিচের সব ইউজার আপডেট পপআপ দেখবে`, timer:2200, showConfirmButton:false});
+        };
+
+        // --- BACK BUTTON (phone back never exits from inside a page) ---
+        let lastBackAt = 0;
+        function backToast(msg) {
+            let t = document.getElementById('back-toast');
+            if (!t) { t = document.createElement('div'); t.id = 'back-toast'; t.style.cssText = 'position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:rgba(11,46,122,.95);color:#fff;padding:10px 18px;border-radius:22px;font-size:14px;font-weight:700;z-index:99999;transition:opacity .25s'; document.body.appendChild(t); }
+            t.textContent = msg; t.style.opacity = 1; clearTimeout(backToast._t); backToast._t = setTimeout(() => t.style.opacity = 0, 1800);
+        }
+        function appBack() {
+            if (window.Swal && Swal.isVisible && Swal.isVisible()) { Swal.close(); return true; }
+            const sec = document.querySelector('.section.active');
+            if (sec && sec.id !== 'sec-dashboard') { const b = sec.querySelector('.back-nav'); if (b) b.click(); else navTo('dashboard'); return true; }
+            return false;
+        }
+        function hardwareBack() {
+            if (appBack()) return;
+            const now = Date.now();
+            if (now - lastBackAt < 2000) { if (CapA.App && CapA.App.exitApp) CapA.App.exitApp(); }
+            else { lastBackAt = now; backToast('অ্যাপ বন্ধ করতে আবার ব্যাক চাপুন'); }
+        }
+        if (CapA.App && CapA.App.addListener) CapA.App.addListener('backButton', hardwareBack);
+        else { history.pushState({a:1}, ''); window.addEventListener('popstate', () => { history.pushState({a:1}, ''); hardwareBack(); }); }
+
         window.navTo = (id) => {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.getElementById(`sec-${id}`).classList.add('active');
+            if (id === 'update') loadUpdateForm();
+            window.scrollTo(0, 0);
         }
 
         // --- INITIALIZATION ---
@@ -707,34 +815,45 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
                 `<option value="${t.id}" ${t.id === selected ? 'selected' : ''}>${'&nbsp;&nbsp;'.repeat(t.depth)}${t.depth ? '↳ ' : ''}${escA(catData[t.id].name)}</option>`).join('');
         };
 
+        let catView = '';
+        function renderCats() {
+            const list = document.getElementById('category-list');
+            if (catView && !catData[catView]) catView = '';
+            document.getElementById('cat-crumb').innerHTML = catView ? `<i class="fas fa-folder-open"></i> ${escA(catPath(catView))}` : '<i class="fas fa-layer-group"></i> Main Categories';
+            document.getElementById('cat-back-label').textContent = catView ? 'Back' : 'Back to Dashboard';
+            const kids = catChildren(catView);
+            list.innerHTML = '';
+            if (!kids.length) {
+                list.innerHTML = `<div style="text-align:center;padding:40px;color:var(--text-muted);line-height:1.8">${catView ? 'এই ক্যাটাগরির ভেতরে কিছু নেই।<br>নিচের + চেপে সাব-ক্যাটাগরি যোগ করুন।' : 'No categories found'}</div>`;
+                return;
+            }
+            kids.forEach(key => {
+                const c = catData[key];
+                const n = catChildren(key).length;
+                list.insertAdjacentHTML('beforeend', `
+                <div class="flat-card" style="cursor:pointer" onclick="openCatLevel('${key}')">
+                    <div class="cat-card-row">
+                        ${c.img ? `<img src="${escA(c.img)}" class="cat-img">` : `<div class="cat-img" style="display:flex;align-items:center;justify-content:center;background:var(--mist);color:var(--navy)"><i class="fas fa-folder"></i></div>`}
+                        <div class="cat-info">
+                            <div class="fc-title">${escA(c.name)}</div>
+                            <div style="font-size:12px; color:var(--text-muted)">${n ? n + ' sub-categories' : 'ট্যাপ করে ভেতরে ঢুকুন'} <i class="fas fa-chevron-right" style="margin-left:4px;font-size:10px"></i></div>
+                        </div>
+                        <div class="cat-actions">
+                            <button class="btn btn-primary" style="padding:10px" onclick="event.stopPropagation();editCategory('${key}')"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-danger" style="padding:10px" onclick="event.stopPropagation();deleteCategory('${key}')"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>`);
+            });
+        }
+        window.openCatLevel = k => { catView = k; renderCats(); window.scrollTo(0, 0); };
+        window.catUp = () => { if (catView) { catView = catParentOf(catView); renderCats(); } else navTo('dashboard'); };
+
         function loadCategories() {
             onValue(ref(db, 'categories'), s => {
-                const list = document.getElementById('category-list');
-                list.innerHTML = "";
                 catData = s.val() || {};
-                const tree = catTree();
-                allCategories = tree.map(t => ({id: t.id, name: catPath(t.id)})); // for match dropdown (full path)
-                if (!tree.length) return list.innerHTML = "<div style='text-align:center;color:#666'>No categories found</div>";
-
-                tree.forEach(({id: key, depth}) => {
-                    const c = catData[key];
-                    const kids = catChildren(key).length;
-                    list.insertAdjacentHTML('beforeend', `
-                    <div class="flat-card" style="margin-left:${depth * 18}px">
-                        <div class="cat-card-row">
-                            ${c.img ? `<img src="${escA(c.img)}" class="cat-img">` : `<div class="cat-img" style="display:flex;align-items:center;justify-content:center;background:var(--mist);color:var(--navy)"><i class="fas fa-folder"></i></div>`}
-                            <div class="cat-info">
-                                <div class="fc-title">${depth ? '↳ ' : ''}${escA(c.name)}</div>
-                                <div style="font-size:11px; color:var(--text-muted)">${kids ? kids + ' sub-categories' : (depth ? 'Sub-category' : 'Main category')}</div>
-                            </div>
-                            <div class="cat-actions">
-                                <button class="btn btn-success" style="padding:10px" title="Add sub-category" onclick="addCategory('${key}')"><i class="fas fa-folder-plus"></i></button>
-                                <button class="btn btn-primary" style="padding:10px" onclick="editCategory('${key}')"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-danger" style="padding:10px" onclick="deleteCategory('${key}')"><i class="fas fa-trash"></i></button>
-                            </div>
-                        </div>
-                    </div>`);
-                });
+                allCategories = catTree().map(t => ({id: t.id, name: catPath(t.id)})); // for match dropdown (full path)
+                renderCats();
             });
         }
 
@@ -752,7 +871,7 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
         });
 
         window.addCategory = async (parentId) => {
-            parentId = typeof parentId === 'string' ? parentId : '';
+            parentId = typeof parentId === 'string' ? parentId : catView;
             const { value: formValues } = await Swal.fire({
                 title: parentId ? 'Add Sub-category' : 'Add Category',
                 html: catForm({}, parentId, ''),
@@ -802,54 +921,72 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
         // --- MATCHES (With Date/Time Picker & Dynamic Category) ---
         const escA = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
         const pzRow = (p = {pos:'', amt:''}) => `<div class="pz-row" style="display:flex;gap:6px;margin-top:8px"><input class="swal2-input pz-pos" placeholder="1st / Winner" value="${escA(p.pos)}" style="margin:0;flex:1.2;width:auto"><input type="number" class="swal2-input pz-amt" placeholder="Taka" value="${p.amt}" style="margin:0;flex:1;width:auto"><button type="button" class="btn btn-danger" style="padding:8px" onclick="this.parentNode.remove()">✕</button></div>`;
-        // --- SAVED TEMPLATES (rules & prize lists: write once, reuse in next matches) ---
-        let ruleTemplates = {}, prizeTemplates = {};
-        onValue(ref(db, 'rule_templates'), sn => { ruleTemplates = sn.val() || {}; });
-        onValue(ref(db, 'prize_templates'), sn => { prizeTemplates = sn.val() || {}; });
-        const tplOpts = (obj, sel = '') => '<option value="">— Saved templates —</option>' + Object.entries(obj).map(([k, v]) => `<option value="${k}" ${k === sel ? 'selected' : ''}>${escA(v.name)}</option>`).join('');
+        // --- MATCH PRESETS (rules + prize list: write once in "Rules & Prizes", pick in match) ---
+        let presetData = {};
         const $id = i => document.getElementById(i);
-        const tplRow = (pickId, nameId, saveFn, delFn, label) => `
-            <div style="display:flex;gap:6px;margin-top:6px;align-items:center"><select id="${pickId}" class="swal2-select" style="margin:0;flex:1;min-width:0" onchange="${pickId === 'rt-pick' ? 'applyRuleTpl' : 'applyPrizeTpl'}()">${tplOpts(pickId === 'rt-pick' ? ruleTemplates : prizeTemplates)}</select><button type="button" class="btn btn-danger" style="padding:8px 12px" title="Delete selected template" onclick="${delFn}()"><i class="fas fa-trash"></i></button></div>
-            <div style="display:flex;gap:6px;margin-top:6px;align-items:center"><input id="${nameId}" class="swal2-input" placeholder="নতুন টেমপ্লেটের নাম" style="margin:0;flex:1;width:auto;min-width:0"><button type="button" class="btn btn-success" style="padding:8px 12px" onclick="${saveFn}()">${label}</button></div>`;
-        const refreshPick = (pickId, obj, sel) => { const el = $id(pickId); if (el) el.innerHTML = tplOpts(obj, sel); };
-
         const pzEditor = (list = []) => `<label class="form-label" style="margin-top:15px;display:block">Prize List (Position / Taka)</label>
-            ${tplRow('pt-pick', 'pt-name', 'savePrizeTpl', 'delPrizeTpl', 'Save')}
             <div id="pz-rows">${(list.length ? list : [{pos:'1st',amt:''}]).map(pzRow).join('')}</div><button type="button" class="btn btn-primary" style="width:100%;margin-top:8px" onclick="addPzRow()">+ Add Position</button>`;
-        const rulesEditor = (val = '') => `<label class="form-label" style="margin-top:15px;display:block">Match Rules (প্রতি লাইনে একটি নিয়ম — খালি রাখলে ডিফল্ট রুলস দেখাবে)</label>
-            ${tplRow('rt-pick', 'rt-name', 'saveRuleTpl', 'delRuleTpl', 'Save')}
-            <textarea id="swal-rules" class="swal2-textarea" style="margin:8px 0 0;width:100%;box-sizing:border-box" rows="4">${escA(val)}</textarea>`;
-
-        window.applyRuleTpl = () => { const t = ruleTemplates[$id('rt-pick').value]; if (t) $id('swal-rules').value = t.text || ''; };
-        window.saveRuleTpl = async () => {
-            const name = $id('rt-name').value.trim(), text = $id('swal-rules').value.trim();
-            if (!name || !text) return Swal.showValidationMessage('টেমপ্লেটের নাম ও রুলস দুটোই লাগবে');
-            const r = await push(ref(db, 'rule_templates'), { name, text });
-            $id('rt-name').value = ''; refreshPick('rt-pick', ruleTemplates, r.key);
-            $id('rt-name').placeholder = 'Saved ✓';
-        };
-        window.delRuleTpl = async () => {
-            const k = $id('rt-pick').value; if (!k) return;
-            await remove(ref(db, `rule_templates/${k}`)); refreshPick('rt-pick', ruleTemplates, '');
-        };
-        window.applyPrizeTpl = () => {
-            const t = prizeTemplates[$id('pt-pick').value]; if (!t) return;
-            const list = Object.values(t.list || {});
+        const rulesEditor = (val = '') => `<label class="form-label" style="margin-top:15px;display:block">Match Rules (প্রতি লাইনে একটি নিয়ম)</label>
+            <textarea id="swal-rules" class="swal2-textarea" style="margin:8px 0 0;width:100%;box-sizing:border-box" rows="5">${escA(val)}</textarea>`;
+        const presetPicker = () => `<label class="form-label" style="margin-top:15px;display:block">Rules &amp; Prize Preset</label>
+            <select id="swal-preset" class="swal2-select" style="width:100%;margin-top:0" onchange="applyPreset()">
+                <option value="">— Select preset (optional) —</option>
+                ${Object.entries(presetData).map(([k, v]) => `<option value="${k}">${escA(v.name)}</option>`).join('')}
+            </select>`;
+        window.applyPreset = () => {
+            const p = presetData[$id('swal-preset').value]; if (!p) return;
+            $id('swal-rules').value = p.rules || '';
+            const list = Object.values(p.prize_list || {});
             $id('pz-rows').innerHTML = (list.length ? list : [{pos:'', amt:''}]).map(pzRow).join('');
-            const tp = $id('swal-prize');
-            if (tp && !tp.value) tp.value = list.reduce((a, x) => a + (Number(x.amt) || 0), 0) || '';
+            const sum = list.reduce((a, x) => a + (Number(x.amt) || 0), 0);
+            const tp = $id('swal-prize'); if (tp && sum) tp.value = sum;
+            const d = $id('edit-desc'); if (d) d.value = p.prize_desc || '';
+            window._presetDesc = p.prize_desc || '';
         };
-        window.savePrizeTpl = async () => {
-            const name = $id('pt-name').value.trim(), list = readPz();
-            if (!name || !list.length) return Swal.showValidationMessage('টেমপ্লেটের নাম ও অন্তত একটি প্রাইজ লাগবে');
-            const r = await push(ref(db, 'prize_templates'), { name, list });
-            $id('pt-name').value = ''; refreshPick('pt-pick', prizeTemplates, r.key);
-            $id('pt-name').placeholder = 'Saved ✓';
+
+        onValue(ref(db, 'match_presets'), sn => { presetData = sn.val() || {}; renderPresets(); });
+        function renderPresets() {
+            const l = $id('preset-list'); if (!l) return;
+            const items = Object.entries(presetData);
+            if (!items.length) { l.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-muted);line-height:1.8">কোনো প্রিসেট নেই।<br>নিচের + চেপে রুলস ও প্রাইজ লিখে সেভ করুন।</div>'; return; }
+            l.innerHTML = items.map(([k, p]) => `
+                <div class="flat-card">
+                    <div class="cat-card-row">
+                        <div class="cat-info">
+                            <div class="fc-title">${escA(p.name)}</div>
+                            <div style="font-size:12px;color:var(--text-muted)">${Object.values(p.prize_list || {}).length} prize positions • ${String(p.rules || '').split('\n').filter(x => x.trim()).length} rules</div>
+                        </div>
+                        <div class="cat-actions">
+                            <button class="btn btn-primary" style="padding:10px" onclick="editPreset('${k}')"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-danger" style="padding:10px" onclick="deletePreset('${k}')"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>`).join('');
+        }
+        const presetForm = (p = {}) => `
+            <label class="form-label" style="text-align:left">Preset Name</label>
+            <input id="pr-name" class="swal2-input" placeholder="e.g. BR Solo Rules" value="${escA(p.name || '')}">
+            ${rulesEditor(p.rules || '')}
+            ${pzEditor(Object.values(p.prize_list || {}))}
+            <label class="form-label" style="text-align:left;margin-top:15px">Extra Prize Note (optional)</label>
+            <textarea id="pr-desc" class="swal2-textarea" style="width:100%;box-sizing:border-box;margin:8px 0 0">${escA(p.prize_desc || '')}</textarea>`;
+        const readPreset = () => {
+            const name = $id('pr-name').value.trim();
+            if (!name) return Swal.showValidationMessage('Preset name required');
+            return { name, rules: $id('swal-rules').value.trim(), prize_list: readPz(), prize_desc: $id('pr-desc').value.trim() };
         };
-        window.delPrizeTpl = async () => {
-            const k = $id('pt-pick').value; if (!k) return;
-            await remove(ref(db, `prize_templates/${k}`)); refreshPick('pt-pick', prizeTemplates, '');
+        window.addPreset = async () => {
+            const { value } = await Swal.fire({ title: 'New Rules & Prize', html: presetForm(), focusConfirm: false, showCancelButton: true, confirmButtonText: 'Save', preConfirm: readPreset });
+            if (value) { await push(ref(db, 'match_presets'), value); Swal.fire({icon:'success', title:'Saved', timer:1000, showConfirmButton:false}); }
         };
+        window.editPreset = async (k) => {
+            const { value } = await Swal.fire({ title: 'Edit Rules & Prize', html: presetForm(presetData[k]), focusConfirm: false, showCancelButton: true, confirmButtonText: 'Update', preConfirm: readPreset });
+            if (value) { await update(ref(db, `match_presets/${k}`), value); Swal.fire({icon:'success', title:'Updated', timer:1000, showConfirmButton:false}); }
+        };
+        window.deletePreset = (k) => {
+            Swal.fire({title:'Delete preset?', text:'পুরনো ম্যাচে এর কোনো প্রভাব পড়বে না।', icon:'warning', showCancelButton:true, confirmButtonColor:'#FF5252'}).then(r => { if (r.isConfirmed) remove(ref(db, `match_presets/${k}`)); });
+        };
+
         window.addPzRow = () => document.getElementById('pz-rows').insertAdjacentHTML('beforeend', pzRow());
         const readPz = () => [...document.querySelectorAll('.pz-row')].map(r => ({pos: r.querySelector('.pz-pos').value.trim(), amt: Number(r.querySelector('.pz-amt').value) || 0})).filter(p => p.pos);
 
@@ -885,6 +1022,7 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
         }
 
         window.createMatchPopup = async () => {
+            window._presetDesc = '';
             // Generate Category Options
             let catOptions = "";
             if(allCategories.length === 0) {
@@ -929,6 +1067,7 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
                             <div><label class="form-label">Total Slots</label><input id="swal-total" type="number" class="swal2-input"></div>
                         </div>
 
+                        ${presetPicker()}
                         ${pzEditor()}
                         ${rulesEditor()}
                         <label class="form-label" style="margin-top:15px;">Category</label>
@@ -967,6 +1106,7 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
                         categoryId: catId,
                         prize_list: readPz(),
                         rules: document.getElementById('swal-rules').value.trim(),
+                        prize_desc: window._presetDesc || '',
                         status: 'Upcoming',
                         timestamp: dObj.getTime()
                     }
@@ -1011,6 +1151,7 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
             const snapshot = await get(ref(db, `matches/${key}`));
             const m = snapshot.val();
 
+            window._presetDesc = '';
             const { value: formValues } = await Swal.fire({
                 title: 'Manage Match',
                 html: `
@@ -1024,6 +1165,7 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
                     <input id="edit-roomid" class="swal2-input" value="${m.room_id || ''}" placeholder="Enter Room ID">
                     <label class="form-label" style="text-align:left; margin-top:15px">Room Password</label>
                     <input id="edit-pass" class="swal2-input" value="${m.room_pass || ''}" placeholder="Enter Password">
+                    ${presetPicker()}
                     ${pzEditor(Object.values(m.prize_list || {}))}
                     ${rulesEditor(m.rules || '')}
                     <label class="form-label" style="text-align:left; margin-top:15px">Extra Prize Note (optional)</label>
