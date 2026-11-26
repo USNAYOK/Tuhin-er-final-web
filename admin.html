@@ -801,6 +801,7 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
         const PBKDF_ITER = 600000;
         const OWNER_ONLY = ['adminaccess', 'adminperm', 'owners'];
         // ---- Owner limit + Master Recovery Code ----
+        const DEMO = { enabled: true, user: 'demo', salt: 'NryaBzTk3XoSgorHH3+EZw==', iter: 600000, hash: 'BPyBNIZwJC1Ow+K42X+H30WB0AR7Z1a7JFQUL5tOZho=' };  // টেস্ট ফেজের ডেমো লগিন। রিলিজের আগে enabled: false করুন
         const MAX_OWNERS = 10;   // মোট সর্বোচ্চ কতবার Owner অ্যাকাউন্ট খোলা যাবে
         const MASTER = { salt: 'bitIEKIxFUhchy60F81x3A==', iter: 600000, hash: 'eWKNV5qJ3FLhTD+7BWCfPhD2bL/m1NF8wPVQZgyy0Eg=' };
         const normCode = c => String(c || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
@@ -911,6 +912,11 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
             if (throttled()) return;
             setBusy(true);
             try {
+                if (DEMO.enabled && u === DEMO.user && await checkCred(p, DEMO)) {
+                    lsSet('auth_fail', 0);
+                    session = { role: 'owner', id: 'demo', username: 'demo' };
+                    return enterApp();
+                }
                 const entry = Object.entries(authData.owners || {}).find(([k, o]) => o.username === u);
                 let ok = false;
                 if (entry) {
@@ -1047,7 +1053,7 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
 
         // ---- after login ----
         function enterApp() {
-            $a('auth-overlay').style.display = 'none';
+            $a('auth-overlay').style.setProperty('display', 'none', 'important');
             lkMsg('');
             if (session.role === 'admin') {
                 if (authUnsub) { authUnsub(); authUnsub = null; }
