@@ -1796,6 +1796,16 @@ body.logged-in #app-clock{display:flex}
 .modal-x{position:absolute;top:8px;right:10px;width:34px;height:34px;border-radius:50%;border:none;background:rgba(11,46,122,.12);color:#0B2E7A;font-size:20px;font-weight:900;line-height:1;cursor:pointer;z-index:5}
 </style>
 
+<style>
+/* category list style (same look as admin panel) */
+#dynamic-category-list.category-grid,#subcat-container.category-grid{display:flex!important;flex-direction:column!important;gap:12px!important;padding:0 14px 18px!important}
+.cat-card-new{display:flex!important;flex-direction:row!important;align-items:center;gap:14px;padding:12px 14px;border-radius:22px!important;width:100%;box-sizing:border-box;cursor:pointer;position:relative}
+.cat-card-new::before{content:"";position:absolute;left:0;top:18%;bottom:18%;width:5px;border-radius:0 6px 6px 0;background:linear-gradient(180deg,#FFD23F,#FF7EB6)}
+.cat-card-new .cat-card-img{width:78px!important;height:78px!important;min-width:78px;aspect-ratio:1/1!important;border-radius:18px!important;object-fit:cover;margin-left:6px}
+.cat-card-new .cat-card-info{padding:0!important;background:transparent!important;flex:1;min-width:0}
+.cat-card-new .cat-card-title{font-size:19px;line-height:1.2}
+.cat-card-new::after{content:"\203A";font-size:34px;line-height:1;color:var(--navy,#0B2E7A);opacity:.45;padding-right:4px}
+</style>
 </head>
 
 <body>
