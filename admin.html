@@ -323,29 +323,139 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
 .rs-hd{display:grid;grid-template-columns:34px 1fr 64px 64px;gap:6px;font-size:10px;font-weight:800;color:#71819A;margin-bottom:4px}
 .rs-opt{display:flex;gap:8px;align-items:center;margin-top:10px;font-size:13px;font-weight:700;color:#0B2E7A}
 .rs-opt input{width:18px;height:18px;accent-color:#1F5BFF}
+
+/* ===== LOCK SCREEN (blue / white / rose / pink) ===== */
+#auth-overlay{background:linear-gradient(160deg,#0B2E7A 0%,#1F5BFF 55%,#4C8DFF 100%)!important;overflow:hidden;display:flex!important;flex-direction:column;justify-content:center;align-items:center;padding:0}
+.lk-blob{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none}
+.lk-b1{width:260px;height:260px;background:#FF5FA2;top:-80px;right:-70px;opacity:.6}
+.lk-b2{width:230px;height:230px;background:#FF8FC2;bottom:-80px;left:-70px;opacity:.55}
+.lk-b3{width:150px;height:150px;background:#fff;top:42%;left:58%;opacity:.16}
+.lk-top{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));left:14px;right:14px;display:flex;justify-content:space-between;gap:10px;z-index:3}
+.lk-mode{border:1.5px solid rgba(255,255,255,.6);background:rgba(255,255,255,.14);color:#fff;border-radius:30px;padding:10px 16px;font:800 14px 'Rajdhani','Hind Siliguri',sans-serif;letter-spacing:.5px;display:flex;gap:8px;align-items:center;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.lk-mode.active{background:#fff;color:#0B2E7A;border-color:#fff;box-shadow:0 8px 20px rgba(7,28,82,.35)}
+.lk-mode.active i{color:#E83C86}
+.lk-card{position:relative;z-index:2;width:min(92vw,380px);background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.42);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:32px;padding:26px 22px 22px;box-shadow:0 24px 60px rgba(7,28,82,.45);text-align:center;max-height:88vh;overflow-y:auto;margin-top:34px}
+.lk-logo{width:64px;height:64px;margin:0 auto 12px;border-radius:22px;background:linear-gradient(135deg,#FF8FC2,#E83C86);display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px;box-shadow:0 10px 24px rgba(232,60,134,.5)}
+.lk-title{font:800 26px 'Rajdhani',sans-serif;color:#fff;letter-spacing:2px;text-transform:uppercase}
+.lk-sub{color:#DCE8FF;font-size:13px;margin:4px 0 18px;min-height:18px;line-height:1.5}
+.lk-pane{display:none}.lk-pane.show{display:block}
+.lk-field{display:flex;align-items:center;gap:10px;background:#fff;border-radius:18px;padding:0 14px;margin-bottom:12px;height:54px;box-shadow:0 6px 16px rgba(7,28,82,.18)}
+.lk-field>i{color:#E83C86;width:18px;text-align:center}
+.lk-field input{flex:1;border:none!important;outline:none;background:transparent!important;font:600 16px 'Hind Siliguri',sans-serif;color:#0B2E7A;min-width:0;padding:0!important;box-shadow:none!important}
+.lk-eye{border:none;background:transparent;color:#1F5BFF;font-size:16px}
+.lk-btn{width:100%;height:54px;border:none;border-radius:18px;background:linear-gradient(135deg,#FF5FA2,#E83C86);color:#fff;font:800 17px 'Rajdhani',sans-serif;letter-spacing:2px;box-shadow:0 12px 26px rgba(232,60,134,.5);cursor:pointer}
+.lk-btn:active{transform:scale(.97)}.lk-btn:disabled{opacity:.6}
+.lk-msg{min-height:20px;margin-top:14px;font-size:13px;font-weight:700;color:#FFD3E6}
+.lk-msg.ok{color:#fff}
+.lk-card.shake{animation:lkShake .45s}
+@keyframes lkShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-10px)}40%{transform:translateX(9px)}60%{transform:translateX(-6px)}80%{transform:translateX(4px)}}
+#auth-overlay .pin-dots{display:flex;gap:8px;justify-content:center;margin:0 0 22px}
+#auth-overlay .pin-dots .dot{width:15px;height:15px;border-radius:50%;background:rgba(255,255,255,.25)!important;border:2px solid #fff!important;transition:.15s}
+#auth-overlay .pin-dots .dot.filled{background:#FF5FA2!important;border-color:#FF5FA2!important;box-shadow:0 0 12px rgba(255,95,162,.9)!important;transform:scale(1.15)}
+#auth-overlay .numpad{display:grid;grid-template-columns:repeat(3,68px);gap:14px;justify-content:center}
+#auth-overlay .num-key{width:68px!important;height:68px!important;border-radius:50%!important;background:#fff!important;color:#0B2E7A!important;font-size:26px!important;font-weight:800!important;box-shadow:0 8px 18px rgba(7,28,82,.3)!important;border:none!important}
+#auth-overlay .num-key:active{background:#FF5FA2!important;color:#fff!important;transform:scale(.92)}
+#auth-overlay .num-key i{color:#E83C86!important}
+#auth-overlay .num-key.blank{background:transparent!important;box-shadow:none!important}
+#ended-overlay{position:fixed;inset:0;z-index:100000;background:linear-gradient(160deg,#0B2E7A,#1F5BFF);display:flex;align-items:center;justify-content:center}
+#ended-overlay .lk-card{margin-top:0}
+/* ===== ROLE BADGE + OWNER TOOLS ===== */
+.role-badge{margin-left:auto;margin-right:10px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.45);color:#fff;border-radius:20px;padding:6px 12px;font:800 12px 'Rajdhani',sans-serif;white-space:nowrap;display:none}
+.role-badge i{color:#FFB3D6;margin-right:4px}
+.aa-hint{background:#fff;border-radius:16px;padding:12px 14px;color:#0B2E7A;font-size:13px;line-height:1.6;margin-bottom:14px;box-shadow:var(--shadow);border-left:4px solid #FF5FA2}
+.aa-hint i{color:#E83C86;margin-right:6px}
+.aa-card{background:#fff;border-radius:22px;padding:16px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.aa-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#1F5BFF,#FF5FA2)}
+.aa-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px}
+.aa-name{font:800 18px 'Rajdhani','Hind Siliguri',sans-serif;color:#0B2E7A}
+.aa-meta{font-size:12px;color:#71819A;margin-top:4px}
+.aa-meta i{color:#1F5BFF;width:16px}
+.aa-chip{font-size:11px;font-weight:800;border-radius:20px;padding:4px 10px;text-transform:uppercase;letter-spacing:.5px}
+.aa-chip.ok{background:#E3EEFF;color:#1F5BFF}.aa-chip.exp{background:#FFE3F0;color:#E83C86}.aa-chip.off{background:#EDEFF3;color:#71819A}
+.aa-actions{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px}
+.aa-btn{border:none;border-radius:14px;padding:11px 8px;font:700 13px 'Hind Siliguri',sans-serif;background:#EEF4FF;color:#0B2E7A;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.aa-btn:active{transform:scale(.96)}
+.aa-btn.danger{background:#FFE3F0;color:#E83C86}
+.perm-item{position:relative;opacity:.45;transition:.15s;cursor:pointer}
+.perm-item.on{opacity:1;box-shadow:0 0 0 3px #FF5FA2,var(--shadow)!important}
+.perm-item .tick{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;background:#E83C86;color:#fff;display:none;align-items:center;justify-content:center;font-size:12px}
+.perm-item.on .tick{display:flex}
+
+.lk-link{background:none;border:none;color:#fff;font:700 13px 'Hind Siliguri',sans-serif;margin-top:14px;text-decoration:underline;cursor:pointer}
+.lk-note{font-size:12px;color:#FFD3E6;margin:2px 2px 12px;line-height:1.6;text-align:left}
+.lk-note i{margin-right:6px}
+.pw-wrap{position:relative;margin:0 0 10px}
+.pw-wrap input{width:100%!important;margin:0!important;padding-right:48px!important;box-sizing:border-box}
+.pw-eye{position:absolute;right:12px;top:50%;transform:translateY(-50%);border:none;background:transparent;color:#1F5BFF;font-size:17px;cursor:pointer;padding:6px}
 </style>
 </head>
 <body>
 
-    <!-- AUTH SCREEN -->
+    <!-- AUTH SCREEN (Owner / Admin) -->
     <div id="auth-overlay">
-        <div class="pin-title">SECURITY ACCESS</div>
-        <div class="pin-dots" id="pin-dots">
-            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="lk-blob lk-b1"></div><div class="lk-blob lk-b2"></div><div class="lk-blob lk-b3"></div>
+        <div class="lk-top">
+            <button type="button" id="mode-owner" class="lk-mode" onclick="setAuthMode('owner')"><i class="fas fa-crown"></i> Owner mode</button>
+            <button type="button" id="mode-admin" class="lk-mode" onclick="setAuthMode('admin')"><i class="fas fa-user-shield"></i> Admin mode</button>
         </div>
-        <div class="numpad">
-            <div class="num-key" onclick="typePin(1)">1</div>
-            <div class="num-key" onclick="typePin(2)">2</div>
-            <div class="num-key" onclick="typePin(3)">3</div>
-            <div class="num-key" onclick="typePin(4)">4</div>
-            <div class="num-key" onclick="typePin(5)">5</div>
-            <div class="num-key" onclick="typePin(6)">6</div>
-            <div class="num-key" onclick="typePin(7)">7</div>
-            <div class="num-key" onclick="typePin(8)">8</div>
-            <div class="num-key" onclick="typePin(9)">9</div>
-            <div class="num-key" style="background:transparent; border:none; cursor:default;"></div>
-            <div class="num-key" onclick="typePin(0)">0</div>
-            <div class="num-key" onclick="delPin()" style="color:var(--danger)"><i class="fas fa-backspace" style="font-size:20px;"></i></div>
+        <div class="lk-card" id="lk-card">
+            <div class="lk-logo"><i class="fas fa-lock" id="lk-icon"></i></div>
+            <div class="lk-title" id="lk-title">Loading</div>
+            <div class="lk-sub" id="lk-sub"></div>
+
+            <!-- OWNER LOGIN -->
+            <div id="lk-owner" class="lk-pane">
+                <div class="lk-field"><i class="fas fa-user"></i><input id="ow-user" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Username"></div>
+                <div class="lk-field"><i class="fas fa-lock"></i><input id="ow-pass" type="password" autocomplete="off" placeholder="Password" onkeydown="if(event.key==='Enter')ownerLogin()"><button type="button" class="lk-eye" onclick="togglePass('ow-pass',this)"><i class="fas fa-eye"></i></button></div>
+                <button type="button" class="lk-btn" onclick="ownerLogin()">LOGIN</button>
+                <button type="button" class="lk-link" onclick="showRecover()">পাসওয়ার্ড ভুলে গেছেন?</button>
+            </div>
+
+            <!-- OWNER SETUP (first time only) -->
+            <div id="lk-setup" class="lk-pane">
+                <div class="lk-field" id="su-old-wrap"><i class="fas fa-key"></i><input id="su-old" type="password" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="পুরনো ৪ সংখ্যার পিন"></div>
+                <div class="lk-field"><i class="fas fa-user"></i><input id="su-user" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="নতুন Username (a-z, 0-9)"></div>
+                <div class="lk-field"><i class="fas fa-lock"></i><input id="su-pass" type="password" autocomplete="off" placeholder="নতুন Password (কমপক্ষে ৮)"><button type="button" class="lk-eye" onclick="togglePass('su-pass',this)"><i class="fas fa-eye"></i></button></div>
+                <div class="lk-field"><i class="fas fa-lock"></i><input id="su-pass2" type="password" autocomplete="off" placeholder="Password আবার লিখুন"><button type="button" class="lk-eye" onclick="togglePass('su-pass2',this)"><i class="fas fa-eye"></i></button></div>
+                <div class="lk-note"><i class="fas fa-life-ring"></i> Password ভুলে গেলে রিসেট করতে এই দুটো লাগবে, তাই মনে রাখার মতো কিছু দিন</div>
+                <div class="lk-field"><i class="fas fa-heart"></i><input id="su-fname" autocomplete="off" placeholder="আপনার পছন্দের নাম"></div>
+                <div class="lk-field"><i class="fas fa-palette"></i><input id="su-fcolor" autocomplete="off" placeholder="আপনার পছন্দের রঙ"></div>
+                <button type="button" class="lk-btn" onclick="ownerSetup()">CREATE OWNER</button>
+            </div>
+
+            <!-- OWNER PASSWORD RESET -->
+            <div id="lk-recover" class="lk-pane">
+                <div class="lk-field"><i class="fas fa-user"></i><input id="rc-user" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Username"></div>
+                <div class="lk-field"><i class="fas fa-heart"></i><input id="rc-fname" autocomplete="off" placeholder="আপনার পছন্দের নাম"></div>
+                <div class="lk-field"><i class="fas fa-palette"></i><input id="rc-fcolor" autocomplete="off" placeholder="আপনার পছন্দের রঙ"></div>
+                <div class="lk-field"><i class="fas fa-lock"></i><input id="rc-pass" type="password" autocomplete="off" placeholder="নতুন Password (কমপক্ষে ৮)"><button type="button" class="lk-eye" onclick="togglePass('rc-pass',this)"><i class="fas fa-eye"></i></button></div>
+                <div class="lk-field"><i class="fas fa-lock"></i><input id="rc-pass2" type="password" autocomplete="off" placeholder="নতুন Password আবার লিখুন"><button type="button" class="lk-eye" onclick="togglePass('rc-pass2',this)"><i class="fas fa-eye"></i></button></div>
+                <button type="button" class="lk-btn" onclick="ownerRecover()">RESET PASSWORD</button>
+                <button type="button" class="lk-link" onclick="hideRecover()">← লগইনে ফিরুন</button>
+            </div>
+
+            <!-- ADMIN: 10 DIGIT PIN -->
+            <div id="lk-admin" class="lk-pane">
+                <div class="pin-dots" id="pin-dots">
+                    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                </div>
+                <div class="numpad">
+                    <div class="num-key" onclick="typePin(1)">1</div>
+                    <div class="num-key" onclick="typePin(2)">2</div>
+                    <div class="num-key" onclick="typePin(3)">3</div>
+                    <div class="num-key" onclick="typePin(4)">4</div>
+                    <div class="num-key" onclick="typePin(5)">5</div>
+                    <div class="num-key" onclick="typePin(6)">6</div>
+                    <div class="num-key" onclick="typePin(7)">7</div>
+                    <div class="num-key" onclick="typePin(8)">8</div>
+                    <div class="num-key" onclick="typePin(9)">9</div>
+                    <div class="num-key blank"></div>
+                    <div class="num-key" onclick="typePin(0)">0</div>
+                    <div class="num-key" onclick="delPin()"><i class="fas fa-backspace" style="font-size:20px;"></i></div>
+                </div>
+            </div>
+            <div id="lk-msg" class="lk-msg"></div>
         </div>
     </div>
 
@@ -354,6 +464,7 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
         <div class="admin-logo">
             <div class="logo-dot"></div> E BD ADMIN
         </div>
+        <div class="role-badge" id="role-badge"></div>
         <div class="logout-btn" onclick="location.reload()"><i class="fas fa-power-off"></i></div>
     </div>
 
@@ -366,25 +477,25 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
 
         <div class="grid-section-title">Core Modules</div>
         <div class="dash-grid">
-            <div class="dash-item" onclick="navTo('matches')">
+            <div class="dash-item" data-perm="matches" onclick="navTo('matches')">
                 <div class="dash-icon-box" style="background: rgba(124, 77, 255, 0.15); color: var(--primary);">
                     <i class="fas fa-gamepad"></i>
                 </div>
                 <div class="dash-text">Matches</div>
             </div>
-            <div class="dash-item" onclick="navTo('categories')">
+            <div class="dash-item" data-perm="categories" onclick="navTo('categories')">
                 <div class="dash-icon-box" style="background: rgba(51, 181, 229, 0.15); color: var(--info);">
                     <i class="fas fa-layer-group"></i>
                 </div>
                 <div class="dash-text">Categories</div>
             </div>
-            <div class="dash-item" onclick="navTo('users')">
+            <div class="dash-item" data-perm="users" onclick="navTo('users')">
                 <div class="dash-icon-box" style="background: rgba(0, 200, 81, 0.15); color: var(--success);">
                     <i class="fas fa-users"></i>
                 </div>
                 <div class="dash-text">Users</div>
             </div>
-            <div class="dash-item" onclick="navTo('withdraw')">
+            <div class="dash-item" data-perm="withdraw" onclick="navTo('withdraw')">
                 <div class="dash-icon-box" style="background: rgba(255, 68, 68, 0.15); color: var(--danger);">
                     <i class="fas fa-wallet"></i>
                 </div>
@@ -394,51 +505,88 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
 
         <div class="grid-section-title">Configuration</div>
         <div class="dash-grid">
-            <div class="dash-item" onclick="navTo('settings')">
+            <div class="dash-item" data-perm="settings" onclick="navTo('settings')">
                 <div class="dash-icon-box" style="background: rgba(255, 187, 51, 0.15); color: var(--warning);">
                     <i class="fas fa-sliders-h"></i>
                 </div>
                 <div class="dash-text">App Settings</div>
             </div>
-            <div class="dash-item" onclick="navTo('sliders')">
+            <div class="dash-item" data-perm="sliders" onclick="navTo('sliders')">
                 <div class="dash-icon-box" style="background: rgba(68, 138, 255, 0.15); color: #448AFF;">
                     <i class="fas fa-images"></i>
                 </div>
                 <div class="dash-text">Sliders</div>
             </div>
-            <div class="dash-item" onclick="navTo('notify')">
+            <div class="dash-item" data-perm="notify" onclick="navTo('notify')">
                 <div class="dash-icon-box" style="background: rgba(224, 64, 251, 0.15); color: #E040FB;">
                     <i class="fas fa-paper-plane"></i>
                 </div>
                 <div class="dash-text">Notify</div>
             </div>
             <!-- SMS Payments Icon -->
-            <div class="dash-item" onclick="navTo('sms')">
+            <div class="dash-item" data-perm="sms" onclick="navTo('sms')">
                 <div class="dash-icon-box" style="background: rgba(76, 175, 80, 0.15); color: #4CAF50;">
                     <i class="fas fa-sms"></i>
                 </div>
                 <div class="dash-text">SMS Payments</div>
             </div>
-            <div class="dash-item" onclick="navTo('presets')">
+            <div class="dash-item" data-perm="presets" onclick="navTo('presets')">
                 <div class="dash-icon-box" style="background: rgba(255, 193, 7, 0.18); color: #F2A900;">
                     <i class="fas fa-scroll"></i>
                 </div>
                 <div class="dash-text">Rules &amp; Prizes</div>
             </div>
-            <div class="dash-item" onclick="navTo('update')">
+            <div class="dash-item" data-perm="update" onclick="navTo('update')">
                 <div class="dash-icon-box" style="background: rgba(31, 91, 255, 0.15); color: #1F5BFF;">
                     <i class="fas fa-cloud-arrow-down"></i>
                 </div>
                 <div class="dash-text">App Update</div>
             </div>
-            <!-- CHANGED PIN LOCATION -->
-            <div class="dash-item" onclick="changeAdminPinPopup()">
-                <div class="dash-icon-box" style="background: rgba(255, 23, 68, 0.15); color: #FF1744;">
-                    <i class="fas fa-key"></i>
+            <div class="dash-item" data-owner-only style="display:none" onclick="navTo('adminaccess')">
+                <div class="dash-icon-box" style="background: var(--pink-soft); color: var(--pink-deep);">
+                    <i class="fas fa-user-shield"></i>
                 </div>
-                <div class="dash-text">Change PIN</div>
+                <div class="dash-text">Admin Access</div>
+            </div>
+            <div class="dash-item" data-owner-only style="display:none" onclick="navTo('owners')">
+                <div class="dash-icon-box" style="background: var(--mist); color: var(--blue);">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div class="dash-text">Owners</div>
             </div>
         </div>
+        <div id="no-perm" style="display:none;text-align:center;padding:40px 20px;color:#71819A;line-height:1.8"><i class="fas fa-lock" style="font-size:32px;color:#FF5FA2"></i><br>এই অ্যাকাউন্টে এখনো কোনো বাটন যুক্ত করা হয়নি।<br>Owner এর সাথে যোগাযোগ করুন।</div>
+    </section>
+
+    <!-- ADMIN ACCESS (owner only) -->
+    <section id="sec-adminaccess" class="section">
+        <div class="back-nav" onclick="navTo('dashboard')"><i class="fas fa-chevron-left"></i> Back to Dashboard</div>
+        <div class="aa-hint"><i class="fas fa-circle-info"></i> এখান থেকে অ্যাডমিনের জন্য ১০ সংখ্যার পিন বানান, কতদিন কাজ করতে পারবে ঠিক করুন, আর কোন বাটন সে ব্যবহার করতে পারবে সেটা যুক্ত করুন।</div>
+        <div class="list-container" id="admin-list"></div>
+        <div class="fab" onclick="addAdmin()"><i class="fas fa-plus"></i></div>
+    </section>
+
+    <!-- ADMIN BUTTON PERMISSIONS (owner only) -->
+    <section id="sec-adminperm" class="section">
+        <div class="back-nav" onclick="navTo('adminaccess')"><i class="fas fa-chevron-left"></i> Back</div>
+        <div class="aa-card" style="margin-bottom:14px">
+            <div class="aa-name" id="perm-title">Admin</div>
+            <div class="aa-meta" id="perm-meta"></div>
+        </div>
+        <div class="aa-hint"><i class="fas fa-hand-pointer"></i> যে বাটনে ট্যাপ করবেন সেটা এই অ্যাডমিনের সাথে যুক্ত হবে (✓ চিহ্ন আসবে)। আবার ট্যাপ করলে কেটে যাবে।</div>
+        <div style="display:flex;gap:10px;margin-bottom:14px">
+            <button class="aa-btn" style="flex:1" onclick="permAll(true)"><i class="fas fa-check-double"></i> সব যুক্ত করুন</button>
+            <button class="aa-btn danger" style="flex:1" onclick="permAll(false)"><i class="fas fa-ban"></i> সব কেটে দিন</button>
+        </div>
+        <div class="dash-grid" id="perm-grid"></div>
+    </section>
+
+    <!-- OWNERS (owner only) -->
+    <section id="sec-owners" class="section">
+        <div class="back-nav" onclick="navTo('dashboard')"><i class="fas fa-chevron-left"></i> Back to Dashboard</div>
+        <div class="aa-hint"><i class="fas fa-circle-info"></i> Owner অ্যাকাউন্ট দিয়ে অ্যাপের সবকিছু দেখা ও বদলানো যায়। বিশ্বাসী কাউকেই Owner বানান।</div>
+        <div class="list-container" id="owner-list"></div>
+        <div class="fab" onclick="addOwner()"><i class="fas fa-plus"></i></div>
     </section>
 
     <!-- RULES & PRIZE PRESETS -->
@@ -631,37 +779,465 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
         window._smsPayments = {};
         let allUsers = [];
         let allCategories = [];
-        let currentAdminPin = "1234";
+        // ================= AUTH: OWNER (username + password) / ADMIN (10-digit PIN) =================
+        const $a = i => document.getElementById(i);
+        const esc2 = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        const PBKDF_ITER = 600000;
+        const OWNER_ONLY = ['adminaccess', 'adminperm', 'owners'];
+        const b64 = buf => btoa(String.fromCharCode(...new Uint8Array(buf)));
+        const unb64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+        async function hashSecret(secret, saltB64, iter) {
+            if (!(window.crypto && crypto.subtle)) throw new Error('secure-context');
+            const key = await crypto.subtle.importKey('raw', new TextEncoder().encode(secret), 'PBKDF2', false, ['deriveBits']);
+            const bits = await crypto.subtle.deriveBits({ name: 'PBKDF2', hash: 'SHA-256', salt: unb64(saltB64), iterations: iter || PBKDF_ITER }, key, 256);
+            return b64(bits);
+        }
+        const newSalt = () => b64(crypto.getRandomValues(new Uint8Array(16)));
+        async function makeCred(secret) { const salt = newSalt(); return { salt, iter: PBKDF_ITER, hash: await hashSecret(secret, salt, PBKDF_ITER) }; }
+        async function checkCred(secret, rec) { return (await hashSecret(secret, rec.salt, rec.iter || PBKDF_ITER)) === rec.hash; }
+        const rand10 = () => { const a = crypto.getRandomValues(new Uint32Array(2)); return String(((BigInt(a[0]) << 32n) | BigInt(a[1])) % 10000000000n).padStart(10, '0'); };
+        window.rand10 = rand10;
 
-        // --- AUTH LOGIC ---
-        onValue(ref(db, 'app_settings/admin_pin'), s => {
-            if(s.exists()) currentAdminPin = String(s.val());
-        });
+        let serverOffset = 0;
+        onValue(ref(db, '.info/serverTimeOffset'), s => { serverOffset = s.val() || 0; });
+        const nowMs = () => Date.now() + serverOffset;
+        const fmtLeft = ms => { if (ms <= 0) return '0m'; const m = Math.floor(ms / 60000), h = Math.floor(m / 60), d = Math.floor(h / 24); return d > 0 ? d + 'd ' + (h % 24) + 'h' : h > 0 ? h + 'h ' + (m % 60) + 'm' : m + 'm'; };
+        const fmtDate = ms => new Date(ms).toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
 
-        let pin = "";
-        window.typePin = (n) => {
-            if(pin.length < 4) { // HIGHEST 4 DIGIT CONSTRAINT
-                pin += n;
-                updateDots();
-            }
-            if(pin === currentAdminPin) { 
-                document.getElementById('auth-overlay').style.display = 'none';
-                initAdmin();
-            } else if (pin.length === 4) {
-                setTimeout(() => { 
-                    if(pin !== currentAdminPin) { pin = ""; updateDots(); }
-                }, 300);
+        let session = null;          // {role:'owner'|'admin', id, username|label, perms, expires}
+        let authData = {};           // admin_auth node (only while locked or owner session)
+        let authLoaded = false, authUnsub = null;
+        let authMode = 'owner';
+        try { authMode = localStorage.getItem('auth_mode') === 'admin' ? 'admin' : 'owner'; } catch (_) {}
+
+        const canAccess = id => {
+            if (!session) return false;
+            if (session.role === 'owner') return true;
+            if (OWNER_ONLY.includes(id)) return false;
+            return !!(session.perms && session.perms[id]);
+        };
+
+        // ---- lock screen helpers ----
+        function lkMsg(t, ok) { const m = $a('lk-msg'); m.textContent = t || ''; m.className = 'lk-msg' + (ok ? ' ok' : ''); }
+        function showPane(id) { ['lk-owner', 'lk-setup', 'lk-recover', 'lk-admin'].forEach(p => $a(p).classList.toggle('show', p === id)); }
+        let recoverMode = false;
+        const normAns = a => String(a || '').trim().toLowerCase().replace(/\s+/g, '');
+        function setHead(icon, title, sub) { $a('lk-icon').className = 'fas ' + icon; $a('lk-title').textContent = title; $a('lk-sub').textContent = sub || ''; }
+        function shake() { const c = $a('lk-card'); c.classList.remove('shake'); void c.offsetWidth; c.classList.add('shake'); }
+        window.togglePass = (id, btn) => { const i = $a(id); const show = i.type === 'password'; i.type = show ? 'text' : 'password'; btn.innerHTML = '<i class="fas fa-eye' + (show ? '-slash' : '') + '"></i>'; };
+        function lsGet(k) { try { return localStorage.getItem(k); } catch (_) { return null; } }
+        function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (_) {} }
+        function throttled() {
+            const left = (+lsGet('auth_lock') || 0) - Date.now();
+            if (left > 0) { lkMsg('অনেকবার ভুল হয়েছে। ' + Math.ceil(left / 1000) + ' সেকেন্ড পরে চেষ্টা করুন'); shake(); return true; }
+            return false;
+        }
+        function failAttempt(msg) {
+            const f = (+lsGet('auth_fail') || 0) + 1; lsSet('auth_fail', f);
+            if (f % 5 === 0) lsSet('auth_lock', Date.now() + Math.min(600000, 30000 * Math.pow(2, f / 5 - 1)));
+            lkMsg(msg); shake();
+        }
+        function authErr(e) { lkMsg(e && e.message === 'secure-context' ? 'এই অ্যাপ নিরাপদ (https) পরিবেশে খুলতে হবে' : 'সমস্যা হয়েছে, আবার চেষ্টা করুন'); }
+        function setBusy(on) { document.querySelectorAll('#auth-overlay .lk-btn').forEach(b => b.disabled = on); if (on) lkMsg('যাচাই হচ্ছে…', true); }
+
+        window.setAuthMode = (m) => {
+            authMode = m; lsSet('auth_mode', m);
+            $a('mode-owner').classList.toggle('active', m === 'owner');
+            $a('mode-admin').classList.toggle('active', m === 'admin');
+            pin = ''; updateDots(); lkMsg(''); recoverMode = false;
+            if (m === 'admin') { showPane('lk-admin'); setHead('fa-user-shield', 'Admin Access', 'আপনার ১০ সংখ্যার পিন দিন'); }
+            else refreshOwnerPane();
+        };
+        function refreshOwnerPane() {
+            if (authMode !== 'owner') return;
+            if (!authLoaded) { showPane(''); setHead('fa-crown', 'Owner', 'লোড হচ্ছে…'); return; }
+            if (Object.keys(authData.owners || {}).length && recoverMode) { showPane('lk-recover'); setHead('fa-key', 'Reset Password', 'আপনার পছন্দের নাম ও রঙ দিয়ে নতুন Password বানান'); }
+            else if (Object.keys(authData.owners || {}).length) { showPane('lk-owner'); setHead('fa-crown', 'Owner Login', 'আপনার Username ও Password দিন'); }
+            else { showPane('lk-setup'); setHead('fa-wand-magic-sparkles', 'Owner Setup', 'নতুন সিস্টেম চালু হচ্ছে, প্রথমে Owner অ্যাকাউন্ট খুলুন'); $a('su-old-wrap').style.display = authData.setup_done ? 'none' : ''; }
+        }
+
+        // ---- listen to admin_auth while locked ----
+        authUnsub = onValue(ref(db, 'admin_auth'), s => {
+            authData = s.val() || {}; authLoaded = true;
+            if (!session) refreshOwnerPane();
+            else if (session.role === 'owner') { renderAdmins(); renderOwners(); renderPerm(); }
+        }, () => { lkMsg('Firebase Rules এ admin_auth এর পড়া/লেখার অনুমতি দিন'); });
+
+        window.showRecover = () => { recoverMode = true; lkMsg(''); refreshOwnerPane(); $a('rc-user').value = $a('ow-user').value; };
+        window.hideRecover = () => { recoverMode = false; lkMsg(''); refreshOwnerPane(); };
+
+        // ---- owner login / setup ----
+        window.ownerLogin = async () => {
+            const u = $a('ow-user').value.trim().toLowerCase(), p = $a('ow-pass').value;
+            if (!u || !p) return lkMsg('Username ও Password দিন');
+            if (throttled()) return;
+            setBusy(true);
+            try {
+                const entry = Object.entries(authData.owners || {}).find(([k, o]) => o.username === u);
+                let ok = false;
+                if (entry) ok = await checkCred(p, entry[1]); else await hashSecret(p, newSalt());
+                if (!ok) return failAttempt('Username বা Password ভুল');
+                lsSet('auth_fail', 0);
+                session = { role: 'owner', id: entry[0], username: entry[1].username };
+                enterApp();
+            } catch (e) { authErr(e); } finally { setBusy(false); }
+        };
+        window.ownerSetup = async () => {
+            const oldPin = $a('su-old').value.trim(), u = $a('su-user').value.trim().toLowerCase(), p = $a('su-pass').value, c = $a('su-pass2').value;
+            const fn = normAns($a('su-fname').value), fc = normAns($a('su-fcolor').value);
+            const needOld = !authData.setup_done;
+            if (needOld && !oldPin) return lkMsg('পুরনো ৪ সংখ্যার পিন দিন');
+            if (!/^[a-z0-9._-]{3,20}$/.test(u)) return lkMsg('Username ৩-২০ অক্ষর, শুধু a-z 0-9 . _ -');
+            if (p.length < 8) return lkMsg('Password কমপক্ষে ৮ অক্ষর দিন');
+            if (p !== c) return lkMsg('দুই Password মিলছে না');
+            if (fn.length < 2) return lkMsg('আপনার পছন্দের নাম লিখুন');
+            if (fc.length < 2) return lkMsg('আপনার পছন্দের রঙ লিখুন');
+            if (throttled()) return;
+            setBusy(true);
+            try {
+                if (needOld) {
+                    const s = await get(ref(db, 'app_settings/admin_pin'));
+                    const real = s.exists() ? String(s.val()) : '1234';
+                    if (oldPin !== real) return failAttempt('পুরনো পিন ভুল');
+                }
+                const cur = await get(ref(db, 'admin_auth/owners'));
+                if (cur.exists()) return lkMsg('Owner আগেই তৈরি হয়ে গেছে, লগইন করুন');
+                const [cred, rn, rcol] = await Promise.all([makeCred(p), makeCred(fn), makeCred(fc)]);
+                const r = await push(ref(db, 'admin_auth/owners'), { username: u, ...cred, recovery: { name: rn, color: rcol }, created: nowMs() });
+                await set(ref(db, 'admin_auth/setup_done'), true);
+                try { await remove(ref(db, 'app_settings/admin_pin')); } catch (_) {}
+                lsSet('auth_fail', 0);
+                session = { role: 'owner', id: r.key, username: u };
+                enterApp();
+            } catch (e) { authErr(e); } finally { setBusy(false); }
+        };
+
+        window.ownerRecover = async () => {
+            const u = $a('rc-user').value.trim().toLowerCase(), fn = normAns($a('rc-fname').value), fc = normAns($a('rc-fcolor').value);
+            const p = $a('rc-pass').value, c = $a('rc-pass2').value;
+            if (!u || !fn || !fc) return lkMsg('Username, পছন্দের নাম ও রঙ দিন');
+            if (p.length < 8) return lkMsg('নতুন Password কমপক্ষে ৮ অক্ষর দিন');
+            if (p !== c) return lkMsg('দুই Password মিলছে না');
+            if (throttled()) return;
+            setBusy(true);
+            try {
+                const entry = Object.entries(authData.owners || {}).find(([k, o]) => o.username === u);
+                let ok = false;
+                if (entry && entry[1].recovery) {
+                    const r = entry[1].recovery;
+                    const [a1, a2] = await Promise.all([checkCred(fn, r.name), checkCred(fc, r.color)]);
+                    ok = a1 && a2;
+                } else await hashSecret('x', newSalt());
+                if (!ok) return failAttempt('তথ্য মিলছে না');
+                await update(ref(db, `admin_auth/owners/${entry[0]}`), await makeCred(p));
+                lsSet('auth_fail', 0);
+                recoverMode = false; refreshOwnerPane();
+                $a('ow-user').value = u; $a('ow-pass').value = '';
+                lkMsg('Password বদলানো হয়েছে, এখন লগইন করুন', true);
+            } catch (e) { authErr(e); } finally { setBusy(false); }
+        };
+
+        // ---- admin 10-digit PIN ----
+        let pin = '', pinBusy = false;
+        window.typePin = async (n) => {
+            if (pinBusy || pin.length >= 10) return;
+            pin += n; updateDots();
+            if (pin.length === 10) {
+                pinBusy = true;
+                const entered = pin;
+                try { await adminLogin(entered); } catch (e) { authErr(e); }
+                pin = ''; updateDots(); pinBusy = false;
             }
         };
-        window.delPin = () => { pin = pin.slice(0, -1); updateDots(); };
-        
+        window.delPin = () => { if (pinBusy) return; pin = pin.slice(0, -1); updateDots(); };
         function updateDots() {
-            const dots = document.querySelectorAll('.dot');
-            dots.forEach((d, i) => {
-                if(i < pin.length) d.classList.add('filled');
-                else d.classList.remove('filled');
-            });
+            document.querySelectorAll('#pin-dots .dot').forEach((d, i) => d.classList.toggle('filled', i < pin.length));
         }
+        async function adminLogin(entered) {
+            if (throttled()) return;
+            if (!authLoaded) return lkMsg('একটু অপেক্ষা করুন…');
+            lkMsg('যাচাই হচ্ছে…', true);
+            let found = null;
+            for (const [id, a] of Object.entries(authData.admins || {})) {
+                if (await checkCred(entered, a)) { found = [id, a]; break; }
+            }
+            if (!found) return failAttempt('ভুল পিন');
+            const [id, a] = found;
+            if (a.disabled) return lkMsg('এই পিন বন্ধ করা হয়েছে');
+            if (a.expires && a.expires <= nowMs()) return lkMsg('এই পিনের মেয়াদ শেষ হয়ে গেছে');
+            lsSet('auth_fail', 0);
+            session = { role: 'admin', id, label: a.label, perms: a.perms || {}, expires: a.expires || 0 };
+            enterApp();
+        }
+
+        // ---- after login ----
+        function enterApp() {
+            $a('auth-overlay').style.display = 'none';
+            lkMsg('');
+            if (session.role === 'admin') {
+                if (authUnsub) { authUnsub(); authUnsub = null; }
+                authData = {};
+                onValue(ref(db, `admin_auth/admins/${session.id}`), s => {
+                    const a = s.val();
+                    if (!a) return forceLock('আপনার অ্যাক্সেস বাতিল করা হয়েছে');
+                    if (a.disabled) return forceLock('আপনার পিন বন্ধ করা হয়েছে');
+                    if (a.expires && a.expires <= nowMs()) return forceLock('আপনার অ্যাক্সেসের সময় শেষ হয়েছে');
+                    session.perms = a.perms || {}; session.expires = a.expires || 0; session.label = a.label;
+                    applyRole();
+                });
+            }
+            setInterval(() => {
+                updateBadge();
+                if (session && session.role === 'admin' && session.expires && session.expires <= nowMs()) forceLock('আপনার অ্যাক্সেসের সময় শেষ হয়েছে');
+            }, 10000);
+            applyRole();
+            initAdmin();
+            navTo('dashboard');
+        }
+        function forceLock(msg) {
+            if (window._locked) return; window._locked = true; session = null;
+            try { Swal.close(); } catch (_) {}
+            const d = document.createElement('div'); d.id = 'ended-overlay';
+            d.innerHTML = '<div class="lk-card"><div class="lk-logo"><i class="fas fa-hourglass-end"></i></div><div class="lk-title">Access Ended</div><div class="lk-sub">' + esc2(msg) + '</div><button type="button" class="lk-btn" onclick="location.reload()">OK</button></div>';
+            document.body.appendChild(d);
+        }
+        function updateBadge() {
+            const b = $a('role-badge'); if (!b) return;
+            if (!session) { b.style.display = 'none'; return; }
+            b.style.display = '';
+            if (session.role === 'owner') b.innerHTML = '<i class="fas fa-crown"></i> OWNER';
+            else b.innerHTML = '<i class="fas fa-user-shield"></i> ' + esc2(String(session.label || 'ADMIN').slice(0, 12)) + ' • ' + (session.expires ? fmtLeft(session.expires - nowMs()) : 'Permanent');
+        }
+        function applyRole() {
+            if (!session) return;
+            document.querySelectorAll('.dash-item[data-perm]').forEach(el => { el.style.display = canAccess(el.dataset.perm) ? '' : 'none'; });
+            document.querySelectorAll('[data-owner-only]').forEach(el => { el.style.display = session.role === 'owner' ? '' : 'none'; });
+            const sc = document.querySelector('#sec-dashboard .stat-card'); if (sc) sc.style.display = canAccess('users') ? '' : 'none';
+            let any = false;
+            document.querySelectorAll('#sec-dashboard .dash-grid').forEach(g => {
+                const has = [...g.children].some(c => c.style.display !== 'none');
+                g.style.display = has ? '' : 'none';
+                const t = g.previousElementSibling;
+                if (t && !t.classList.contains('dash-grid') && !t.classList.contains('stat-card')) t.style.display = has ? '' : 'none';
+                if (has) any = true;
+            });
+            const np = $a('no-perm'); if (np) np.style.display = any ? 'none' : '';
+            updateBadge();
+            const act = document.querySelector('.section.active');
+            if (act && act.id !== 'sec-dashboard' && !canAccess(act.id.replace('sec-', ''))) navTo('dashboard');
+        }
+
+        // ================= OWNER TOOLS: ADMIN ACCESS =================
+        const modulesFromDash = () => [...document.querySelectorAll('.dash-item[data-perm]')].map(el => ({ id: el.dataset.perm, name: el.querySelector('.dash-text').textContent, icon: el.querySelector('.dash-icon-box').outerHTML }));
+        const adminStatus = a => a.disabled ? { k: 'off', t: 'Disabled' } : (a.expires && a.expires <= nowMs()) ? { k: 'exp', t: 'Expired' } : { k: 'ok', t: 'Active' };
+        const durForm = (mode) => `
+            <label class="form-label" style="text-align:left">Access Time</label>
+            <select id="du-mode" class="swal2-select" style="width:100%;margin:0 0 10px" onchange="document.getElementById('du-row').style.display=this.value==='perm'?'none':'flex'">
+                <option value="from_now">${mode === 'edit' ? 'এখন থেকে নতুন সময় সেট করুন' : 'সীমিত সময়'}</option>
+                ${mode === 'edit' ? '<option value="extend">বর্তমান মেয়াদে সময় যোগ করুন</option>' : ''}
+                <option value="perm">Permanent (সময়সীমা নেই)</option>
+            </select>
+            <div id="du-row" style="display:flex;gap:8px">
+                <input id="du-n" type="number" min="1" value="7" class="swal2-input" style="margin:0;flex:1">
+                <select id="du-u" class="swal2-select" style="margin:0;flex:1"><option value="days">Days</option><option value="hours">Hours</option></select>
+            </div>`;
+        function readDur() {
+            const mode = $a('du-mode').value;
+            if (mode === 'perm') return { mode };
+            const n = parseInt($a('du-n').value, 10);
+            if (!n || n < 1) return { err: 'সময়ের সংখ্যা দিন' };
+            return { mode, ms: n * ($a('du-u').value === 'hours' ? 3600000 : 86400000) };
+        }
+        async function pinTaken(p, exceptId) {
+            for (const [id, a] of Object.entries(authData.admins || {})) { if (id !== exceptId && await checkCred(p, a)) return true; }
+            return false;
+        }
+        async function showPinResult(label, p) {
+            await Swal.fire({
+                title: 'Admin PIN তৈরি হয়েছে',
+                html: `<div style="font-weight:700;color:#0B2E7A;margin-bottom:8px">${esc2(label)}</div>
+                       <div style="font:800 30px Rajdhani,monospace;letter-spacing:4px;color:#E83C86;background:#FFE3F0;border-radius:16px;padding:14px">${p}</div>
+                       <div style="font-size:12px;color:#71819A;margin-top:10px;line-height:1.6">⚠️ এই পিন আর দেখা যাবে না। এখনই কপি করে অ্যাডমিনকে দিন।</div>`,
+                confirmButtonText: 'Copy PIN',
+                showCancelButton: true, cancelButtonText: 'Close', allowOutsideClick: false
+            }).then(r => { if (r.isConfirmed) { try { navigator.clipboard.writeText(p); } catch (_) {} } });
+        }
+        function renderAdmins() {
+            const l = $a('admin-list'); if (!l) return;
+            const items = Object.entries(authData.admins || {});
+            if (!items.length) { l.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-muted);line-height:1.8">কোনো অ্যাডমিন নেই।<br>নিচের + চেপে নতুন অ্যাডমিন বানান।</div>'; return; }
+            l.innerHTML = items.map(([id, a]) => {
+                const st = adminStatus(a), n = Object.keys(a.perms || {}).length;
+                const time = a.expires ? (st.k === 'exp' ? 'মেয়াদ শেষ: ' + fmtDate(a.expires) : 'শেষ হবে: ' + fmtDate(a.expires) + ' (' + fmtLeft(a.expires - nowMs()) + ' বাকি)') : 'Permanent';
+                return `<div class="aa-card">
+                    <div class="aa-top"><div class="aa-name">${esc2(a.label)}</div><span class="aa-chip ${st.k}">${st.t}</span></div>
+                    <div class="aa-meta"><i class="fas fa-clock"></i> ${time}</div>
+                    <div class="aa-meta"><i class="fas fa-grip"></i> ${n} টি বাটন যুক্ত</div>
+                    <div class="aa-actions">
+                        <button class="aa-btn" onclick="openPerm('${id}')"><i class="fas fa-th-large"></i> বাটন</button>
+                        <button class="aa-btn" onclick="editAdminTime('${id}')"><i class="fas fa-clock"></i> সময়</button>
+                        <button class="aa-btn" onclick="resetAdminPin('${id}')"><i class="fas fa-key"></i> নতুন পিন</button>
+                        <button class="aa-btn" onclick="toggleAdmin('${id}')"><i class="fas fa-${a.disabled ? 'play' : 'pause'}"></i> ${a.disabled ? 'চালু' : 'বন্ধ'}</button>
+                        <button class="aa-btn danger" onclick="deleteAdmin('${id}')" style="grid-column:span 2"><i class="fas fa-trash"></i> মুছুন</button>
+                    </div></div>`;
+            }).join('');
+        }
+        window.addAdmin = async () => {
+            const gen = rand10();
+            const { value } = await Swal.fire({
+                title: 'নতুন Admin',
+                html: `<label class="form-label" style="text-align:left">নাম / পরিচয়</label>
+                       <input id="aa-label" class="swal2-input" placeholder="যেমন: রাফি (ম্যাচ ম্যানেজার)" style="margin:0 0 10px">
+                       <label class="form-label" style="text-align:left">১০ সংখ্যার PIN</label>
+                       <div style="display:flex;gap:8px;margin-bottom:10px"><input id="aa-pin" class="swal2-input" inputmode="numeric" maxlength="10" value="${gen}" style="margin:0;flex:1;letter-spacing:3px;font-weight:800"><button type="button" class="aa-btn" style="padding:0 14px" onclick="document.getElementById('aa-pin').value=rand10()"><i class="fas fa-rotate"></i></button></div>
+                       ${durForm('new')}`,
+                focusConfirm: false, showCancelButton: true, confirmButtonText: 'Create', showLoaderOnConfirm: true,
+                preConfirm: async () => {
+                    const label = $a('aa-label').value.trim(), p = $a('aa-pin').value.trim(), d = readDur();
+                    if (!label) { Swal.showValidationMessage('নাম দিন'); return false; }
+                    if (!/^\d{10}$/.test(p)) { Swal.showValidationMessage('PIN ঠিক ১০টি সংখ্যা হতে হবে'); return false; }
+                    if (d.err) { Swal.showValidationMessage(d.err); return false; }
+                    if (await pinTaken(p)) { Swal.showValidationMessage('এই পিন আরেকজনের আছে, অন্য পিন দিন'); return false; }
+                    const cred = await makeCred(p);
+                    const rec = { label, ...cred, perms: {}, expires: d.mode === 'perm' ? 0 : nowMs() + d.ms, created: nowMs(), disabled: false, createdBy: session.username };
+                    const r = await push(ref(db, 'admin_auth/admins'), rec);
+                    return { id: r.key, pin: p, label };
+                }
+            });
+            if (value) { await showPinResult(value.label, value.pin); openPerm(value.id); }
+        };
+        window.editAdminTime = async (id) => {
+            const a = (authData.admins || {})[id]; if (!a) return;
+            const { value } = await Swal.fire({
+                title: 'সময় বদলান', html: durForm('edit'), focusConfirm: false, showCancelButton: true, confirmButtonText: 'Save',
+                preConfirm: () => {
+                    const d = readDur(); if (d.err) { Swal.showValidationMessage(d.err); return false; }
+                    if (d.mode === 'extend' && !a.expires) { Swal.showValidationMessage('এটা Permanent, "এখন থেকে নতুন সময়" বেছে নিন'); return false; }
+                    return d;
+                }
+            });
+            if (!value) return;
+            let expires = 0;
+            if (value.mode === 'from_now') expires = nowMs() + value.ms;
+            else if (value.mode === 'extend') expires = Math.max(a.expires, nowMs()) + value.ms;
+            await update(ref(db, `admin_auth/admins/${id}`), { expires });
+            Swal.fire({ icon: 'success', title: 'সময় বদলানো হয়েছে', timer: 1200, showConfirmButton: false });
+        };
+        window.resetAdminPin = async (id) => {
+            const a = (authData.admins || {})[id]; if (!a) return;
+            const r = await Swal.fire({ title: 'নতুন PIN বানাবেন?', text: 'পুরনো পিন সাথে সাথে অকেজো হয়ে যাবে।', icon: 'warning', showCancelButton: true, confirmButtonText: 'হ্যাঁ' });
+            if (!r.isConfirmed) return;
+            let p = rand10(); while (await pinTaken(p, id)) p = rand10();
+            await update(ref(db, `admin_auth/admins/${id}`), await makeCred(p));
+            await showPinResult(a.label, p);
+        };
+        window.toggleAdmin = (id) => { const a = (authData.admins || {})[id]; if (a) update(ref(db, `admin_auth/admins/${id}`), { disabled: !a.disabled }); };
+        window.deleteAdmin = async (id) => {
+            const a = (authData.admins || {})[id]; if (!a) return;
+            const r = await Swal.fire({ title: 'মুছে ফেলবেন?', text: a.label + ' আর অ্যাপে ঢুকতে পারবে না।', icon: 'warning', showCancelButton: true, confirmButtonColor: '#E83C86', confirmButtonText: 'মুছুন' });
+            if (r.isConfirmed) remove(ref(db, `admin_auth/admins/${id}`));
+        };
+
+        // ---- buttons attached to an admin ----
+        let permAdminId = null;
+        window.openPerm = (id) => { permAdminId = id; navTo('adminperm'); renderPerm(); };
+        function renderPerm() {
+            const g = $a('perm-grid'); if (!g || !permAdminId) return;
+            const a = (authData.admins || {})[permAdminId];
+            if (!a) { g.innerHTML = '<div style="padding:30px;text-align:center;color:var(--text-muted)">Admin পাওয়া যায়নি</div>'; return; }
+            const st = adminStatus(a), perms = a.perms || {};
+            $a('perm-title').textContent = a.label;
+            $a('perm-meta').innerHTML = `<span class="aa-chip ${st.k}">${st.t}</span> &nbsp; ${a.expires ? fmtLeft(a.expires - nowMs()) + ' বাকি' : 'Permanent'} • ${Object.keys(perms).length} টি বাটন`;
+            g.innerHTML = modulesFromDash().map(m => `<div class="dash-item perm-item ${perms[m.id] ? 'on' : ''}" onclick="togglePerm('${m.id}')">${m.icon}<div class="dash-text">${esc2(m.name)}</div><div class="tick"><i class="fas fa-check"></i></div></div>`).join('');
+        }
+        window.togglePerm = (mod) => {
+            const a = (authData.admins || {})[permAdminId]; if (!a) return;
+            set(ref(db, `admin_auth/admins/${permAdminId}/perms/${mod}`), (a.perms || {})[mod] ? null : true);
+        };
+        window.permAll = (on) => {
+            const o = {}; if (on) modulesFromDash().forEach(m => o[m.id] = true);
+            set(ref(db, `admin_auth/admins/${permAdminId}/perms`), on ? o : null);
+        };
+
+        // ================= OWNER TOOLS: OWNERS =================
+        function renderOwners() {
+            const l = $a('owner-list'); if (!l) return;
+            l.innerHTML = Object.entries(authData.owners || {}).map(([id, o]) => {
+                const me = session && id === session.id;
+                return `<div class="aa-card">
+                    <div class="aa-top"><div class="aa-name"><i class="fas fa-crown" style="color:#E83C86"></i> ${esc2(o.username)}</div>${me ? '<span class="aa-chip ok">You</span>' : ''}</div>
+                    <div class="aa-meta"><i class="fas fa-calendar"></i> ${o.created ? fmtDate(o.created) : ''}</div>
+                    <div class="aa-meta"><i class="fas fa-life-ring"></i> ${o.recovery ? 'Password রিসেটের তথ্য সেট করা আছে ✓' : '<b style="color:#E83C86">Password রিসেটের তথ্য নেই</b>'}</div>
+                    <div class="aa-actions" style="grid-template-columns:1fr 1fr">
+                        <button class="aa-btn" onclick="ownerPass('${id}')"><i class="fas fa-key"></i> ${me ? 'Password বদলান' : 'Password রিসেট'}</button>
+                        ${me ? `<button class="aa-btn" onclick="ownerRecovery('${id}')"><i class="fas fa-life-ring"></i> নাম ও রঙ</button>` : `<button class="aa-btn danger" onclick="ownerDelete('${id}')"><i class="fas fa-trash"></i> মুছুন</button>`}
+                    </div></div>`;
+            }).join('');
+        }
+        const pwInput = (id, ph) => `<div class="pw-wrap"><input id="${id}" type="password" class="swal2-input" placeholder="${ph}" autocomplete="off"><button type="button" class="pw-eye" onclick="togglePass('${id}',this)"><i class="fas fa-eye"></i></button></div>`;
+        const passForm = (pre, askOld) => `${askOld ? pwInput(pre + '-old', 'বর্তমান Password') : ''}${pwInput(pre + '-new', 'নতুন Password (কমপক্ষে ৮)')}${pwInput(pre + '-new2', 'আবার লিখুন')}`;
+        const recoveryForm = (pre) => `<div class="lk-note" style="color:#71819A;text-align:left"><i class="fas fa-life-ring" style="color:#E83C86"></i> Password ভুলে গেলে রিসেট করতে এই দুটো লাগবে</div>
+            <input id="${pre}-fname" class="swal2-input" placeholder="আপনার পছন্দের নাম" autocomplete="off" style="margin:0 0 10px">
+            <input id="${pre}-fcolor" class="swal2-input" placeholder="আপনার পছন্দের রঙ" autocomplete="off" style="margin:0">`;
+        window.addOwner = async () => {
+            const { value } = await Swal.fire({
+                title: 'নতুন Owner',
+                html: `<input id="no-user" class="swal2-input" placeholder="Username (a-z, 0-9)" autocapitalize="none" autocomplete="off" style="margin:0 0 10px">${passForm('no', false)}${recoveryForm('no')}`,
+                focusConfirm: false, showCancelButton: true, confirmButtonText: 'Create', showLoaderOnConfirm: true,
+                preConfirm: async () => {
+                    const u = $a('no-user').value.trim().toLowerCase(), p = $a('no-new').value, c = $a('no-new2').value;
+                    const fn = normAns($a('no-fname').value), fc = normAns($a('no-fcolor').value);
+                    if (!/^[a-z0-9._-]{3,20}$/.test(u)) { Swal.showValidationMessage('Username ৩-২০ অক্ষর, শুধু a-z 0-9 . _ -'); return false; }
+                    if (Object.values(authData.owners || {}).some(o => o.username === u)) { Swal.showValidationMessage('এই Username আছে'); return false; }
+                    if (p.length < 8) { Swal.showValidationMessage('Password কমপক্ষে ৮ অক্ষর'); return false; }
+                    if (p !== c) { Swal.showValidationMessage('দুই Password মিলছে না'); return false; }
+                    if (fn.length < 2 || fc.length < 2) { Swal.showValidationMessage('পছন্দের নাম ও রঙ দুটোই লিখুন'); return false; }
+                    const [cred, rn, rcol] = await Promise.all([makeCred(p), makeCred(fn), makeCred(fc)]);
+                    await push(ref(db, 'admin_auth/owners'), { username: u, ...cred, recovery: { name: rn, color: rcol }, created: nowMs(), createdBy: session.username });
+                    return true;
+                }
+            });
+            if (value) Swal.fire({ icon: 'success', title: 'Owner তৈরি হয়েছে', timer: 1300, showConfirmButton: false });
+        };
+        window.ownerPass = async (id) => {
+            const o = (authData.owners || {})[id]; if (!o) return;
+            const me = id === session.id;
+            const { value } = await Swal.fire({
+                title: me ? 'Password বদলান' : o.username + ' এর Password রিসেট', html: passForm('op', me), focusConfirm: false, showCancelButton: true, confirmButtonText: 'Save', showLoaderOnConfirm: true,
+                preConfirm: async () => {
+                    const p = $a('op-new').value, c = $a('op-new2').value;
+                    if (me && !(await checkCred($a('op-old').value, o))) { Swal.showValidationMessage('বর্তমান Password ভুল'); return false; }
+                    if (p.length < 8) { Swal.showValidationMessage('Password কমপক্ষে ৮ অক্ষর'); return false; }
+                    if (p !== c) { Swal.showValidationMessage('দুই Password মিলছে না'); return false; }
+                    await update(ref(db, `admin_auth/owners/${id}`), await makeCred(p));
+                    return true;
+                }
+            });
+            if (value) Swal.fire({ icon: 'success', title: 'Password বদলানো হয়েছে', timer: 1300, showConfirmButton: false });
+        };
+        window.ownerRecovery = async (id) => {
+            const o = (authData.owners || {})[id]; if (!o || id !== session.id) return;
+            const { value } = await Swal.fire({
+                title: 'পছন্দের নাম ও রঙ', html: pwInput('rv-old', 'বর্তমান Password') + recoveryForm('rv'), focusConfirm: false, showCancelButton: true, confirmButtonText: 'Save', showLoaderOnConfirm: true,
+                preConfirm: async () => {
+                    const fn = normAns($a('rv-fname').value), fc = normAns($a('rv-fcolor').value);
+                    if (!(await checkCred($a('rv-old').value, o))) { Swal.showValidationMessage('বর্তমান Password ভুল'); return false; }
+                    if (fn.length < 2 || fc.length < 2) { Swal.showValidationMessage('পছন্দের নাম ও রঙ দুটোই লিখুন'); return false; }
+                    const [rn, rcol] = await Promise.all([makeCred(fn), makeCred(fc)]);
+                    await update(ref(db, `admin_auth/owners/${id}`), { recovery: { name: rn, color: rcol } });
+                    return true;
+                }
+            });
+            if (value) Swal.fire({ icon: 'success', title: 'সেভ হয়েছে', timer: 1300, showConfirmButton: false });
+        };
+        window.ownerDelete = async (id) => {
+            const o = (authData.owners || {})[id]; if (!o || id === session.id) return;
+            if (Object.keys(authData.owners || {}).length < 2) return Swal.fire('Error', 'শেষ Owner মোছা যাবে না', 'error');
+            const r = await Swal.fire({ title: 'মুছে ফেলবেন?', text: o.username + ' আর Owner হিসেবে ঢুকতে পারবে না।', icon: 'warning', showCancelButton: true, confirmButtonColor: '#E83C86', confirmButtonText: 'মুছুন' });
+            if (r.isConfirmed) remove(ref(db, `admin_auth/owners/${id}`));
+        };
+
+        setAuthMode(authMode);
 
         // --- NAVIGATION ---
         // --- APP UPDATE (version popup for old versions) ---
@@ -719,9 +1295,12 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
         else { history.pushState({a:1}, ''); window.addEventListener('popstate', () => { history.pushState({a:1}, ''); hardwareBack(); }); }
 
         window.navTo = (id) => {
+            if (id !== 'dashboard' && !canAccess(id)) return;
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.getElementById(`sec-${id}`).classList.add('active');
             if (id === 'update') loadUpdateForm();
+            if (id === 'adminaccess') renderAdmins();
+            if (id === 'owners') renderOwners();
             window.scrollTo(0, 0);
         }
 
@@ -1535,33 +2114,6 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
                 Swal.fire('Refunded', 'Money returned to user', 'info');
             }
         }
-
-        // --- CHANGE PIN POPUP ---
-        window.changeAdminPinPopup = async () => {
-            const { value: newPin } = await Swal.fire({
-                title: 'Change Admin PIN',
-                input: 'text',
-                inputAttributes: {
-                    maxlength: 4,
-                    pattern: "[0-9]*",
-                    inputmode: "numeric"
-                },
-                inputPlaceholder: 'Enter 4-digit PIN',
-                confirmButtonText: 'Set PIN',
-                confirmButtonColor: '#FF1744',
-                showCancelButton: true,
-                inputValidator: (value) => {
-                    if (!value || value.length !== 4 || isNaN(value)) {
-                        return 'PIN must be exactly 4 digits!'
-                    }
-                }
-            });
-
-            if (newPin) {
-                update(ref(db, 'app_settings'), { admin_pin: newPin });
-                Swal.fire({icon: 'success', title: 'PIN Changed!', showConfirmButton: false, timer: 1500});
-            }
-        };
 
         function loadSettings() {
             onValue(ref(db, 'app_settings'), s => {
