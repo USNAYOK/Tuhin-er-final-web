@@ -408,7 +408,8 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
                 <div class="lk-field"><i class="fas fa-user"></i><input id="ow-user" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Username"></div>
                 <div class="lk-field"><i class="fas fa-lock"></i><input id="ow-pass" type="password" autocomplete="off" placeholder="Password" onkeydown="if(event.key==='Enter')ownerLogin()"><button type="button" class="lk-eye" onclick="togglePass('ow-pass',this)"><i class="fas fa-eye"></i></button></div>
                 <button type="button" class="lk-btn" onclick="ownerLogin()">LOGIN</button>
-                <button type="button" class="lk-link" onclick="showRecover()">পাসওয়ার্ড ভুলে গেছেন?</button>
+                <button type="button" class="lk-link" onclick="showRecover()">পাসওয়ার্ড ভুলে গেছেন?</button><br>
+                <button type="button" class="lk-link" id="new-owner-link" onclick="showNewOwner()">নতুন Owner অ্যাকাউন্ট খুলুন</button>
             </div>
 
             <!-- OWNER SETUP (first time only) -->
@@ -428,9 +429,24 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
                 <div class="lk-field"><i class="fas fa-user"></i><input id="rc-user" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Username"></div>
                 <div class="lk-field"><i class="fas fa-heart"></i><input id="rc-fname" autocomplete="off" placeholder="আপনার পছন্দের নাম"></div>
                 <div class="lk-field"><i class="fas fa-palette"></i><input id="rc-fcolor" autocomplete="off" placeholder="আপনার পছন্দের রঙ"></div>
+                <div class="lk-note"><i class="fas fa-life-ring"></i> নাম ও রঙ মনে না থাকলে নিচে Master Recovery Code দিন (তখন নাম ও রঙ লাগবে না)</div>
+                <div class="lk-field"><i class="fas fa-shield-halved"></i><input id="rc-code" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Master Recovery Code (ঐচ্ছিক)"></div>
                 <div class="lk-field"><i class="fas fa-lock"></i><input id="rc-pass" type="password" autocomplete="off" placeholder="নতুন Password (কমপক্ষে ৮)"><button type="button" class="lk-eye" onclick="togglePass('rc-pass',this)"><i class="fas fa-eye"></i></button></div>
                 <div class="lk-field"><i class="fas fa-lock"></i><input id="rc-pass2" type="password" autocomplete="off" placeholder="নতুন Password আবার লিখুন"><button type="button" class="lk-eye" onclick="togglePass('rc-pass2',this)"><i class="fas fa-eye"></i></button></div>
                 <button type="button" class="lk-btn" onclick="ownerRecover()">RESET PASSWORD</button>
+                <button type="button" class="lk-link" onclick="hideRecover()">← লগইনে ফিরুন</button>
+            </div>
+
+            <!-- NEW OWNER (needs Master Recovery Code, max 3 total) -->
+            <div id="lk-newowner" class="lk-pane">
+                <div class="lk-note" id="nw-left"></div>
+                <div class="lk-field"><i class="fas fa-shield-halved"></i><input id="nw-code" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Master Recovery Code"></div>
+                <div class="lk-field"><i class="fas fa-user"></i><input id="nw-user" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="নতুন Username (a-z, 0-9)"></div>
+                <div class="lk-field"><i class="fas fa-lock"></i><input id="nw-pass" type="password" autocomplete="off" placeholder="নতুন Password (কমপক্ষে ৮)"><button type="button" class="lk-eye" onclick="togglePass('nw-pass',this)"><i class="fas fa-eye"></i></button></div>
+                <div class="lk-field"><i class="fas fa-lock"></i><input id="nw-pass2" type="password" autocomplete="off" placeholder="Password আবার লিখুন"><button type="button" class="lk-eye" onclick="togglePass('nw-pass2',this)"><i class="fas fa-eye"></i></button></div>
+                <div class="lk-field"><i class="fas fa-heart"></i><input id="nw-fname" autocomplete="off" placeholder="আপনার পছন্দের নাম"></div>
+                <div class="lk-field"><i class="fas fa-palette"></i><input id="nw-fcolor" autocomplete="off" placeholder="আপনার পছন্দের রঙ"></div>
+                <button type="button" class="lk-btn" onclick="ownerNew()">CREATE OWNER</button>
                 <button type="button" class="lk-link" onclick="hideRecover()">← লগইনে ফিরুন</button>
             </div>
 
@@ -584,9 +600,9 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
     <!-- OWNERS (owner only) -->
     <section id="sec-owners" class="section">
         <div class="back-nav" onclick="navTo('dashboard')"><i class="fas fa-chevron-left"></i> Back to Dashboard</div>
-        <div class="aa-hint"><i class="fas fa-circle-info"></i> Owner অ্যাকাউন্ট দিয়ে অ্যাপের সবকিছু দেখা ও বদলানো যায়। বিশ্বাসী কাউকেই Owner বানান।</div>
+        <div class="aa-hint"><i class="fas fa-circle-info"></i> Owner অ্যাকাউন্ট দিয়ে অ্যাপের সবকিছু দেখা ও বদলানো যায়। বিশ্বাসী কাউকেই Owner বানান। <b id="owner-count"></b></div>
         <div class="list-container" id="owner-list"></div>
-        <div class="fab" onclick="addOwner()"><i class="fas fa-plus"></i></div>
+        <div class="fab" id="owner-fab" onclick="addOwner()"><i class="fas fa-plus"></i></div>
     </section>
 
     <!-- RULES & PRIZE PRESETS -->
@@ -784,6 +800,18 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
         const esc2 = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
         const PBKDF_ITER = 600000;
         const OWNER_ONLY = ['adminaccess', 'adminperm', 'owners'];
+        // ---- Owner limit + Master Recovery Code ----
+        const MAX_OWNERS = 3;   // মোট সর্বোচ্চ কতবার Owner অ্যাকাউন্ট খোলা যাবে
+        const MASTER = { salt: 'bitIEKIxFUhchy60F81x3A==', iter: 600000, hash: 'eWKNV5qJ3FLhTD+7BWCfPhD2bL/m1NF8wPVQZgyy0Eg=' };
+        const normCode = c => String(c || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+        const ownersUsed = d => Math.max(+(d && d.owner_created) || 0, Object.keys((d && d.owners) || {}).length);
+        async function reserveOwnerSlot() {
+            const cur = await get(ref(db, 'admin_auth/owners'));
+            const existing = cur.exists() ? Object.keys(cur.val()).length : 0;
+            const tx = await runTransaction(ref(db, 'admin_auth/owner_created'), v => { const n = Math.max(+v || 0, existing); return n >= MAX_OWNERS ? undefined : n + 1; });
+            return tx.committed;
+        }
+        async function releaseOwnerSlot() { try { await runTransaction(ref(db, 'admin_auth/owner_created'), v => (+v > 0 ? +v - 1 : v)); } catch (_) {} }
         const b64 = buf => btoa(String.fromCharCode(...new Uint8Array(buf)));
         const unb64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
         async function hashSecret(secret, saltB64, iter) {
@@ -819,8 +847,8 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
 
         // ---- lock screen helpers ----
         function lkMsg(t, ok) { const m = $a('lk-msg'); m.textContent = t || ''; m.className = 'lk-msg' + (ok ? ' ok' : ''); }
-        function showPane(id) { ['lk-owner', 'lk-setup', 'lk-recover', 'lk-admin'].forEach(p => $a(p).classList.toggle('show', p === id)); }
-        let recoverMode = false;
+        function showPane(id) { ['lk-owner', 'lk-setup', 'lk-recover', 'lk-newowner', 'lk-admin'].forEach(p => $a(p).classList.toggle('show', p === id)); }
+        let recoverMode = false, newOwnerMode = false;
         const normAns = a => String(a || '').trim().toLowerCase().replace(/\s+/g, '');
         function setHead(icon, title, sub) { $a('lk-icon').className = 'fas ' + icon; $a('lk-title').textContent = title; $a('lk-sub').textContent = sub || ''; }
         function shake() { const c = $a('lk-card'); c.classList.remove('shake'); void c.offsetWidth; c.classList.add('shake'); }
@@ -844,14 +872,21 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
             authMode = m; lsSet('auth_mode', m);
             $a('mode-owner').classList.toggle('active', m === 'owner');
             $a('mode-admin').classList.toggle('active', m === 'admin');
-            pin = ''; updateDots(); lkMsg(''); recoverMode = false;
+            pin = ''; updateDots(); lkMsg(''); recoverMode = false; newOwnerMode = false;
             if (m === 'admin') { showPane('lk-admin'); setHead('fa-user-shield', 'Admin Access', 'আপনার ১০ সংখ্যার পিন দিন'); }
             else refreshOwnerPane();
         };
         function refreshOwnerPane() {
             if (authMode !== 'owner') return;
             if (!authLoaded) { showPane(''); setHead('fa-crown', 'Owner', 'লোড হচ্ছে…'); return; }
-            if (Object.keys(authData.owners || {}).length && recoverMode) { showPane('lk-recover'); setHead('fa-key', 'Reset Password', 'আপনার পছন্দের নাম ও রঙ দিয়ে নতুন Password বানান'); }
+            const hasOwners = Object.keys(authData.owners || {}).length > 0;
+            const nl = $a('new-owner-link'); if (nl) nl.style.display = ownersUsed(authData) >= MAX_OWNERS ? 'none' : '';
+            if (hasOwners && newOwnerMode) {
+                const left = Math.max(0, MAX_OWNERS - ownersUsed(authData));
+                showPane('lk-newowner'); setHead('fa-user-plus', 'নতুন Owner', 'Master Recovery Code দিয়ে নতুন Owner অ্যাকাউন্ট খুলুন');
+                $a('nw-left').textContent = left > 0 ? 'আরও ' + left + 'টি Owner খোলা যাবে (মোট সর্বোচ্চ ' + MAX_OWNERS + 'টি)' : 'সর্বোচ্চ ' + MAX_OWNERS + 'টি Owner খোলা হয়ে গেছে, আর নতুন খোলা যাবে না';
+            }
+            else if (hasOwners && recoverMode) { showPane('lk-recover'); setHead('fa-key', 'Reset Password', 'আপনার পছন্দের নাম ও রঙ দিয়ে নতুন Password বানান'); }
             else if (Object.keys(authData.owners || {}).length) { showPane('lk-owner'); setHead('fa-crown', 'Owner Login', 'আপনার Username ও Password দিন'); }
             else { showPane('lk-setup'); setHead('fa-wand-magic-sparkles', 'Owner Setup', 'নতুন সিস্টেম চালু হচ্ছে, প্রথমে Owner অ্যাকাউন্ট খুলুন'); $a('su-old-wrap').style.display = authData.setup_done ? 'none' : ''; }
         }
@@ -864,7 +899,8 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
         }, () => { lkMsg('Firebase Rules এ admin_auth এর পড়া/লেখার অনুমতি দিন'); });
 
         window.showRecover = () => { recoverMode = true; lkMsg(''); refreshOwnerPane(); $a('rc-user').value = $a('ow-user').value; };
-        window.hideRecover = () => { recoverMode = false; lkMsg(''); refreshOwnerPane(); };
+        window.showNewOwner = () => { newOwnerMode = true; recoverMode = false; lkMsg(''); refreshOwnerPane(); };
+        window.hideRecover = () => { recoverMode = false; newOwnerMode = false; lkMsg(''); refreshOwnerPane(); };
 
         // ---- owner login / setup ----
         window.ownerLogin = async () => {
@@ -905,6 +941,7 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
                 const [cred, rn, rcol] = await Promise.all([makeCred(p), makeCred(fn), makeCred(fc)]);
                 const r = await push(ref(db, 'admin_auth/owners'), { username: u, ...cred, recovery: { name: rn, color: rcol }, created: nowMs() });
                 await set(ref(db, 'admin_auth/setup_done'), true);
+                await set(ref(db, 'admin_auth/owner_created'), 1);
                 try { await remove(ref(db, 'app_settings/admin_pin')); } catch (_) {}
                 lsSet('auth_fail', 0);
                 session = { role: 'owner', id: r.key, username: u };
@@ -912,10 +949,39 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
             } catch (e) { authErr(e); } finally { setBusy(false); }
         };
 
+        window.ownerNew = async () => {
+            const code = normCode($a('nw-code').value), u = $a('nw-user').value.trim().toLowerCase(), p = $a('nw-pass').value, c = $a('nw-pass2').value;
+            const fn = normAns($a('nw-fname').value), fc = normAns($a('nw-fcolor').value);
+            if (code.length < 16) return lkMsg('Master Recovery Code দিন');
+            if (!/^[a-z0-9._-]{3,20}$/.test(u)) return lkMsg('Username ৩-২০ অক্ষর, শুধু a-z 0-9 . _ -');
+            if (p.length < 8) return lkMsg('Password কমপক্ষে ৮ অক্ষর দিন');
+            if (p !== c) return lkMsg('দুই Password মিলছে না');
+            if (fn.length < 2) return lkMsg('আপনার পছন্দের নাম লিখুন');
+            if (fc.length < 2) return lkMsg('আপনার পছন্দের রঙ লিখুন');
+            if (throttled()) return;
+            setBusy(true);
+            try {
+                if (!(await checkCred(code, MASTER))) return failAttempt('Master Recovery Code ভুল');
+                const cur = await get(ref(db, 'admin_auth/owners'));
+                if (Object.values(cur.val() || {}).some(o => o.username === u)) return lkMsg('এই Username আগে থেকেই আছে');
+                if (!(await reserveOwnerSlot())) return lkMsg('সর্বোচ্চ ' + MAX_OWNERS + 'টি Owner খোলা হয়ে গেছে, আর নতুন খোলা যাবে না');
+                let r;
+                try {
+                    const [cred, rn, rcol] = await Promise.all([makeCred(p), makeCred(fn), makeCred(fc)]);
+                    r = await push(ref(db, 'admin_auth/owners'), { username: u, ...cred, recovery: { name: rn, color: rcol }, created: nowMs(), createdBy: 'master-code' });
+                } catch (e) { await releaseOwnerSlot(); throw e; }
+                lsSet('auth_fail', 0);
+                newOwnerMode = false;
+                session = { role: 'owner', id: r.key, username: u };
+                enterApp();
+            } catch (e) { authErr(e); } finally { setBusy(false); }
+        };
+
         window.ownerRecover = async () => {
             const u = $a('rc-user').value.trim().toLowerCase(), fn = normAns($a('rc-fname').value), fc = normAns($a('rc-fcolor').value);
+            const code = normCode($a('rc-code').value);
             const p = $a('rc-pass').value, c = $a('rc-pass2').value;
-            if (!u || !fn || !fc) return lkMsg('Username, পছন্দের নাম ও রঙ দিন');
+            if (!u || (!code && (!fn || !fc))) return lkMsg('Username এবং (পছন্দের নাম ও রঙ অথবা Master Recovery Code) দিন');
             if (p.length < 8) return lkMsg('নতুন Password কমপক্ষে ৮ অক্ষর দিন');
             if (p !== c) return lkMsg('দুই Password মিলছে না');
             if (throttled()) return;
@@ -923,7 +989,8 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
             try {
                 const entry = Object.entries(authData.owners || {}).find(([k, o]) => o.username === u);
                 let ok = false;
-                if (entry && entry[1].recovery) {
+                if (entry && code) ok = await checkCred(code, MASTER);
+                else if (entry && entry[1].recovery) {
                     const r = entry[1].recovery;
                     const [a1, a2] = await Promise.all([checkCred(fn, r.name), checkCred(fc, r.color)]);
                     ok = a1 && a2;
@@ -1162,6 +1229,9 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
         // ================= OWNER TOOLS: OWNERS =================
         function renderOwners() {
             const l = $a('owner-list'); if (!l) return;
+            const used = ownersUsed(authData);
+            const oc = $a('owner-count'); if (oc) oc.textContent = '(খোলা হয়েছে: ' + used + '/' + MAX_OWNERS + ')';
+            const of = $a('owner-fab'); if (of) of.style.display = used >= MAX_OWNERS ? 'none' : '';
             l.innerHTML = Object.entries(authData.owners || {}).map(([id, o]) => {
                 const me = session && id === session.id;
                 return `<div class="aa-card">
@@ -1180,6 +1250,7 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
             <input id="${pre}-fname" class="swal2-input" placeholder="আপনার পছন্দের নাম" autocomplete="off" style="margin:0 0 10px">
             <input id="${pre}-fcolor" class="swal2-input" placeholder="আপনার পছন্দের রঙ" autocomplete="off" style="margin:0">`;
         window.addOwner = async () => {
+            if (ownersUsed(authData) >= MAX_OWNERS) return Swal.fire('সীমা শেষ', 'সর্বোচ্চ ' + MAX_OWNERS + 'টি Owner খোলা হয়ে গেছে, আর নতুন খোলা যাবে না।', 'info');
             const { value } = await Swal.fire({
                 title: 'নতুন Owner',
                 html: `<input id="no-user" class="swal2-input" placeholder="Username (a-z, 0-9)" autocapitalize="none" autocomplete="off" style="margin:0 0 10px">${passForm('no', false)}${recoveryForm('no')}`,
@@ -1192,8 +1263,11 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
                     if (p.length < 8) { Swal.showValidationMessage('Password কমপক্ষে ৮ অক্ষর'); return false; }
                     if (p !== c) { Swal.showValidationMessage('দুই Password মিলছে না'); return false; }
                     if (fn.length < 2 || fc.length < 2) { Swal.showValidationMessage('পছন্দের নাম ও রঙ দুটোই লিখুন'); return false; }
-                    const [cred, rn, rcol] = await Promise.all([makeCred(p), makeCred(fn), makeCred(fc)]);
-                    await push(ref(db, 'admin_auth/owners'), { username: u, ...cred, recovery: { name: rn, color: rcol }, created: nowMs(), createdBy: session.username });
+                    if (!(await reserveOwnerSlot())) { Swal.showValidationMessage('সর্বোচ্চ ' + MAX_OWNERS + 'টি Owner খোলা হয়ে গেছে'); return false; }
+                    try {
+                        const [cred, rn, rcol] = await Promise.all([makeCred(p), makeCred(fn), makeCred(fc)]);
+                        await push(ref(db, 'admin_auth/owners'), { username: u, ...cred, recovery: { name: rn, color: rcol }, created: nowMs(), createdBy: session.username });
+                    } catch (e) { await releaseOwnerSlot(); throw e; }
                     return true;
                 }
             });
