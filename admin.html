@@ -801,7 +801,7 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
         const PBKDF_ITER = 600000;
         const OWNER_ONLY = ['adminaccess', 'adminperm', 'owners'];
         // ---- Owner limit + Master Recovery Code ----
-        const MAX_OWNERS = 3;   // মোট সর্বোচ্চ কতবার Owner অ্যাকাউন্ট খোলা যাবে
+        const MAX_OWNERS = 10;   // মোট সর্বোচ্চ কতবার Owner অ্যাকাউন্ট খোলা যাবে
         const MASTER = { salt: 'bitIEKIxFUhchy60F81x3A==', iter: 600000, hash: 'eWKNV5qJ3FLhTD+7BWCfPhD2bL/m1NF8wPVQZgyy0Eg=' };
         const normCode = c => String(c || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
         const ownersUsed = d => Math.max(+(d && d.owner_created) || 0, Object.keys((d && d.owners) || {}).length);
@@ -865,7 +865,9 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
             if (f % 5 === 0) lsSet('auth_lock', Date.now() + Math.min(600000, 30000 * Math.pow(2, f / 5 - 1)));
             lkMsg(msg); shake();
         }
-        function authErr(e) { lkMsg(e && e.message === 'secure-context' ? 'এই অ্যাপ নিরাপদ (https) পরিবেশে খুলতে হবে' : 'সমস্যা হয়েছে, আবার চেষ্টা করুন'); }
+        function authErr(e) { console.error(e); lkMsg(e && e.message === 'secure-context' ? 'এই অ্যাপ নিরাপদ (https) পরিবেশে খুলতে হবে' : 'সমস্যা হয়েছে: ' + ((e && (e.code || e.message)) || 'unknown')); }
+        const badPw = p => p !== p.trim();
+        const SP_MSG = 'Password এর শুরুতে বা শেষে ফাঁকা (space) রাখা যাবে না';
         function setBusy(on) { document.querySelectorAll('#auth-overlay .lk-btn').forEach(b => b.disabled = on); if (on) lkMsg('যাচাই হচ্ছে…', true); }
 
         window.setAuthMode = (m) => {
@@ -911,8 +913,11 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
             try {
                 const entry = Object.entries(authData.owners || {}).find(([k, o]) => o.username === u);
                 let ok = false;
-                if (entry) ok = await checkCred(p, entry[1]); else await hashSecret(p, newSalt());
-                if (!ok) return failAttempt('Username বা Password ভুল');
+                if (entry) {
+                    ok = await checkCred(p, entry[1]);
+                    if (!ok && badPw(p) && p.trim()) ok = await checkCred(p.trim(), entry[1]);
+                } else await hashSecret(p, newSalt());
+                if (!ok) return failAttempt(entry ? 'Password ভুল হয়েছে' : 'এই Username এর কোনো Owner পাওয়া যায়নি');
                 lsSet('auth_fail', 0);
                 session = { role: 'owner', id: entry[0], username: entry[1].username };
                 enterApp();
@@ -925,6 +930,7 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
             if (needOld && !oldPin) return lkMsg('পুরনো ৪ সংখ্যার পিন দিন');
             if (!/^[a-z0-9._-]{3,20}$/.test(u)) return lkMsg('Username ৩-২০ অক্ষর, শুধু a-z 0-9 . _ -');
             if (p.length < 8) return lkMsg('Password কমপক্ষে ৮ অক্ষর দিন');
+            if (badPw(p)) return lkMsg(SP_MSG);
             if (p !== c) return lkMsg('দুই Password মিলছে না');
             if (fn.length < 2) return lkMsg('আপনার পছন্দের নাম লিখুন');
             if (fc.length < 2) return lkMsg('আপনার পছন্দের রঙ লিখুন');
@@ -955,6 +961,7 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
             if (code.length < 16) return lkMsg('Master Recovery Code দিন');
             if (!/^[a-z0-9._-]{3,20}$/.test(u)) return lkMsg('Username ৩-২০ অক্ষর, শুধু a-z 0-9 . _ -');
             if (p.length < 8) return lkMsg('Password কমপক্ষে ৮ অক্ষর দিন');
+            if (badPw(p)) return lkMsg(SP_MSG);
             if (p !== c) return lkMsg('দুই Password মিলছে না');
             if (fn.length < 2) return lkMsg('আপনার পছন্দের নাম লিখুন');
             if (fc.length < 2) return lkMsg('আপনার পছন্দের রঙ লিখুন');
@@ -983,6 +990,7 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
             const p = $a('rc-pass').value, c = $a('rc-pass2').value;
             if (!u || (!code && (!fn || !fc))) return lkMsg('Username এবং (পছন্দের নাম ও রঙ অথবা Master Recovery Code) দিন');
             if (p.length < 8) return lkMsg('নতুন Password কমপক্ষে ৮ অক্ষর দিন');
+            if (badPw(p)) return lkMsg(SP_MSG);
             if (p !== c) return lkMsg('দুই Password মিলছে না');
             if (throttled()) return;
             setBusy(true);
@@ -1261,6 +1269,7 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
                     if (!/^[a-z0-9._-]{3,20}$/.test(u)) { Swal.showValidationMessage('Username ৩-২০ অক্ষর, শুধু a-z 0-9 . _ -'); return false; }
                     if (Object.values(authData.owners || {}).some(o => o.username === u)) { Swal.showValidationMessage('এই Username আছে'); return false; }
                     if (p.length < 8) { Swal.showValidationMessage('Password কমপক্ষে ৮ অক্ষর'); return false; }
+                    if (badPw(p)) { Swal.showValidationMessage(SP_MSG); return false; }
                     if (p !== c) { Swal.showValidationMessage('দুই Password মিলছে না'); return false; }
                     if (fn.length < 2 || fc.length < 2) { Swal.showValidationMessage('পছন্দের নাম ও রঙ দুটোই লিখুন'); return false; }
                     if (!(await reserveOwnerSlot())) { Swal.showValidationMessage('সর্বোচ্চ ' + MAX_OWNERS + 'টি Owner খোলা হয়ে গেছে'); return false; }
@@ -1282,6 +1291,7 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
                     const p = $a('op-new').value, c = $a('op-new2').value;
                     if (me && !(await checkCred($a('op-old').value, o))) { Swal.showValidationMessage('বর্তমান Password ভুল'); return false; }
                     if (p.length < 8) { Swal.showValidationMessage('Password কমপক্ষে ৮ অক্ষর'); return false; }
+                    if (badPw(p)) { Swal.showValidationMessage(SP_MSG); return false; }
                     if (p !== c) { Swal.showValidationMessage('দুই Password মিলছে না'); return false; }
                     await update(ref(db, `admin_auth/owners/${id}`), await makeCred(p));
                     return true;
