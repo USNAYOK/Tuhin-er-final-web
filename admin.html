@@ -388,6 +388,44 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
 .pw-wrap input{width:100%!important;margin:0!important;padding-right:48px!important;box-sizing:border-box}
 .pw-eye{position:absolute;right:12px;top:50%;transform:translateY(-50%);border:none;background:transparent;color:#1F5BFF;font-size:17px;cursor:pointer;padding:6px}
 </style>
+<style>
+/* ===== AI MODE ===== */
+.ai-wrap{display:flex;flex-direction:column;height:calc(100vh - 150px);min-height:420px;background:#fff;border:1px solid #DFE9F7;border-radius:22px;box-shadow:0 7px 22px rgba(24,67,130,.08);overflow:hidden}
+.ai-head{display:flex;align-items:center;gap:10px;padding:12px 14px;background:linear-gradient(135deg,#0B2E7A,#1F5BFF);color:#fff}
+.ai-head b{display:block;font-size:15px}.ai-head small{opacity:.85;font-size:11px}
+.ai-tools{margin-left:auto;display:flex;gap:6px}
+.ai-tools button{border:0;border-radius:10px;background:rgba(255,255,255,.18);color:#fff;min-width:34px;height:34px;cursor:pointer;font-size:13px;padding:0 8px}
+.ai-tools button.on{background:#00C851}
+.ai-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#FFD23F,#FF7EB6);display:flex;align-items:center;justify-content:center;font-size:18px;flex:0 0 auto}
+.ai-av.sm{width:28px;height:28px;font-size:13px}.ai-av.big{width:56px;height:56px;font-size:26px;margin:0 auto 8px}
+.ai-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:12px;background:#F3F7FF}
+.ai-row{display:flex;gap:8px;align-items:flex-end;max-width:92%;animation:aiIn .25s ease}
+.ai-row.u{flex-direction:row-reverse;align-self:flex-end}
+.ai-row.u .ai-av{background:#0B2E7A;color:#fff}
+.ai-b{padding:10px 13px;border-radius:18px;font-size:14px;line-height:1.65;background:#fff;color:#17345F;border:1px solid #DFE9F7;word-break:break-word}
+.ai-row.u .ai-b{background:#1F5BFF;color:#fff;border-color:#1F5BFF;border-bottom-right-radius:5px}
+.ai-row.a .ai-b{border-bottom-left-radius:5px}.ai-row.e .ai-b{background:#FFF1F1;border-color:#FFC9C9;color:#B42318}
+.ai-b code{background:rgba(0,0,0,.07);padding:1px 5px;border-radius:5px}
+.ai-hello{text-align:center;color:#17345F;padding:24px 10px;line-height:1.7;font-size:14px}
+.ai-typing{display:flex;gap:4px;padding:14px}.ai-typing i{width:7px;height:7px;border-radius:50%;background:#1F5BFF;animation:aiDot 1s infinite}
+.ai-typing i:nth-child(2){animation-delay:.15s}.ai-typing i:nth-child(3){animation-delay:.3s}
+.ai-sug{display:flex;gap:8px;overflow-x:auto;padding:8px 12px;background:#F3F7FF}
+.ai-sug button{flex:0 0 auto;border:1px solid #CFE0FA;background:#fff;color:#0B2E7A;border-radius:18px;padding:7px 13px;font-size:12.5px;cursor:pointer;font-family:inherit}
+.ai-in{display:flex;gap:8px;padding:10px;border-top:1px solid #DFE9F7;background:#fff}
+.ai-in textarea{flex:1;border:1px solid #DFE9F7;border-radius:16px;padding:10px 14px;font-family:inherit;font-size:14px;resize:none;max-height:110px;outline:none}
+.ai-in textarea:focus{border-color:#1F5BFF}
+.ai-in button{width:44px;height:44px;border:0;border-radius:50%;background:linear-gradient(135deg,#FFD23F,#FF7EB6);color:#0B2E7A;font-size:16px;cursor:pointer}
+.ai-in button:disabled{opacity:.5}
+.ai-hist{max-height:190px;overflow-y:auto;background:#fff;border-bottom:1px solid #DFE9F7}
+.ai-hist div{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid #EEF3FB;font-size:13px;color:#17345F;cursor:pointer}
+.ai-hist div span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#ai-fab{position:fixed;left:16px;bottom:22px;width:54px;height:54px;border-radius:50%;border:0;background:linear-gradient(135deg,#FFD23F,#FF7EB6);box-shadow:0 8px 20px rgba(255,126,182,.45);font-size:24px;cursor:pointer;z-index:900;display:none}
+.ai-key{display:flex;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid #EEF3FB;font-size:13px}
+.ai-key b{flex:1;overflow:hidden;text-overflow:ellipsis}.ai-key .btn{padding:6px 10px;font-size:12px}
+@keyframes aiIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes aiDot{0%,80%,100%{opacity:.25;transform:scale(.8)}40%{opacity:1;transform:scale(1.15)}}
+@media(prefers-color-scheme:dark){.ai-wrap,.ai-in,.ai-hist{background:#0F1B33;border-color:#23375E}.ai-msgs,.ai-sug{background:#0A1426}.ai-b{background:#16264A;color:#E8F0FF;border-color:#23375E}.ai-hello{color:#E8F0FF}.ai-in textarea{background:#16264A;color:#fff;border-color:#23375E}.ai-sug button{background:#16264A;color:#E8F0FF;border-color:#23375E}.ai-hist div{color:#E8F0FF;border-color:#23375E}}
+</style>
 </head>
 <body>
 
@@ -557,6 +595,18 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
                     <i class="fas fa-cloud-arrow-down"></i>
                 </div>
                 <div class="dash-text">App Update</div>
+            </div>
+            <div class="dash-item" data-perm="ai" onclick="navTo('ai')">
+                <div class="dash-icon-box" style="background: rgba(255,126,182,.18); color: #E0457B;"><i class="fas fa-wand-magic-sparkles"></i></div>
+                <div class="dash-text">AI Mode</div>
+            </div>
+            <div class="dash-item" data-owner-only style="display:none" onclick="navTo('aisettings')">
+                <div class="dash-icon-box" style="background: rgba(124,77,255,.15); color: var(--primary);"><i class="fas fa-key"></i></div>
+                <div class="dash-text">AI Settings</div>
+            </div>
+            <div class="dash-item" data-owner-only style="display:none" onclick="navTo('fbconfigs')">
+                <div class="dash-icon-box" style="background: rgba(255,187,51,.18); color: #F2A900;"><i class="fas fa-fire"></i></div>
+                <div class="dash-text">Firebase Setup</div>
             </div>
             <div class="dash-item" data-owner-only style="display:none" onclick="navTo('adminaccess')">
                 <div class="dash-icon-box" style="background: var(--pink-soft); color: var(--pink-deep);">
@@ -771,6 +821,68 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
         </div>
     </section>
 
+    <!-- AI MODE -->
+    <section id="sec-ai" class="section">
+        <div class="back-nav" onclick="navTo('dashboard')"><i class="fas fa-chevron-left"></i> Back to Dashboard</div>
+        <div class="ai-wrap">
+            <div class="ai-head">
+                <div class="ai-av">✨</div>
+                <div><b>EBD AI Guide</b><small id="ai-ctx"></small></div>
+                <div class="ai-tools">
+                    <button onclick="aiHist()" title="Chat history" aria-label="Chat history"><i class="fas fa-clock-rotate-left"></i></button>
+                    <button onclick="aiNew()" title="New chat" aria-label="New chat"><i class="fas fa-plus"></i></button>
+                    <button onclick="aiClear()" title="Clear conversation" aria-label="Clear conversation"><i class="fas fa-eraser"></i></button>
+                    <button id="ai-tg" data-owner-only style="display:none" onclick="aiToggle()" title="AI ON/OFF"></button>
+                </div>
+            </div>
+            <div id="ai-off" class="aa-hint" style="display:none;margin:10px"><i class="fas fa-circle-info"></i> AI Mode এখন বন্ধ (OFF) আছে। Owner চালু করলে ব্যবহার করা যাবে।</div>
+            <div id="ai-hist" class="ai-hist" style="display:none"></div>
+            <div id="ai-msgs" class="ai-msgs" aria-live="polite"></div>
+            <div id="ai-sug" class="ai-sug"></div>
+            <div class="ai-in">
+                <textarea id="ai-text" rows="1" placeholder="বাংলা বা English-এ প্রশ্ন লিখুন..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();aiSend()}"></textarea>
+                <button id="ai-send" onclick="aiSend()" aria-label="Send"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI SETTINGS (owner) -->
+    <section id="sec-aisettings" class="section">
+        <div class="back-nav" onclick="navTo('dashboard')"><i class="fas fa-chevron-left"></i> Back to Dashboard</div>
+        <div class="flat-card">
+            <label style="display:flex;gap:10px;align-items:center;font-weight:800;color:var(--navy)"><input type="checkbox" id="ais-on" style="width:22px;height:22px" onchange="aiSetEnabled(this.checked)"> AI Mode ON / OFF</label>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:8px">OFF করলে সবার কাছে AI Mode বন্ধ দেখাবে। Firebase-এ সেভ থাকে।</div>
+        </div>
+        <div class="flat-card" style="margin-top:16px">
+            <h4 style="margin-bottom:12px;color:var(--primary);font-weight:800">Gemini Model</h4>
+            <input type="text" id="ais-model" class="form-input" placeholder="gemini-2.5-flash">
+            <button class="btn btn-primary" style="width:100%;margin-top:10px" onclick="aiSaveModel()">SAVE MODEL</button>
+        </div>
+        <div class="flat-card" style="margin-top:16px">
+            <h4 style="margin-bottom:12px;color:var(--primary);font-weight:800">Gemini API Keys</h4>
+            <div id="ais-keys"></div>
+            <input type="text" id="ais-label" class="form-input" placeholder="Label (যেমন Key 1)" style="margin-top:12px">
+            <input type="password" id="ais-key" class="form-input" placeholder="AIza..." autocomplete="off" style="margin-top:8px">
+            <button class="btn btn-primary" style="width:100%;margin-top:10px" onclick="aiAddKey()"><i class="fas fa-plus"></i> ADD KEY</button>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:10px;line-height:1.6">একাধিক key দিলে একটার limit শেষ হলে অটো পরের key ব্যবহার হবে।</div>
+        </div>
+    </section>
+
+    <!-- FIREBASE SETUP (owner) -->
+    <section id="sec-fbconfigs" class="section">
+        <div class="back-nav" onclick="navTo('dashboard')"><i class="fas fa-chevron-left"></i> Back to Dashboard</div>
+        <div id="fb-list"></div>
+        <div class="flat-card" style="margin-top:16px">
+            <h4 style="margin-bottom:12px;color:var(--primary);font-weight:800">Add Firebase Config</h4>
+            <input type="text" id="fb-name" class="form-input" placeholder="নাম (যেমন Test Project)">
+            <textarea id="fb-raw" class="form-input" rows="7" style="margin-top:8px" placeholder='Firebase firebaseConfig পেস্ট করুন: apiKey, authDomain, databaseURL, projectId, appId ...'></textarea>
+            <button class="btn btn-primary" style="width:100%;margin-top:10px" onclick="fbAdd()"><i class="fas fa-plus"></i> SAVE CONFIG</button>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:10px;line-height:1.6">এই তালিকা শুধু এই ডিভাইসে সেভ থাকে (কারণ কোন ডাটাবেস খুলবে সেটা ডাটাবেসের আগেই জানতে হয়)। "Use" চাপলে অ্যাপ রিলোড হয়ে ওই প্রজেক্টে লগইন চাইবে।</div>
+        </div>
+    </section>
+
+    <button id="ai-fab" onclick="navTo('ai')" aria-label="Ask AI about this page" title="এই পেজ সম্পর্কে AI-কে জিজ্ঞেস করুন">✨</button>
+
     <!-- SWEETALERT2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -778,7 +890,7 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
         import { getDatabase, ref, set, onValue, push, update, remove, get, runTransaction } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-        const firebaseConfig = {
+        const _DEF_FB = {
   apiKey: "AIzaSyDW6rdqfQgImyOXej-nf7I1YqD22k437Jc",
   authDomain: "musms-34cae.firebaseapp.com",
   projectId: "musms-34cae",
@@ -788,6 +900,8 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
   measurementId: "G-Y0QPZ8JT8X"
 };
 
+        let firebaseConfig = _DEF_FB;
+        try { const _a = JSON.parse(localStorage.getItem('ebd_fb_active') || 'null'); if (_a && _a.apiKey && _a.projectId && _a.appId) firebaseConfig = _a; } catch (_) {}
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
@@ -799,7 +913,7 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
         const $a = i => document.getElementById(i);
         const esc2 = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
         const PBKDF_ITER = 600000;
-        const OWNER_ONLY = ['adminaccess', 'adminperm', 'owners'];
+        const OWNER_ONLY = ['adminaccess', 'adminperm', 'owners', 'aisettings', 'fbconfigs'];
         // ---- Owner limit + Master Recovery Code ----
         const DEMO = { enabled: true, user: 'demo', salt: 'NryaBzTk3XoSgorHH3+EZw==', iter: 600000, hash: 'BPyBNIZwJC1Ow+K42X+H30WB0AR7Z1a7JFQUL5tOZho=' };  // টেস্ট ফেজের ডেমো লগিন। রিলিজের আগে enabled: false করুন
         const MAX_OWNERS = 10;   // মোট সর্বোচ্চ কতবার Owner অ্যাকাউন্ট খোলা যাবে
@@ -2294,6 +2408,208 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
             document.getElementById('notif-title').value = "";
             document.getElementById('notif-body').value = "";
         }
+
+
+        // ================= AI MODE (GUIDE ONLY - never changes data) =================
+        const AI_KB = `APP: EBD TOUR - Free Fire tournament app. User app = index.html (bottom tabs: Shop, Play, Matches, Result, Profile). Admin app = admin.html ("E BD ADMIN").
+LOGIN: Owner logs in with username + password (stored only as a PBKDF2 hash in Firebase admin_auth/owners). Admin logs in with a 10-digit PIN that an Owner creates in Admin Access (each PIN has a label, optional expiry time, can be disabled, and has per-menu permissions). Max 10 owner accounts. Owners have a Master Recovery Code for password recovery. If an admin's access is revoked/disabled/expired the app locks ("Access Ended").
+DASHBOARD: top card = Total Registered Users. Menus (an Admin only sees menus an Owner granted): Matches, Categories, Users, Withdrawals, App Settings, Sliders, Notify, SMS Payments, Rules & Prizes, App Update, AI Mode. Owner-only menus: Admin Access, Owners, AI Settings, Firebase Setup.
+MATCHES: list of all matches (newest first). Each card shows title, status tag (Upcoming/Ongoing/Finished), Date, Map-Type, Entry/Prize, Joined x/total. Buttons: Manage (Game Status Upcoming/Ongoing/Finished, Room ID, Room Password, extra prize note), History (match history viewer), Leaderboard (rows of Team name, Score, Prize, saved to match_results), Trash (Delete Match). Delete Match: if the match is NOT Finished, every joined player is refunded entry fee x joined slots into their Deposit wallet and a transaction "Refund (Match Deleted)" is added; then match, participants, slots and results are removed. A Finished match is deleted without refund. Delete cannot be undone. The "+" button creates a match: Match Title, Date, Time, Type (Solo/Duo/Squad), Map, Entry Fee, Total Prize, Per Kill, Total Slots, Category (full path like "BR all > BR solo"); a saved Rules & Prize preset can be applied.
+CATEGORIES: nested (category > sub-category > ...). Tapping a row opens the sub-categories inside it. Pencil = edit, trash = delete, "+" adds a category at the current level (fields: Parent Category, Category Name, Image URL; a sub-category with empty image uses its parent's image). Users see the same tree in the user app (Play tab). Matches are attached to a category; the match count in the user app includes all sub-categories and excludes Finished matches. Deleting a category that has matches/sub-categories: behaviour not verified - warn the admin to check first.
+USERS: search by name, email, phone, Support PIN or UID. Each user shows a Support PIN (copy button), wallet info, a history button (transactions/match history) and Adjust Balance. Adjust Balance directly overwrites two numbers: Deposit Wallet and Winning Wallet (no automatic note is guaranteed) - warn the admin to double check numbers.
+DEPOSITS: there is NO dedicated Deposit Management menu. Deposit-related places: SMS Payments (received payment SMS), Users > Adjust Balance (Deposit Wallet), and each user's transaction history.
+WITHDRAWALS: shows only pending Withdraw transactions (amount, method, number, date). Approve = only changes status to Success (the app does NOT send money; the admin must pay manually via bKash/Nagad/Rocket first). Refund = adds the amount back to the user's Winning wallet and sets status "Rejected (Refunded)". There is no extra confirmation popup, so tap once only and be sure.
+SMS PAYMENTS: lists payment SMS received (Firebase sms_inbox) with search by sender, TrxID or body, shown together with sms_payments data. Exact auto-matching logic is not verified.
+APP SETTINGS (Save with "SAVE ALL SETTINGS"): General Info (App Name, Logo URL, Marquee Notice, Match Joining Rules one per line, Startup Popup Text, Enable Popup Yes/No); Payment Info (bKash, Nagad, Rocket numbers); Links & Videos (Support Link, Shop Link, How to Add Money / Join Match / Join Room videos). Saved in Firebase app_settings.
+SLIDERS: home banners. List with delete; "Add New Banner" = Image URL + optional Link.
+NOTIFY: Notification Title + Message Body, SEND NOW saves it to Firebase notifications (in-app list). Phone notification-bar push must be sent from Firebase Console > Messaging.
+RULES & PRIZES: reusable presets (Preset Name, rules, prize rows, optional note) to apply when creating a match. Add/Edit/Delete.
+APP UPDATE: build number, popup title, message, update link, checkbox to force update, checkbox to enable; PUBLISH UPDATE saves app_config/update. Old app versions then see the popup.
+ADMIN ACCESS (owner only): create admin PIN, edit time, reset PIN, enable/disable, delete, set per-menu permissions. OWNERS (owner only): add owner, change password, recovery code, delete.
+AI MODE: guide-only chat. It cannot see live data (users, balances, requests) and cannot change anything. Owner > AI Settings: ON/OFF switch, model name, add/remove Gemini API keys (several keys rotate automatically). Owner > Firebase Setup: save several Firebase configs on this device and switch between them.
+FIREBASE PATHS (Realtime Database): users, transactions/{uid}, matches, match_participants/{matchId}, match_slots, match_results, match_history, match_presets, categories, app_settings (+banners), app_config/update, notifications, sms_inbox, sms_payments, support_pins, admin_auth (owners, admins), ai_config, ai_keys, ai_chats. Users have two wallets: deposit and winning.`;
+        const AI_SYS = `তুমি EBD TOUR অ্যাডমিন প্যানেলের "AI Guide"। নিয়ম:
+1) ডিফল্ট ভাষা সহজ বাংলা; ব্যবহারকারী English-এ লিখলে English-এ উত্তর দাও।
+2) শুধু নিচের APP KNOWLEDGE থেকে উত্তর দাও। যা সেখানে নেই বা যাচাই করা নেই, স্পষ্ট বলো "এটা আমি নিশ্চিত নই" - কখনো ফিচার বা বাটনের কাজ বানিয়ে বলবে না।
+3) প্রক্রিয়া হলে ১, ২, ৩ নম্বর দিয়ে ধাপে ধাপে বলো। ডিলিট/রিফান্ড/ব্যালান্স বদল ইত্যাদি ঝুঁকিপূর্ণ কাজের আগে আগে সতর্ক করো।
+4) তুমি শুধু গাইড। তুমি কিছু অনুমোদন, বাতিল, ডিলিট বা পরিবর্তন করতে পারো না এবং লাইভ ডাটা (ইউজার, ব্যালান্স, রিকোয়েস্ট) দেখতে পারো না। কাজ শেষ হয়েছে এমন কখনো বলবে না; বলো অ্যাডমিনকে নিজে ড্যাশবোর্ড থেকে করতে হবে।
+5) পাসওয়ার্ড, পিন, API key বা পেমেন্ট তথ্য চাইবে না।
+6) এরর হলে সম্ভাব্য কারণ ও কোন মেনুতে কী দেখতে হবে বলো।
+APP KNOWLEDGE:
+` + AI_KB;
+        const AI_PAGES = {dashboard:'Dashboard', matches:'Matches', categories:'Categories', users:'Users', withdraw:'Withdrawals', settings:'App Settings', sliders:'Sliders', notify:'Notify', sms:'SMS Payments', presets:'Rules & Prizes', update:'App Update', adminaccess:'Admin Access', adminperm:'Admin Permissions', owners:'Owners', ai:'AI Mode', aisettings:'AI Settings', fbconfigs:'Firebase Setup'};
+        const AI_SUG = {
+            withdraw: ['Withdrawal Management কীভাবে কাজ করে?', 'Approve আর Refund-এর পার্থক্য কী?'],
+            matches: ['নতুন ম্যাচ কীভাবে তৈরি করব?', 'ম্যাচ ডিলিট করলে কী হয়?'],
+            categories: ['সাব-ক্যাটাগরি কীভাবে যোগ করব?'],
+            users: ['ইউজারের ব্যালান্স কীভাবে বদলাব?', 'Support PIN কী?'],
+            sms: ['SMS Payments পেজে কী দেখা যায়?'],
+            settings: ['App Settings-এ কোন সেটিং কী কাজ করে?']
+        };
+        const AI_SUG_DEF = ['এই পেজে কী করা যায়?', 'ডিপোজিট তথ্য কোথায় পাব?', 'নতুন ম্যাচ কীভাবে তৈরি করব?', 'Admin PIN কীভাবে দেব?'];
+        let aiCfg = { enabled: false, model: 'gemini-2.5-flash' }, aiKeys = {};
+        let aiSub = false, aiSubUid = '', aiCtx = 'dashboard', aiChatId = null, aiMsgs = [], aiChats = {}, aiBusy = false, aiSent = [], aiKeyIdx = 0;
+        const aiUid = () => session ? session.role + '_' + session.id : '';
+        const aiClean = t => String(t || '').replace(/AIza[0-9A-Za-z_\-]{20,}/g, '[key]').replace(/\d{10,}/g, '[number]').slice(0, 2000);
+        const aiFmt = t => esc2(t).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\n/g, '<br>');
+        const aiActive = () => { const a = document.querySelector('.section.active'); return a ? a.id.replace('sec-', '') : ''; };
+
+        function aiSubscribe() {
+            if (aiSub) return; aiSub = true;
+            onValue(ref(db, 'ai_config'), s => { const v = s.val() || {}; aiCfg = { enabled: !!v.enabled, model: v.model || 'gemini-2.5-flash' }; aiRefreshUI(); });
+            onValue(ref(db, 'ai_keys'), s => { aiKeys = s.val() || {}; aiKeysRender(); });
+        }
+        function aiRefreshUI() {
+            const off = $a('ai-off'); if (off) off.style.display = aiCfg.enabled ? 'none' : '';
+            const tg = $a('ai-tg'); if (tg) { tg.innerHTML = '<i class="fas fa-power-off"></i> ' + (aiCfg.enabled ? 'ON' : 'OFF'); tg.className = aiCfg.enabled ? 'on' : ''; }
+            const sw = $a('ais-on'); if (sw) sw.checked = aiCfg.enabled;
+            const m = $a('ais-model'); if (m && document.activeElement !== m) m.value = aiCfg.model;
+            const t = $a('ai-text'), b = $a('ai-send'); if (t) { t.disabled = !aiCfg.enabled; b.disabled = !aiCfg.enabled; }
+            aiFab();
+        }
+        function aiFab() {
+            const f = $a('ai-fab'); if (!f) return;
+            const ov = $a('auth-overlay');
+            const locked = !session || (ov && getComputedStyle(ov).display !== 'none') || window._locked;
+            const sec = aiActive();
+            f.style.display = (!locked && canAccess('ai') && aiCfg.enabled && sec !== 'ai') ? 'block' : 'none';
+        }
+        setInterval(() => { if (session && canAccess('ai')) aiSubscribe(); aiFab(); }, 1200);
+
+        function aiSugRender() {
+            const l = AI_SUG[aiCtx] || AI_SUG_DEF;
+            $a('ai-sug').innerHTML = l.map(q => `<button onclick="aiQ(this.textContent)">${esc2(q)}</button>`).join('');
+        }
+        function aiRender() {
+            const b = $a('ai-msgs');
+            let h = aiMsgs.length ? aiMsgs.map(m => `<div class="ai-row ${m.r}"><div class="ai-av sm">${m.r === 'u' ? '<i class="fas fa-user"></i>' : (m.r === 'e' ? '⚠️' : '✨')}</div><div class="ai-b">${aiFmt(m.t)}</div></div>`).join('')
+                : '<div class="ai-hello"><div class="ai-av big">✨</div><b>আমি EBD AI Guide</b><p>কোন পেজ বা বাটন কী কাজ করে, কীভাবে কী করতে হয় - জিজ্ঞেস করুন। আমি শুধু গাইড করি, নিজে কিছু বদলাই না।</p></div>';
+            if (aiBusy) h += '<div class="ai-row a"><div class="ai-av sm">✨</div><div class="ai-b ai-typing"><i></i><i></i><i></i></div></div>';
+            b.innerHTML = h; b.scrollTop = b.scrollHeight;
+            $a('ai-sug').style.display = aiMsgs.length ? 'none' : '';
+            $a('ai-ctx').textContent = 'এখন: ' + (AI_PAGES[aiCtx] || aiCtx);
+            aiSugRender();
+        }
+        function aiOpen() {
+            aiSubscribe();
+            if (aiSubUid !== aiUid()) { aiSubUid = aiUid(); onValue(ref(db, 'ai_chats/' + aiSubUid), s => { aiChats = s.val() || {}; aiHistRender(); }); }
+            aiRefreshUI(); aiRender();
+        }
+        window.aiQ = t => { $a('ai-text').value = t; aiSend(); };
+        window.aiNew = () => { aiChatId = null; aiMsgs = []; $a('ai-hist').style.display = 'none'; aiRender(); };
+        window.aiClear = async () => {
+            if (!aiMsgs.length) return;
+            const r = await Swal.fire({ title: 'কথোপকথন মুছবেন?', text: 'এই চ্যাটের হিস্ট্রি মুছে যাবে।', icon: 'warning', showCancelButton: true, confirmButtonText: 'মুছুন', cancelButtonText: 'না' });
+            if (!r.isConfirmed) return;
+            if (aiChatId) { try { await remove(ref(db, `ai_chats/${aiUid()}/${aiChatId}`)); } catch (_) {} }
+            aiNew();
+        };
+        window.aiHist = () => { const h = $a('ai-hist'); h.style.display = h.style.display === 'none' ? '' : 'none'; aiHistRender(); };
+        function aiHistRender() {
+            const h = $a('ai-hist'); if (!h) return;
+            const l = Object.entries(aiChats).sort((a, b) => (b[1].ts || 0) - (a[1].ts || 0));
+            h.innerHTML = l.length ? l.map(([id, c]) => `<div onclick="aiLoad('${id}')"><i class="fas fa-message"></i><span>${esc2(c.title || 'Chat')}</span><i class="fas fa-trash" style="color:#E5484D" onclick="event.stopPropagation();aiDel('${id}')"></i></div>`).join('') : '<div style="cursor:default">কোনো পুরনো চ্যাট নেই</div>';
+        }
+        window.aiLoad = id => { const c = aiChats[id]; if (!c) return; aiChatId = id; aiMsgs = (c.msgs || []).slice(); $a('ai-hist').style.display = 'none'; aiRender(); };
+        window.aiDel = async id => { try { await remove(ref(db, `ai_chats/${aiUid()}/${id}`)); } catch (_) {} if (aiChatId === id) aiNew(); };
+        async function aiSave() {
+            if (!aiChatId) return;
+            const msgs = aiMsgs.filter(m => m.r !== 'e').slice(-60).map(m => ({ r: m.r, t: String(m.t).slice(0, 4000) }));
+            if (!msgs.length) return;
+            const first = msgs.find(m => m.r === 'u');
+            try { await set(ref(db, `ai_chats/${aiUid()}/${aiChatId}`), { title: (first ? first.t : 'Chat').slice(0, 50), ts: Date.now(), msgs }); } catch (_) {}
+        }
+        async function aiGem() {
+            const keys = Object.entries(aiKeys).filter(([, k]) => k && k.key && !k.disabled);
+            if (!keys.length) throw new Error('NOKEY');
+            const sys = AI_SYS + '\nCurrent admin page: ' + (AI_PAGES[aiCtx] || aiCtx) + '\nAdmin role: ' + session.role;
+            const body = { systemInstruction: { parts: [{ text: sys }] },
+                contents: aiMsgs.filter(m => m.r === 'u' || m.r === 'a').slice(-14).map(m => ({ role: m.r === 'u' ? 'user' : 'model', parts: [{ text: m.t }] })),
+                generationConfig: { temperature: 0.3, maxOutputTokens: 1500 } };
+            let last = '';
+            for (let i = 0; i < keys.length; i++) {
+                const k = keys[(aiKeyIdx + i) % keys.length][1];
+                try {
+                    const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/' + encodeURIComponent(aiCfg.model || 'gemini-2.5-flash') + ':generateContent', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': k.key }, body: JSON.stringify(body) });
+                    const j = await r.json().catch(() => ({}));
+                    if (r.ok) {
+                        const t = ((((j.candidates || [])[0] || {}).content || {}).parts || []).map(p => p.text || '').join('').trim();
+                        if (t) { aiKeyIdx = (aiKeyIdx + i + 1) % keys.length; return t; }
+                        last = 'empty response'; continue;
+                    }
+                    last = (j.error && j.error.message) || ('HTTP ' + r.status);
+                } catch (e) { last = e.message || 'network'; }
+            }
+            throw new Error(last);
+        }
+        window.aiSend = async () => {
+            if (aiBusy || !aiCfg.enabled) return;
+            const inp = $a('ai-text'); const t = aiClean(inp.value.trim()); if (!t) return;
+            const now = Date.now(); aiSent = aiSent.filter(x => now - x < 60000);
+            if (aiSent.length >= 12) return Swal.fire({ icon: 'info', title: 'একটু অপেক্ষা করুন', text: 'প্রতি মিনিটে সর্বোচ্চ ১২টি প্রশ্ন।', timer: 2200, showConfirmButton: false });
+            aiSent.push(now); inp.value = '';
+            if (!aiChatId) aiChatId = 'c' + now;
+            aiMsgs = aiMsgs.filter(m => m.r !== 'e'); aiMsgs.push({ r: 'u', t }); aiBusy = true; aiRender();
+            try { aiMsgs.push({ r: 'a', t: await aiGem() }); aiSave(); }
+            catch (e) {
+                const m = e.message === 'NOKEY' ? 'কোনো Gemini API key নেই। Owner → AI Settings থেকে key যোগ করুন।' : 'Gemini থেকে উত্তর আনা যায়নি (' + String(e.message).slice(0, 140) + '). আবার চেষ্টা করুন বা অন্য key/model দিন।';
+                aiMsgs.push({ r: 'e', t: m });
+            }
+            aiBusy = false; aiRender();
+        };
+        window.aiToggle = () => aiSetEnabled(!aiCfg.enabled);
+        window.aiSetEnabled = async v => { if (!session || session.role !== 'owner') return; try { await set(ref(db, 'ai_config/enabled'), !!v); } catch (e) { Swal.fire('Error', e.message, 'error'); } };
+        window.aiSaveModel = async () => { const v = $a('ais-model').value.trim(); if (!v || /[^\w.\-]/.test(v)) return Swal.fire('Error', 'সঠিক মডেল নাম দিন (যেমন gemini-2.5-flash)', 'error'); await set(ref(db, 'ai_config/model'), v); Swal.fire({ icon: 'success', title: 'Saved', timer: 1000, showConfirmButton: false }); };
+        window.aiAddKey = async () => {
+            const label = $a('ais-label').value.trim() || 'Key', key = $a('ais-key').value.trim();
+            if (!/^AIza[0-9A-Za-z_\-]{20,}$/.test(key)) return Swal.fire('Error', 'সঠিক Gemini API key দিন (AIza...)', 'error');
+            await push(ref(db, 'ai_keys'), { label: label.slice(0, 30), key, disabled: false, added: Date.now() });
+            $a('ais-label').value = ''; $a('ais-key').value = '';
+            Swal.fire({ icon: 'success', title: 'Key যোগ হয়েছে', timer: 1100, showConfirmButton: false });
+        };
+        window.aiKeyToggle = id => update(ref(db, 'ai_keys/' + id), { disabled: !(aiKeys[id] && aiKeys[id].disabled) });
+        window.aiKeyDel = async id => { const r = await Swal.fire({ title: 'Key মুছবেন?', icon: 'warning', showCancelButton: true }); if (r.isConfirmed) remove(ref(db, 'ai_keys/' + id)); };
+        function aiKeysRender() {
+            const el = $a('ais-keys'); if (!el) return;
+            const l = Object.entries(aiKeys);
+            el.innerHTML = l.length ? l.map(([id, k]) => `<div class="ai-key"><b>${esc2(k.label || 'Key')} • ••••${esc2(String(k.key || '').slice(-4))}</b><button class="btn ${k.disabled ? 'btn-danger' : 'btn-success'}" onclick="aiKeyToggle('${id}')">${k.disabled ? 'OFF' : 'ON'}</button><button class="btn btn-danger" onclick="aiKeyDel('${id}')"><i class="fas fa-trash"></i></button></div>`).join('') : '<div style="color:var(--text-muted);font-size:13px">কোনো key নেই</div>';
+        }
+
+        // ================= FIREBASE SETUP (device-local list) =================
+        const fbGet = k => { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (_) { return null; } };
+        const fbPut = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} };
+        function fbRender() {
+            const ps = fbGet('ebd_fb_profiles') || [];
+            $a('fb-list').innerHTML = `<div class="flat-card"><div style="font-size:13px;color:var(--text-muted)">বর্তমান প্রজেক্ট</div><div style="font-weight:800;color:var(--navy)">${esc2(firebaseConfig.projectId)} ${fbGet('ebd_fb_active') ? '(custom)' : '(default)'}</div>${fbGet('ebd_fb_active') ? '<button class="btn btn-primary" style="margin-top:10px" onclick="fbReset()">Default-এ ফিরুন</button>' : ''}</div>` +
+                ps.map((p, i) => `<div class="flat-card" style="margin-top:12px"><div style="font-weight:800;color:var(--navy)">${esc2(p.name)}</div><div style="font-size:12px;color:var(--text-muted)">${esc2(p.cfg.projectId)}</div><div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn-primary" onclick="fbUse(${i})">Use</button><button class="btn btn-danger" onclick="fbDel(${i})"><i class="fas fa-trash"></i></button></div></div>`).join('');
+        }
+        window.fbAdd = () => {
+            const raw = $a('fb-raw').value, cfg = {};
+            [...raw.matchAll(/["']?([A-Za-z]+)["']?\s*:\s*["']([^"']+)["']/g)].forEach(m => cfg[m[1]] = m[2]);
+            if (!cfg.apiKey || !cfg.projectId || !cfg.appId) return Swal.fire('Error', 'apiKey, projectId ও appId দরকার', 'error');
+            const ps = fbGet('ebd_fb_profiles') || [];
+            ps.push({ name: $a('fb-name').value.trim() || cfg.projectId, cfg });
+            fbPut('ebd_fb_profiles', ps); $a('fb-raw').value = ''; $a('fb-name').value = ''; fbRender();
+        };
+        window.fbDel = i => { const ps = fbGet('ebd_fb_profiles') || []; ps.splice(i, 1); fbPut('ebd_fb_profiles', ps); fbRender(); };
+        window.fbUse = async i => {
+            const ps = fbGet('ebd_fb_profiles') || []; if (!ps[i]) return;
+            const r = await Swal.fire({ title: 'প্রজেক্ট বদলাবেন?', text: 'অ্যাপ রিলোড হবে এবং নতুন প্রজেক্টের ডাটাবেসে লগইন চাইবে।', icon: 'question', showCancelButton: true });
+            if (r.isConfirmed) { fbPut('ebd_fb_active', ps[i].cfg); location.reload(); }
+        };
+        window.fbReset = () => { try { localStorage.removeItem('ebd_fb_active'); } catch (_) {} location.reload(); };
+
+        // ---- hook navigation (keeps original navTo intact) ----
+        const _navOrig = window.navTo;
+        window.navTo = (id) => {
+            const prev = aiActive();
+            _navOrig(id);
+            if (id !== 'dashboard' && !canAccess(id)) return;
+            if (id === 'ai') { if (prev !== 'ai' && AI_PAGES[prev]) aiCtx = prev; aiOpen(); }
+            if (id === 'aisettings') { aiSubscribe(); aiRefreshUI(); aiKeysRender(); }
+            if (id === 'fbconfigs') fbRender();
+            aiFab();
+        };
 
     </script>
 </body>
