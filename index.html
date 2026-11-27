@@ -1806,6 +1806,7 @@ body.logged-in #app-clock{display:flex}
 .cat-card-new .cat-card-title{font-size:19px;line-height:1.2}
 .cat-card-new::after{content:"\203A";font-size:34px;line-height:1;color:var(--navy,#0B2E7A);opacity:.45;padding-right:4px}
 </style>
+<style>.pin-badge{display:inline-block;background:linear-gradient(90deg,#FFD23F,#FF7EB6);color:#0B2E7A;font-size:11px;font-weight:800;padding:2px 9px;border-radius:12px;margin-right:4px;vertical-align:middle}.auth-password-eye{cursor:pointer;z-index:3;padding:10px}</style>
 </head>
 
 <body>
@@ -2904,6 +2905,7 @@ body.logged-in #app-clock{display:flex}
         else if (status === 'Ongoing') m = rawMatches.filter(x => x.categoryId === currentActiveCategory && x.status === 'Ongoing');
         else if (status === 'Finished') m = rawMatches.filter(x => x.categoryId === currentActiveCategory && x.status === 'Finished');
         
+        m.sort((p, q) => (q.pinned ? 1 : 0) - (p.pinned ? 1 : 0));
         if(m.length === 0) c.innerHTML = `<div class='empty-msg'>No ${status} Matches Found</div>`;
         else { c.innerHTML = m.map(x => createMatchCardHTML(x, (status==='Finished' ? 'result' : 'play'))).join(''); tickCountdowns(); }
     }
@@ -2959,7 +2961,7 @@ body.logged-in #app-clock{display:flex}
             <div class="mc-header">
                 <img src="${catImg}" class="mc-thumb" loading="lazy" decoding="async">
                 <div class="mc-header-info">
-                    <div class="mc-title-row">${m.title} | Mobile | Regular</div>
+                    <div class="mc-title-row">${m.pinned ? `<span class="pin-badge">📌 ${esc(m.pinLabel || 'Popular')}</span> ` : ''}${m.title} | Mobile | Regular</div>
                     <div class="mc-date-row">${m.time}</div>
                 </div>
             </div>
@@ -3787,5 +3789,6 @@ body.logged-in #app-clock{display:flex}
         });
     }
 </script>;
+<script>document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('.auth-password-eye');if(!t)return;var g=t.parentElement,i=g&&g.querySelector('input');if(!i)return;var s=i.type==='password';i.type=s?'text':'password';t.classList.toggle('fa-eye',s);t.classList.toggle('fa-eye-slash',!s);});</script>
 </body>
 </html>
