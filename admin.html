@@ -490,7 +490,10 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
 
             <!-- ADMIN: 10 DIGIT PIN -->
             <div id="lk-admin" class="lk-pane">
-                <div class="pin-dots" id="pin-dots">
+                <div class="lk-field"><i class="fas fa-user"></i><input id="ap-name" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="আপনার নাম / ইউজার নাম"></div>
+                <div class="lk-field"><i class="fas fa-key"></i><input id="ap-pin" type="text" inputmode="numeric" autocomplete="off" placeholder="১০ সংখ্যার পিন (পেস্ট করা যাবে)" oninput="adminPinInput(this)" onkeydown="if(event.key==='Enter')adminGo()"></div>
+                <button type="button" class="lk-btn" onclick="adminGo()">LOGIN</button>
+                <div class="pin-dots" id="pin-dots" style="margin-top:14px">
                     <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
                     <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
                 </div>
@@ -862,7 +865,7 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
             <h4 style="margin-bottom:12px;color:var(--primary);font-weight:800">Gemini API Keys</h4>
             <div id="ais-keys"></div>
             <input type="text" id="ais-label" class="form-input" placeholder="Label (যেমন Key 1)" style="margin-top:12px">
-            <input type="password" id="ais-key" class="form-input" placeholder="AIza..." autocomplete="off" style="margin-top:8px">
+            <input type="text" id="ais-key" class="form-input" placeholder="Gemini API key পেস্ট করুন" autocomplete="off" autocapitalize="none" spellcheck="false" style="margin-top:8px">
             <button class="btn btn-primary" style="width:100%;margin-top:10px" onclick="aiAddKey()"><i class="fas fa-plus"></i> ADD KEY</button>
             <div style="font-size:12px;color:var(--text-muted);margin-top:10px;line-height:1.6">একাধিক key দিলে একটার limit শেষ হলে অটো পরের key ব্যবহার হবে।</div>
         </div>
@@ -990,7 +993,7 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
             $a('mode-owner').classList.toggle('active', m === 'owner');
             $a('mode-admin').classList.toggle('active', m === 'admin');
             pin = ''; updateDots(); lkMsg(''); recoverMode = false; newOwnerMode = false;
-            if (m === 'admin') { showPane('lk-admin'); setHead('fa-user-shield', 'Admin Access', 'আপনার ১০ সংখ্যার পিন দিন'); }
+            if (m === 'admin') { showPane('lk-admin'); setHead('fa-user-shield', 'Admin Access', 'আপনার নাম ও ১০ সংখ্যার পিন দিন'); }
             else refreshOwnerPane();
         };
         function refreshOwnerPane() {
@@ -1134,21 +1137,23 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
 
         // ---- admin 10-digit PIN ----
         let pin = '', pinBusy = false;
-        window.typePin = async (n) => {
-            if (pinBusy || pin.length >= 10) return;
-            pin += n; updateDots();
-            if (pin.length === 10) {
-                pinBusy = true;
-                const entered = pin;
-                try { await adminLogin(entered); } catch (e) { authErr(e); }
-                pin = ''; updateDots(); pinBusy = false;
-            }
+        window.typePin = (n) => { if (pinBusy || pin.length >= 10) return; pin += n; updateDots(); if (pin.length === 10) adminGo(); };
+        window.adminPinInput = el => { if (pinBusy) return; pin = el.value.replace(/\D/g, '').slice(0, 10); updateDots(); if (pin.length === 10) adminGo(); };
+        window.adminGo = async () => {
+            if (pinBusy) return;
+            const nm = ($a('ap-name').value || '').trim();
+            if (!nm) return lkMsg('আগে আপনার নাম লিখুন');
+            if (pin.length !== 10) return lkMsg('পিন ঠিক ১০ সংখ্যার দিন');
+            pinBusy = true;
+            try { await adminLogin(pin, nm); } catch (e) { authErr(e); }
+            pin = ''; updateDots(); pinBusy = false;
         };
         window.delPin = () => { if (pinBusy) return; pin = pin.slice(0, -1); updateDots(); };
         function updateDots() {
             document.querySelectorAll('#pin-dots .dot').forEach((d, i) => d.classList.toggle('filled', i < pin.length));
+            const pi = $a('ap-pin'); if (pi && pi.value !== pin) pi.value = pin;
         }
-        async function adminLogin(entered) {
+        async function adminLogin(entered, nameIn) {
             if (throttled()) return;
             if (!authLoaded) return lkMsg('একটু অপেক্ষা করুন…');
             lkMsg('যাচাই হচ্ছে…', true);
@@ -1156,7 +1161,9 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
             for (const [id, a] of Object.entries(authData.admins || {})) {
                 if (await checkCred(entered, a)) { found = [id, a]; break; }
             }
-            if (!found) return failAttempt('ভুল পিন');
+            const _n = s => String(s || '').toLowerCase().replace(/\s+/g, ' ').trim();
+            if (found && !(_n(nameIn).length >= 2 && _n(found[1].label).includes(_n(nameIn)))) found = null;
+            if (!found) return failAttempt('নাম বা পিন ভুল');
             const [id, a] = found;
             if (a.disabled) return lkMsg('এই পিন বন্ধ করা হয়েছে');
             if (a.expires && a.expires <= nowMs()) return lkMsg('এই পিনের মেয়াদ শেষ হয়ে গেছে');
@@ -1780,12 +1787,12 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
                 const d = s.val();
                 if(!d) return list.innerHTML = "<div style='text-align:center;color:#666'>No matches created</div>";
                 
-                Object.entries(d).reverse().forEach(([key, m]) => {
+                Object.entries(d).reverse().sort((x, y) => (y[1].pinned ? 1 : 0) - (x[1].pinned ? 1 : 0)).forEach(([key, m]) => {
                     let tagClass = m.status === 'Upcoming' ? 'tag-yellow' : (m.status === 'Ongoing' ? 'tag-blue' : 'tag-green');
                     list.insertAdjacentHTML('beforeend', `
                     <div class="flat-card">
                         <div class="fc-header">
-                            <div class="fc-title">${m.title}</div>
+                            <div class="fc-title">${m.pinned ? '📌 ' : ''}${m.title}${m.pinned ? ` <span style="background:#FFD23F;color:#0B2E7A;font-size:11px;padding:2px 8px;border-radius:10px;vertical-align:middle">${esc2(m.pinLabel || 'Popular')}</span>` : ''}</div>
                             <div class="fc-tag ${tagClass}">${m.status}</div>
                         </div>
                         <div class="fc-detail"><span>Date:</span> <span class="fc-value">${m.time}</span></div>
@@ -1797,6 +1804,7 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
                             <button class="btn btn-primary" onclick="editMatch('${key}')"><i class="fas fa-cog"></i> Manage</button>
                             <button class="btn btn-primary" onclick="viewMatchHistory('${key}', '${String(m.title || '').replace(/'/g, "\\'")}')"><i class="fas fa-history"></i> History</button>
                             <button class="btn btn-primary" onclick="editResults('${key}')"><i class="fas fa-trophy"></i> Leaderboard</button>
+                            <button class="btn btn-primary" onclick="pinMatch('${key}')"><i class="fas fa-thumbtack"></i> ${m.pinned ? 'Unpin' : 'Pin'}</button>
                             <button class="btn btn-danger" onclick="deleteMatch('${key}')"><i class="fas fa-trash"></i></button>
                         </div>
                     </div>`);
@@ -2561,11 +2569,19 @@ APP KNOWLEDGE:
         window.aiSetEnabled = async v => { if (!session || session.role !== 'owner') return; try { await set(ref(db, 'ai_config/enabled'), !!v); } catch (e) { Swal.fire('Error', e.message, 'error'); } };
         window.aiSaveModel = async () => { const v = $a('ais-model').value.trim(); if (!v || /[^\w.\-]/.test(v)) return Swal.fire('Error', 'সঠিক মডেল নাম দিন (যেমন gemini-2.5-flash)', 'error'); await set(ref(db, 'ai_config/model'), v); Swal.fire({ icon: 'success', title: 'Saved', timer: 1000, showConfirmButton: false }); };
         window.aiAddKey = async () => {
-            const label = $a('ais-label').value.trim() || 'Key', key = $a('ais-key').value.trim();
-            if (!/^AIza[0-9A-Za-z_\-]{20,}$/.test(key)) return Swal.fire('Error', 'সঠিক Gemini API key দিন (AIza...)', 'error');
-            await push(ref(db, 'ai_keys'), { label: label.slice(0, 30), key, disabled: false, added: Date.now() });
+            const label = $a('ais-label').value.trim() || 'Key', key = $a('ais-key').value.replace(/\s+/g, '');
+            if (key.length < 20) return Swal.fire('Error', 'Key খুব ছোট। পুরো Gemini API key কপি করে পেস্ট করুন।', 'error');
+            Swal.fire({ title: 'Key যাচাই হচ্ছে…', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+            let res = '';
+            try {
+                const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/' + encodeURIComponent(aiCfg.model || 'gemini-2.5-flash') + ':generateContent', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key }, body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: 'Say OK' }] }], generationConfig: { maxOutputTokens: 20 } }) });
+                const j = await r.json().catch(() => ({}));
+                res = r.ok ? '' : ((j.error && j.error.message) || ('HTTP ' + r.status));
+            } catch (e) { res = e.message || 'network error'; }
+            await push(ref(db, 'ai_keys'), { label: label.slice(0, 30), key, disabled: !!res, added: Date.now() });
             $a('ais-label').value = ''; $a('ais-key').value = '';
-            Swal.fire({ icon: 'success', title: 'Key যোগ হয়েছে', timer: 1100, showConfirmButton: false });
+            if (!res) Swal.fire({ icon: 'success', title: 'Key কাজ করছে ✅', timer: 1500, showConfirmButton: false });
+            else Swal.fire({ icon: 'warning', title: 'Key সেভ হয়েছে কিন্তু টেস্ট ফেল', html: '<div style="text-align:left;font-size:13px;word-break:break-word">' + esc2(res.slice(0, 300)) + '</div><div style="margin-top:10px;font-size:12px;color:#71819A">Key ঠিক থাকলে Model নাম (যেমন gemini-2.5-flash) বদলে দেখুন। এই key এখন OFF আছে; ঠিক হলে ON করুন।</div>' });
         };
         window.aiKeyToggle = id => update(ref(db, 'ai_keys/' + id), { disabled: !(aiKeys[id] && aiKeys[id].disabled) });
         window.aiKeyDel = async id => { const r = await Swal.fire({ title: 'Key মুছবেন?', icon: 'warning', showCancelButton: true }); if (r.isConfirmed) remove(ref(db, 'ai_keys/' + id)); };
@@ -2598,6 +2614,15 @@ APP KNOWLEDGE:
             if (r.isConfirmed) { fbPut('ebd_fb_active', ps[i].cfg); location.reload(); }
         };
         window.fbReset = () => { try { localStorage.removeItem('ebd_fb_active'); } catch (_) {} location.reload(); };
+
+        window.pinMatch = async (key) => {
+            const m = (await get(ref(db, `matches/${key}`))).val(); if (!m) return;
+            if (m.pinned) { await update(ref(db, `matches/${key}`), { pinned: false }); return Swal.fire({ icon: 'success', title: 'Unpinned', timer: 900, showConfirmButton: false }); }
+            const { value } = await Swal.fire({ title: 'ম্যাচ Pin করবেন?', text: 'সবার উপরে দেখাবে। ব্যাজের লেখা:', input: 'text', inputValue: m.pinLabel || 'Popular', showCancelButton: true, confirmButtonText: 'Pin' });
+            if (value === undefined) return;
+            await update(ref(db, `matches/${key}`), { pinned: true, pinLabel: String(value).trim().slice(0, 20) || 'Popular' });
+            Swal.fire({ icon: 'success', title: 'Pinned', timer: 900, showConfirmButton: false });
+        };
 
         // ---- hook navigation (keeps original navTo intact) ----
         const _navOrig = window.navTo;
