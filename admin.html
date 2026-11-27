@@ -858,13 +858,14 @@ h1,h2,h3,.admin-logo,.stat-val,.fc-title,.pin-title{font-family:'Rajdhani','Hind
         </div>
         <div class="flat-card" style="margin-top:16px">
             <h4 style="margin-bottom:12px;color:var(--primary);font-weight:800">Gemini Model</h4>
-            <input type="text" id="ais-model" class="form-input" placeholder="gemini-2.5-flash">
-            <button class="btn btn-primary" style="width:100%;margin-top:10px" onclick="aiSaveModel()">SAVE MODEL</button>
+            <select id="ais-model" class="form-input" onchange="aiModelPick(this.value)"><option value="">আগে একটি key যোগ করুন</option></select>
+            <div id="ais-mstat" style="font-size:12px;color:var(--text-muted);margin-top:8px"></div>
+            <button class="btn btn-primary" style="width:100%;margin-top:10px" onclick="aiModelsRefresh()"><i class="fas fa-rotate"></i> মডেল তালিকা রিফ্রেশ</button>
         </div>
         <div class="flat-card" style="margin-top:16px">
             <h4 style="margin-bottom:12px;color:var(--primary);font-weight:800">Gemini API Keys</h4>
             <div id="ais-keys"></div>
-            <input type="text" id="ais-label" class="form-input" placeholder="Label (যেমন Key 1)" style="margin-top:12px">
+            
             <input type="text" id="ais-key" class="form-input" placeholder="Gemini API key পেস্ট করুন" autocomplete="off" autocapitalize="none" spellcheck="false" style="margin-top:8px">
             <button class="btn btn-primary" style="width:100%;margin-top:10px" onclick="aiAddKey()"><i class="fas fa-plus"></i> ADD KEY</button>
             <div style="font-size:12px;color:var(--text-muted);margin-top:10px;line-height:1.6">একাধিক key দিলে একটার limit শেষ হলে অটো পরের key ব্যবহার হবে।</div>
@@ -2471,7 +2472,7 @@ APP KNOWLEDGE:
             const off = $a('ai-off'); if (off) off.style.display = aiCfg.enabled ? 'none' : '';
             const tg = $a('ai-tg'); if (tg) { tg.innerHTML = '<i class="fas fa-power-off"></i> ' + (aiCfg.enabled ? 'ON' : 'OFF'); tg.className = aiCfg.enabled ? 'on' : ''; }
             const sw = $a('ais-on'); if (sw) sw.checked = aiCfg.enabled;
-            const m = $a('ais-model'); if (m && document.activeElement !== m) m.value = aiCfg.model;
+            aiModelsRender();
             const t = $a('ai-text'), b = $a('ai-send'); if (t) { t.disabled = !aiCfg.enabled; b.disabled = !aiCfg.enabled; }
             aiFab();
         }
@@ -2568,20 +2569,50 @@ APP KNOWLEDGE:
         window.aiToggle = () => aiSetEnabled(!aiCfg.enabled);
         window.aiSetEnabled = async v => { if (!session || session.role !== 'owner') return; try { await set(ref(db, 'ai_config/enabled'), !!v); } catch (e) { Swal.fire('Error', e.message, 'error'); } };
         window.aiSaveModel = async () => { const v = $a('ais-model').value.trim(); if (!v || /[^\w.\-]/.test(v)) return Swal.fire('Error', 'সঠিক মডেল নাম দিন (যেমন gemini-2.5-flash)', 'error'); await set(ref(db, 'ai_config/model'), v); Swal.fire({ icon: 'success', title: 'Saved', timer: 1000, showConfirmButton: false }); };
+        let aiModels = [];
+        const aiModelRank = n => { const m = /gemini-(\d+(?:\.\d+)?)-flash$/.exec(n); return m ? parseFloat(m[1]) : (/flash/.test(n) && !/lite/.test(n) ? 0.5 : 0); };
+        async function aiFetchModels(key) {
+            const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models?pageSize=200', { headers: { 'x-goog-api-key': key } });
+            const j = await r.json().catch(() => ({}));
+            if (!r.ok) throw new Error((j.error && j.error.message) || ('HTTP ' + r.status));
+            const bad = /tts|image|live|embed|aqa|audio|robotics|veo|imagen|transcribe|computer|translate|deep-research|omni|antigravity|banana/i;
+            const l = (j.models || []).filter(m => (m.supportedGenerationMethods || []).includes('generateContent')).map(m => String(m.name).replace(/^models\//, '')).filter(n => /^gemini/.test(n) && !bad.test(n));
+            if (!l.length) throw new Error('এই key দিয়ে কোনো মডেল পাওয়া যায়নি');
+            return [...new Set(l)].sort((x, y) => aiModelRank(y) - aiModelRank(x) || x.localeCompare(y));
+        }
+        function aiModelsRender() {
+            const s = $a('ais-model'); if (!s) return;
+            const l = aiModels.slice(); if (aiCfg.model && !l.includes(aiCfg.model)) l.unshift(aiCfg.model);
+            s.innerHTML = l.length ? l.map(n => `<option value="${esc2(n)}">${esc2(n)}</option>`).join('') : '<option value="">আগে একটি key যোগ করুন</option>';
+            s.value = aiCfg.model || '';
+        }
+        async function aiApplyModels(list) {
+            aiModels = list;
+            if (!list.includes(aiCfg.model)) { aiCfg.model = list[0]; try { await set(ref(db, 'ai_config/model'), list[0]); } catch (_) {} }
+            aiModelsRender();
+            const st = $a('ais-mstat'); if (st) st.textContent = list.length + 'টি মডেল পাওয়া গেছে';
+        }
+        window.aiModelPick = async v => { if (!v) return; aiCfg.model = v; try { await set(ref(db, 'ai_config/model'), v); } catch (e) { Swal.fire('Error', e.message, 'error'); } };
+        window.aiModelsRefresh = async (silent) => {
+            const st = $a('ais-mstat');
+            const k = Object.values(aiKeys).find(x => x && x.key && !x.disabled);
+            if (!k) { if (st) st.textContent = 'কোনো চালু key নেই'; return; }
+            if (st) st.textContent = 'মডেল তালিকা আনা হচ্ছে…';
+            try { await aiApplyModels(await aiFetchModels(k.key)); }
+            catch (e) { if (st) st.textContent = 'তালিকা আনা যায়নি: ' + String(e.message).slice(0, 120); if (silent !== true) Swal.fire('Error', String(e.message).slice(0, 200), 'error'); }
+        };
         window.aiAddKey = async () => {
-            const label = $a('ais-label').value.trim() || 'Key', key = $a('ais-key').value.replace(/\s+/g, '');
+            const key = $a('ais-key').value.replace(/\s+/g, '');
             if (key.length < 20) return Swal.fire('Error', 'Key খুব ছোট। পুরো Gemini API key কপি করে পেস্ট করুন।', 'error');
             Swal.fire({ title: 'Key যাচাই হচ্ছে…', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
-            let res = '';
-            try {
-                const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/' + encodeURIComponent(aiCfg.model || 'gemini-2.5-flash') + ':generateContent', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key }, body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: 'Say OK' }] }], generationConfig: { maxOutputTokens: 20 } }) });
-                const j = await r.json().catch(() => ({}));
-                res = r.ok ? '' : ((j.error && j.error.message) || ('HTTP ' + r.status));
-            } catch (e) { res = e.message || 'network error'; }
-            await push(ref(db, 'ai_keys'), { label: label.slice(0, 30), key, disabled: !!res, added: Date.now() });
-            $a('ais-label').value = ''; $a('ais-key').value = '';
-            if (!res) Swal.fire({ icon: 'success', title: 'Key কাজ করছে ✅', timer: 1500, showConfirmButton: false });
-            else Swal.fire({ icon: 'warning', title: 'Key সেভ হয়েছে কিন্তু টেস্ট ফেল', html: '<div style="text-align:left;font-size:13px;word-break:break-word">' + esc2(res.slice(0, 300)) + '</div><div style="margin-top:10px;font-size:12px;color:#71819A">Key ঠিক থাকলে Model নাম (যেমন gemini-2.5-flash) বদলে দেখুন। এই key এখন OFF আছে; ঠিক হলে ON করুন।</div>' });
+            const n = Math.max(Object.keys(aiKeys).length, ...Object.values(aiKeys).map(k => +k.n || 0)) + 1;
+            let list = [], err = '';
+            try { list = await aiFetchModels(key); } catch (e) { err = e.message || 'network error'; }
+            await push(ref(db, 'ai_keys'), { label: 'Key ' + n, n, key, disabled: !!err, added: Date.now() });
+            $a('ais-key').value = '';
+            if (err) return Swal.fire({ icon: 'warning', title: 'Key কাজ করছে না', html: '<div style="text-align:left;font-size:13px;word-break:break-word">' + esc2(err.slice(0, 300)) + '</div><div style="margin-top:10px;font-size:12px;color:#71819A">Key সেভ হয়েছে কিন্তু OFF আছে। সঠিক key দিয়ে আবার চেষ্টা করুন।</div>' });
+            await aiApplyModels(list);
+            Swal.fire({ icon: 'success', title: 'Key ' + n + ' যোগ হয়েছে ✅', text: 'মডেল: ' + aiCfg.model, timer: 1800, showConfirmButton: false });
         };
         window.aiKeyToggle = id => update(ref(db, 'ai_keys/' + id), { disabled: !(aiKeys[id] && aiKeys[id].disabled) });
         window.aiKeyDel = async id => { const r = await Swal.fire({ title: 'Key মুছবেন?', icon: 'warning', showCancelButton: true }); if (r.isConfirmed) remove(ref(db, 'ai_keys/' + id)); };
@@ -2631,7 +2662,7 @@ APP KNOWLEDGE:
             _navOrig(id);
             if (id !== 'dashboard' && !canAccess(id)) return;
             if (id === 'ai') { if (prev !== 'ai' && AI_PAGES[prev]) aiCtx = prev; aiOpen(); }
-            if (id === 'aisettings') { aiSubscribe(); aiRefreshUI(); aiKeysRender(); }
+            if (id === 'aisettings') { aiSubscribe(); aiRefreshUI(); aiKeysRender(); setTimeout(() => aiModelsRefresh(true), 600); }
             if (id === 'fbconfigs') fbRender();
             aiFab();
         };
